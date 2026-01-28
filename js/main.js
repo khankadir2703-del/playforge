@@ -69,3 +69,20 @@ function publishGame() {
   localStorage.setItem("myGame", JSON.stringify(gameData));
   alert("Game published! You can view it in your Dashboard.");
 }
+// Load published game in dashboard
+function loadDashboard() {
+  const savedGame = localStorage.getItem("myGame");
+  const gamesList = document.getElementById("userGames");
+  const gamesCreated = document.getElementById("gamesCreated");
+  if (savedGame) {
+    gamesList.innerHTML = "<li>My First Game <button class='cta'>Edit</button></li>";
+    gamesCreated.textContent = 1;
+    document.getElementById("totalViews").textContent = 5200;
+    document.getElementById("earnings").textContent = "₹350";
+  }
+}
+
+// Run on page load
+document.addEventListener("DOMContentLoaded", () => {
+  loadDashboard();
+});
