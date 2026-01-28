@@ -118,3 +118,32 @@ input {
   justify-content: center;
   margin: 60px 0;
 }
+.earn-card {
+  background: linear-gradient(145deg, #0f172a, #1e293b);
+  padding: 20px;
+  border-radius: 12px;
+  color: #fff;
+  margin: 20px 0;
+  text-align: center;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+}
+
+.earn-card button {
+  padding: 10px 20px;
+  background: linear-gradient(90deg, #3b82f6, #06b6d4);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.earn-actions button {
+  padding: 10px 20px;
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  margin: 5px;
+  cursor: pointer;
+}
