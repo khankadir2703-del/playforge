@@ -39,4 +39,23 @@
   <script src="js/main.js"></script>
 </body>
 </html>
+<section class="builder">
+  <div class="builder-container">
+    <h2>Create Your Game</h2>
+    <p>Drag & Drop elements to design your game.</p>
+
+    <div class="builder-buttons">
+      <button class="cta" onclick="addPlayer()">Add Player</button>
+      <button class="cta" onclick="addEnemy()">Add Enemy</button>
+      <button class="cta" onclick="setBackground()">Set Background</button>
+      <button class="cta" onclick="previewGame()">Preview Game</button>
+      <button class="cta" onclick="publishGame()">Publish Game</button>
+    </div>
+
+    <div class="builder-canvas">
+      <p>🎮 Game Preview Area</p>
+      <canvas id="gameCanvas" width="600" height="400" style="background:#1a1f35;"></canvas>
+    </div>
+  </div>
+</section>
 
