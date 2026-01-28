@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Dashboard – PlayForge</title>
+  <title>Dashboard | PlayForge</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<header>
-  <h2>User Dashboard</h2>
-</header>
+<header class="simple-header">👤 Dashboard</header>
 
-<section>
-  <p>Login system coming soon 🔐</p>
-  <button onclick="dashboardAlert()">View Earnings</button>
+<section class="card">
+  <h3>Login / Signup</h3>
+  <input type="text" placeholder="Username">
+  <input type="password" placeholder="Password">
+  <button onclick="login()">Login</button>
 </section>
 
-<a href="index.html">← Back to Home</a>
+<section class="card">
+  <h3>Earnings</h3>
+  <p>Balance: ₹0.00</p>
+  <button onclick="earnAlert()">Withdraw</button>
+</section>
+
+<a href="index.html" class="back">← Home</a>
 
 <script src="js/main.js"></script>
 </body>
