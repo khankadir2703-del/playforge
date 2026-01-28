@@ -1,25 +1,42 @@
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0b1220;
-  color: white;
+  font-family: "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, #0f172a, #020617);
+  color: #e5e7eb;
   text-align: center;
 }
 
-header {
-  background: #020617;
-  padding: 15px;
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background: rgba(2,6,23,0.8);
+  backdrop-filter: blur(10px);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .logo {
-  width: 140px;
+  width: 50px;
+  background: none;
+  filter: drop-shadow(0 0 10px #38bdf8);
+}
+
+.brand-name {
+  font-size: 20px;
+  font-weight: bold;
+  color: #38bdf8;
 }
 
 nav a {
-  color: #38bdf8;
-  margin: 0 10px;
+  color: #94a3b8;
+  margin-left: 15px;
   text-decoration: none;
-  font-weight: bold;
 }
 
 nav a:hover {
@@ -27,34 +44,72 @@ nav a:hover {
 }
 
 .hero {
-  padding: 60px 20px;
+  padding: 80px 20px;
+}
+
+.hero h1 {
+  font-size: 42px;
+  color: #38bdf8;
+}
+
+.buttons button {
+  margin: 10px;
 }
 
 button {
-  padding: 12px 22px;
-  margin: 10px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #38bdf8, #2563eb);
   border: none;
-  border-radius: 6px;
-  background: white;
-  color: #0b1220;
-  font-weight: bold;
+  color: white;
+  border-radius: 8px;
   cursor: pointer;
+  font-weight: bold;
 }
 
 button:hover {
-  background: #e5e7eb;
+  opacity: 0.9;
+}
+
+.creator {
+  margin: 40px 0;
+}
+
+.name {
+  font-size: 20px;
+  color: #facc15;
 }
 
 footer {
-  background: #020617;
   padding: 15px;
-  margin-top: 40px;
   font-size: 14px;
-  color: #94a3b8;
+  color: #64748b;
 }
 
-a {
-  color: #38bdf8;
+.simple-header {
+  padding: 20px;
+  font-size: 24px;
+  background: #020617;
+}
+
+.card {
+  background: rgba(15,23,42,0.8);
+  margin: 30px auto;
+  padding: 25px;
+  width: 300px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(56,189,248,0.15);
+}
+
+input {
+  width: 90%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: none;
+}
+
+.back {
   display: block;
   margin: 20px;
+  color: #38bdf8;
 }
