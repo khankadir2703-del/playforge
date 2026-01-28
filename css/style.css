@@ -6,101 +6,99 @@
 }
 
 body {
-  background: #0b1220;
+  background: #0b0f1a;
   color: white;
 }
 
-/* ===== NAVBAR ===== */
-.navbar {
+/* HEADER */
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 40px;
-  background: #0f172a;
+  padding: 15px 30px;
+  background: #060914;
 }
 
-.nav-left {
+.logo-area {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
-.logo {
-  height: 42px;
+.logo-area img {
+  width: 40px;
+  height: auto;
 }
 
-.brand-name {
-  font-size: 22px;
-  font-weight: bold;
-}
-
-.nav-links a {
+.header nav a {
+  color: white;
   margin-left: 20px;
   text-decoration: none;
-  color: #cbd5f5;
 }
 
-.nav-links a:hover {
-  color: #60a5fa;
+.header nav a:hover {
+  color: #4da3ff;
 }
 
-/* ===== HERO ===== */
+/* HERO */
 .hero {
   text-align: center;
-  padding: 80px 20px;
-  background: radial-gradient(circle, #1e293b, #020617);
-}
-
-.hero-logo {
-  width: 160px;
-  margin-bottom: 20px;
+  padding: 100px 20px;
 }
 
 .hero h1 {
-  font-size: 42px;
-  margin-bottom: 10px;
+  font-size: 48px;
 }
 
 .hero p {
-  color: #cbd5f5;
-  margin-bottom: 25px;
+  margin: 15px 0;
+  color: #cfcfcf;
 }
 
-.cta {
-  padding: 12px 28px;
+.buttons button {
+  margin: 10px;
+}
+
+/* BUTTONS */
+button {
+  padding: 12px 25px;
   border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  cursor: pointer;
+  border-radius: 5px;
   background: white;
-  color: #020617;
+  color: black;
+  cursor: pointer;
+  font-size: 16px;
 }
 
-.cta:hover {
-  background: #e5e7eb;
+button:hover {
+  background: #e0e0e0;
 }
 
-/* ===== FEATURES ===== */
-.features {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
+/* SECTIONS */
+.section {
   padding: 60px 20px;
-}
-
-.feature-card {
-  background: #020617;
-  border: 1px solid #1e293b;
-  border-radius: 10px;
-  padding: 25px;
-  width: 260px;
   text-align: center;
 }
 
-/* ===== FOOTER ===== */
-.footer {
+.section.dark {
+  background: #050814;
+}
+
+/* INPUTS */
+input, textarea {
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  width: 80%;
+  max-width: 400px;
+  border-radius: 5px;
+  border: none;
+}
+
+/* FOOTER */
+footer {
+  background: #060914;
+  padding: 15px;
   text-align: center;
-  padding: 20px;
-  border-top: 1px solid #1e293b;
-  color: #94a3b8;
+  font-size: 14px;
 }
