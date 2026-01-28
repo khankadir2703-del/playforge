@@ -1,22 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>PlayForge - Build & Publish Games</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- CSS -->
+  <!-- CSS CONNECT -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <!-- HEADER -->
   <header class="header">
-    <div class="logo-area">
-      <img src="assets/images/logo.png" alt="PlayForge Logo">
-      <span>PlayForge</span>
-    </div>
-
+    <img src="assets/images/logo.png" alt="PlayForge Logo" class="logo">
     <nav>
       <a href="#home">Home</a>
       <a href="#games">Games</a>
@@ -26,7 +21,7 @@
   </header>
 
   <!-- HERO -->
-  <section id="home" class="hero">
+  <section class="hero" id="home">
     <h1>Build. Publish. Earn.</h1>
     <p>Create and publish your games easily</p>
 
@@ -37,24 +32,24 @@
   </section>
 
   <!-- GAMES -->
-  <section id="games" class="section">
+  <section class="games" id="games">
     <h2>Available Games</h2>
-    <p>No games published yet.</p>
+    <p id="gameStatus">No games published yet.</p>
   </section>
 
   <!-- PUBLISH -->
-  <section id="publish" class="section dark">
+  <section class="publish" id="publish">
     <h2>Publish Your Game</h2>
-    <button onclick="publishGame()">Upload Game</button>
+    <button onclick="uploadGame()">Upload Game</button>
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="section">
+  <section class="contact" id="contact">
     <h2>Contact Us</h2>
 
-    <input type="text" placeholder="Your Name">
-    <input type="email" placeholder="Your Email">
-    <textarea placeholder="Your Message"></textarea>
+    <input type="text" id="name" placeholder="Your Name">
+    <input type="email" id="email" placeholder="Your Email">
+    <textarea id="message" placeholder="Your Message"></textarea>
 
     <button onclick="sendMessage()">Send Message</button>
   </section>
@@ -64,7 +59,8 @@
     © 2026 PlayForge. All rights reserved.
   </footer>
 
-  <!-- JS -->
-  <script src="script.js"></script>
+  <!-- JS CONNECT (VERY IMPORTANT) -->
+  <script src="main.js"></script>
+
 </body>
 </html>
