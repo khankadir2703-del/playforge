@@ -113,3 +113,8 @@ input {
   margin: 20px;
   color: #38bdf8;
 }
+.login-home {
+  display: flex;
+  justify-content: center;
+  margin: 60px 0;
+}
