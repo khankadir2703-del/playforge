@@ -140,6 +140,40 @@ footer {
   text-decoration: none;
   color: #fff;
 }
+.dashboard .stats {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px 20px;
+}
+
+.stat-card {
+  background: #11162a;
+  padding: 20px;
+  width: 200px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.user-games {
+  padding: 20px;
+  max-width: 600px;
+  margin: auto;
+}
+
+.user-games ul {
+  list-style: none;
+}
+
+.user-games li {
+  background: #11162a;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 .game-card:hover {
   background: #1a1f35;
