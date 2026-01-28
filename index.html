@@ -1,64 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>PlayForge – Build, Publish & Earn</title>
+  <meta charset="UTF-8" />
+  <title>PlayForge - Build & Publish Games</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- ================= NAVBAR ================= -->
-<header class="navbar">
-  <div class="nav-left">
-    <img src="assets/images/logo.png" alt="PlayForge Logo" class="logo">
-    <span class="brand-name">PlayForge</span>
-  </div>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo-area">
+      <img src="assets/images/logo.png" alt="PlayForge Logo">
+      <span>PlayForge</span>
+    </div>
 
-  <nav class="nav-links">
-    <a href="#">Home</a>
-    <a href="#">Games</a>
-    <a href="#">Create</a>
-    <a href="#">Dashboard</a>
-  </nav>
-</header>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#games">Games</a>
+      <a href="#publish">Publish</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-<!-- ================= HERO SECTION ================= -->
-<section class="hero">
-  <img src="assets/images/logo.png" alt="PlayForge Logo" class="hero-logo">
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <h1>Build. Publish. Earn.</h1>
+    <p>Create and publish your games easily</p>
 
-  <h1>Build. Publish. Earn.</h1>
-  <p>Create games, publish them and earn money on PlayForge</p>
+    <div class="buttons">
+      <button onclick="playGame()">Play Game</button>
+      <button onclick="publishGame()">Publish Game</button>
+    </div>
+  </section>
 
-  <button class="cta">Start Creating</button>
-</section>
+  <!-- GAMES -->
+  <section id="games" class="section">
+    <h2>Available Games</h2>
+    <p>No games published yet.</p>
+  </section>
 
-<!-- ================= FEATURES ================= -->
-<section class="features">
-  <div class="feature-card">
-    <h3>🎮 Game Builder</h3>
-    <p>Create games directly on PlayForge</p>
-  </div>
+  <!-- PUBLISH -->
+  <section id="publish" class="section dark">
+    <h2>Publish Your Game</h2>
+    <button onclick="publishGame()">Upload Game</button>
+  </section>
 
-  <div class="feature-card">
-    <h3>🚀 Publish Anywhere</h3>
-    <p>Upload games made with GDevelop & others</p>
-  </div>
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <h2>Contact Us</h2>
 
-  <div class="feature-card">
-    <h3>💰 Earn Money</h3>
-    <p>Earn from ads & views</p>
-  </div>
-</section>
+    <input type="text" placeholder="Your Name">
+    <input type="email" placeholder="Your Email">
+    <textarea placeholder="Your Message"></textarea>
 
-<!-- ================= FOOTER ================= -->
-<footer class="footer">
-  <p>© 2026 PlayForge. All rights reserved.</p>
-</footer>
+    <button onclick="sendMessage()">Send Message</button>
+  </section>
 
-<!-- JS -->
-<script src="js/main.js"></script>
+  <!-- FOOTER -->
+  <footer>
+    © 2026 PlayForge. All rights reserved.
+  </footer>
+
+  <!-- JS -->
+  <script src="script.js"></script>
 </body>
 </html>
