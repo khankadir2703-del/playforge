@@ -2,29 +2,44 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>PlayForge – Build & Publish Games</title>
+  <title>PlayForge | Game Studio</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<header>
-  <img src="assets/game/logo.png" class="logo">
+<header class="top">
+  <div class="brand">
+    <img src="assets/game/logo.png" class="logo">
+    <span class="brand-name">PlayForge</span>
+  </div>
+
   <nav>
     <a href="index.html">Home</a>
     <a href="games.html">Games</a>
     <a href="builder.html">Builder</a>
     <a href="dashboard.html">Dashboard</a>
+    <a href="about.html">About</a>
   </nav>
 </header>
 
 <section class="hero">
-  <h1>Build. Publish. Earn.</h1>
-  <p>Create and publish your games on PlayForge</p>
-  <button onclick="playGame()">Play Game</button>
-  <button onclick="publishGame()">Publish Game</button>
+  <h1>Build • Publish • Earn</h1>
+  <p>A next-gen indie game studio platform</p>
+
+  <div class="buttons">
+    <button onclick="playGame()">Play Games</button>
+    <button onclick="publishGame()">Publish Game</button>
+  </div>
 </section>
 
-<footer>© 2026 PlayForge</footer>
+<section class="creator">
+  <h3>Created by</h3>
+  <p class="name">Mohammad Khan</p>
+</section>
+
+<footer>
+  © 2026 PlayForge Studio
+</footer>
 
 <script src="js/main.js"></script>
 </body>
