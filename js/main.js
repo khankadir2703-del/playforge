@@ -1,21 +1,23 @@
-function playGame() {
-  alert("Games coming soon 🎮");
+function login(inputId) {
+  const username = document.getElementById(inputId).value;
+
+  if (username === "") {
+    alert("Username likho");
+    return;
+  }
+
+  localStorage.setItem("playforgeUser", username);
+  window.location.href = "dashboard.html";
 }
 
-function publishGame() {
-  alert("Publish system under development 🚀");
+function loadUser() {
+  const user = localStorage.getItem("playforgeUser");
+  if (user) {
+    document.getElementById("welcomeUser").innerText = user;
+  }
 }
 
-function builderAlert() {
-  alert("Visual builder coming soon 🛠");
+function logout() {
+  localStorage.removeItem("playforgeUser");
+  window.location.href = "index.html";
 }
-
-function login() {
-  alert("Login system demo only 🔐");
-}
-
-function earnAlert() {
-  alert("Earning system will activate later 💰");
-}
-
-console.log("PlayForge loaded successfully 🔥");
