@@ -34,3 +34,21 @@
 
 <script src="js/main.js"></script>
 </body>
+<body onload="loadUser()">
+  <h2>Welcome, <span id="welcomeUser"></span></h2>
+
+  <div class="earn-card">
+    <h3>Earnings</h3>
+    <p>Balance: <span id="balance">₹0</span></p>
+    <button onclick="withdraw()">Withdraw</button>
+  </div>
+
+  <div class="earn-actions">
+    <button onclick="addEarning(50)">Publish Game (+₹50)</button>
+    <button onclick="addEarning(100)">Special Bonus (+₹100)</button>
+  </div>
+
+  <button onclick="logout()">Logout</button>
+
+  <script src="js/main.js"></script>
+</body>
