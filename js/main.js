@@ -1,17 +1,21 @@
 function playGame() {
-  alert("No games available yet 🎮");
+  alert("Games coming soon 🎮");
 }
 
 function publishGame() {
-  alert("Publish system coming soon 🚀");
+  alert("Publish system under development 🚀");
 }
 
 function builderAlert() {
-  alert("Game Builder coming soon 🛠️");
+  alert("Visual builder coming soon 🛠");
 }
 
-function dashboardAlert() {
-  alert("Earnings system coming soon 💰");
+function login() {
+  alert("Login system demo only 🔐");
 }
 
-console.log("PlayForge fully loaded 🔥");
+function earnAlert() {
+  alert("Earning system will activate later 💰");
+}
+
+console.log("PlayForge loaded successfully 🔥");
