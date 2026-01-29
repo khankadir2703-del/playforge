@@ -1,23 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Account – PlayForge</title>
-<link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - PlayForge</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="dark-theme">
+    <nav class="navbar">
+        <div class="logo">PlayForge</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <div id="auth-section"></div>
+        </div>
+    </nav>
 
-<header>
-<a href="index.html">← Home</a>
-</header>
+    <main class="container">
+        <div class="account-card">
+            <div class="profile-header">
+                <div class="avatar-large">PF</div>
+                <h2 id="profileUser">Username</h2>
+                <span class="badge">Verified Creator</span>
+            </div>
+            <div class="profile-meta">
+                <p><strong>Platform Architect:</strong> Mohammad Khan</p>
+                <p><strong>Tier:</strong> Professional Developer</p>
+                <p><strong>Region:</strong> Global</p>
+            </div>
+            <button id="logoutBtn" class="btn-outline" style="width: 100%; margin-top: 20px;">Sign Out</button>
+        </div>
+    </main>
 
-<div class="card">
-<h2>My Account</h2>
-<p><b>Name:</b> <span id="name"></span></p>
-<p><b>Status:</b> Creator</p>
-<button onclick="logout()">Logout</button>
-</div>
-
-<script src="js/auth.js"></script>
+    <script src="js/auth.js"></script>
 </body>
 </html>
-
