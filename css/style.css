@@ -1,149 +1,64 @@
 body {
-  margin: 0;
-  font-family: "Segoe UI", sans-serif;
-  background: radial-gradient(circle at top, #0f172a, #020617);
-  color: #e5e7eb;
-  text-align: center;
+  margin:0;
+  background:#0b0f1a;
+  color:white;
+  font-family:'Alice', serif;
 }
 
-.top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 30px;
-  background: rgba(2,6,23,0.8);
-  backdrop-filter: blur(10px);
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.navbar {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 30px;
+  background:#070a14;
 }
 
 .logo {
-  width: 50px;
-  background: none;
-  filter: drop-shadow(0 0 10px #38bdf8);
-}
-
-.brand-name {
-  font-size: 20px;
-  font-weight: bold;
-  color: #38bdf8;
+  height:40px;
 }
 
 nav a {
-  color: #94a3b8;
-  margin-left: 15px;
-  text-decoration: none;
+  margin:0 10px;
+  color:white;
+  text-decoration:none;
 }
 
-nav a:hover {
-  color: white;
+button, .primary-btn {
+  background:white;
+  color:black;
+  padding:8px 16px;
+  border:none;
+  cursor:pointer;
+  text-decoration:none;
 }
 
 .hero {
-  padding: 80px 20px;
+  padding:80px 20px;
+  text-align:center;
 }
 
-.hero h1 {
-  font-size: 42px;
-  color: #38bdf8;
-}
-
-.buttons button {
-  margin: 10px;
-}
-
-button {
-  padding: 12px 24px;
-  background: linear-gradient(135deg, #38bdf8, #2563eb);
-  border: none;
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-button:hover {
-  opacity: 0.9;
-}
-
-.creator {
-  margin: 40px 0;
-}
-
-.name {
-  font-size: 20px;
-  color: #facc15;
-}
-
-footer {
-  padding: 15px;
-  font-size: 14px;
-  color: #64748b;
-}
-
-.simple-header {
-  padding: 20px;
-  font-size: 24px;
-  background: #020617;
+.page-title {
+  text-align:center;
+  margin:30px 0;
 }
 
 .card {
-  background: rgba(15,23,42,0.8);
-  margin: 30px auto;
-  padding: 25px;
-  width: 300px;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(56,189,248,0.15);
+  background:#11162a;
+  padding:20px;
+  margin:20px;
+  border-radius:8px;
 }
 
-input {
-  width: 90%;
-  padding: 10px;
-  margin: 8px 0;
-  border-radius: 6px;
-  border: none;
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
+  padding:20px;
 }
 
-.back {
-  display: block;
-  margin: 20px;
-  color: #38bdf8;
-}
-.login-home {
-  display: flex;
-  justify-content: center;
-  margin: 60px 0;
-}
-.earn-card {
-  background: linear-gradient(145deg, #0f172a, #1e293b);
-  padding: 20px;
-  border-radius: 12px;
-  color: #fff;
-  margin: 20px 0;
-  text-align: center;
-  box-shadow: 0 8px 15px rgba(0,0,0,0.3);
-}
-
-.earn-card button {
-  padding: 10px 20px;
-  background: linear-gradient(90deg, #3b82f6, #06b6d4);
-  border: none;
-  border-radius: 8px;
-  color: #fff;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.earn-actions button {
-  padding: 10px 20px;
-  background: linear-gradient(90deg, #22c55e, #16a34a);
-  border: none;
-  border-radius: 8px;
-  color: #fff;
-  margin: 5px;
-  cursor: pointer;
+.game-card {
+  background:#11162a;
+  padding:40px;
+  text-align:center;
+  border-radius:8px;
 }
