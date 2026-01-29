@@ -1,26 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Dashboard – PlayForge</title>
-<link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creator Dashboard - PlayForge</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="dark-theme">
+    <nav class="navbar">
+        <div class="logo">PlayForge</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="builder.html">Open Builder</a>
+            <div id="auth-section"></div>
+        </div>
+    </nav>
 
-<header class="simple-nav"><a href="index.html">← Home</a></header>
+    <main class="container">
+        <h2>Creator Analytics</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h4>Total Engagement (Plays)</h4>
+                <p id="totalPlays">0</p>
+            </div>
+            <div class="stat-card">
+                <h4>Projected Revenue</h4>
+                <p id="totalEarnings">$0.00</p>
+            </div>
+        </div>
 
-<h2 class="page-title">Creator Dashboard</h2>
+        <div id="withdrawSection" class="withdraw-card hidden">
+            <div class="alert-box">
+                <h3>Threshold Reached!</h3>
+                <p>Your earnings have exceeded $1.00. You can now request a demo withdrawal.</p>
+                <div class="withdraw-form">
+                    <input type="email" placeholder="Payment Email (PayPal/Stripe)" id="payEmail">
+                    <button class="btn-primary" onclick="alert('Demo: Transfer initiated to ' + document.getElementById('payEmail').value)">Process Payment</button>
+                </div>
+            </div>
+        </div>
 
-<div class="card">
-<h3>Your Games</h3>
-<div id="myGames"></div>
-</div>
+        <div class="my-games" style="margin-top: 40px;">
+            <h3>Your Projects</h3>
+            <div id="myGamesList" class="games-grid" style="margin-top: 20px;"></div>
+        </div>
+    </main>
 
-<div class="card">
-<h3>Estimated Earnings</h3>
-<p id="earn">$0 (demo)</p>
-<p class="muted">Real earning after backend launch</p>
-</div>
-
-<script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
 </body>
 </html>
