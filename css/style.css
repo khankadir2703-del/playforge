@@ -1,8 +1,8 @@
 body {
   margin:0;
-  background:#0b0f1a;
-  color:white;
-  font-family:'Alice', serif;
+  background:linear-gradient(180deg,#070b18,#02040a);
+  color:#ffffff;
+  font-family:'Poppins',sans-serif;
 }
 
 .navbar {
@@ -10,31 +10,55 @@ body {
   justify-content:space-between;
   align-items:center;
   padding:15px 30px;
-  background:#070a14;
+  background:#050814;
 }
 
-.logo {
+.logo-box {
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo-box img {
   height:40px;
 }
 
+.brand {
+  font-family:'Orbitron',sans-serif;
+  font-size:20px;
+}
+
 nav a {
-  margin:0 10px;
-  color:white;
+  margin:0 12px;
+  color:#fff;
   text-decoration:none;
 }
 
 button, .primary-btn {
-  background:white;
-  color:black;
-  padding:8px 16px;
+  background:#ffffff;
+  color:#000;
+  padding:8px 18px;
   border:none;
+  border-radius:6px;
   cursor:pointer;
   text-decoration:none;
 }
 
 .hero {
-  padding:80px 20px;
   text-align:center;
+  padding:100px 20px;
+}
+
+.hero h1 {
+  font-family:'Orbitron',sans-serif;
+  font-size:42px;
+}
+
+footer {
+  text-align:center;
+  padding:15px;
+  font-size:14px;
+  background:#050814;
 }
 
 .page-title {
@@ -43,22 +67,30 @@ button, .primary-btn {
 }
 
 .card {
-  background:#11162a;
-  padding:20px;
+  background:#0d132a;
   margin:20px;
-  border-radius:8px;
+  padding:25px;
+  border-radius:10px;
 }
 
 .grid {
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:20px;
   padding:20px;
 }
 
 .game-card {
-  background:#11162a;
-  padding:40px;
+  background:#0d132a;
+  padding:50px 20px;
   text-align:center;
-  border-radius:8px;
+  border-radius:10px;
+}
+
+.simple-nav {
+  padding:15px;
+}
+
+.muted {
+  opacity:0.7;
 }
