@@ -6,16 +6,20 @@
 </head>
 <body>
 
-<header class="simple-nav"><a href="index.html">← Home</a></header>
+<header>
+<a href="index.html">← Home</a>
+</header>
 
-<h2 class="page-title">Create Game</h2>
+<h2 class="center">2D Game Builder</h2>
 
 <div class="card">
-  <input id="gameName" placeholder="Game Name">
-  <textarea id="gameDesc" placeholder="Game Description"></textarea>
-  <button onclick="saveGame()">Save Game</button>
+<input id="gameName" placeholder="Game Name">
+<button onclick="saveGame()">Save & Publish</button>
 </div>
 
-<script src="js/main.js"></script>
+<canvas id="editor" width="600" height="300"></canvas>
+<p class="hint">Use Arrow Keys to test your game</p>
+
+<script src="js/builder.js"></script>
 </body>
 </html>
