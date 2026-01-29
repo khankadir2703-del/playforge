@@ -1,17 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Play Game</title>
-<link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playing - PlayForge</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="dark-theme">
+    <nav class="navbar">
+        <div class="logo">PlayForge</div>
+        <div class="nav-links">
+            <a href="games.html">← Back to Library</a>
+        </div>
+    </nav>
 
-<header>
-<a href="games.html">← Back</a>
-</header>
+    <main class="play-container">
+        <div class="game-header">
+            <h2 id="playingTitle">Game</h2>
+            <p>Created by: <span id="gameCreator" class="primary-text"></span></p>
+        </div>
+        <canvas id="playCanvas" width="800" height="500"></canvas>
+        <div class="game-meta-footer">
+            <p><strong>CONTROLS:</strong> Mouse movement to steer. Avoid the obstacles!</p>
+        </div>
+    </main>
 
-<canvas id="game" width="600" height="300"></canvas>
-
-<script src="js/game.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/games.js"></script>
 </body>
 </html>
