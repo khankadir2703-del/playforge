@@ -1,64 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>PlayForge | Game Studio</title>
+  <title>PlayForge</title>
   <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<header class="top">
-  <div class="brand">
-    <img src="assets/game/logo.png" class="logo">
-    <span class="brand-name">PlayForge</span>
-  </div>
-
+<header class="navbar">
+  <img src="assets/images/logo.png" class="logo">
   <nav>
-    <a href="index.html">Home</a>
     <a href="games.html">Games</a>
-    <a href="builder.html">Builder</a>
+    <a href="builder.html">Create</a>
     <a href="dashboard.html">Dashboard</a>
     <a href="about.html">About</a>
+    <button id="authBtn">Login / Signup</button>
   </nav>
 </header>
 
 <section class="hero">
-  <h1>Build • Publish • Earn</h1>
-  <p>A next-gen indie game studio platform</p>
-
-  <div class="buttons">
-    <button onclick="playGame()">Play Games</button>
-    <button onclick="publishGame()">Publish Game</button>
-  </div>
+  <h1>Create, Publish & Grow Your Games</h1>
+  <p>PlayForge is a creator-first game publishing platform.</p>
+  <a href="builder.html" class="primary-btn">Start Creating</a>
 </section>
-
-<section class="creator">
-  <h3>Created by</h3>
-  <p class="name">Mohammad Khan</p>
-</section>
-
-<footer>
-  © 2026 PlayForge Studio
-</footer>
 
 <script src="js/main.js"></script>
 </body>
 </html>
-<section class="login-home">
-  <div class="card">
-    <h3>Login / Signup</h3>
-
-    <input type="text" id="homeUser" placeholder="Username">
-    <input type="password" id="homePass" placeholder="Password">
-
-    <button onclick="login()">Login</button>
-  </div>
-</section>
-<div class="login-box">
-  <h3>Login / Signup</h3>
-  <input id="homeUser" placeholder="Username">
-  <input type="password" placeholder="Password">
-  <button onclick="login('homeUser')">Login</button>
-</div>
-
-<script src="js/main.js"></script>
