@@ -4,10 +4,9 @@
   <meta charset="UTF-8">
   <title>PlayForge – Create & Earn</title>
 
-  <!-- CSS -->
   <link rel="stylesheet" href="css/style.css">
 
-  <!-- Google Fonts -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -15,90 +14,55 @@
 <!-- ================= HEADER ================= -->
 <header class="navbar">
   <div class="logo-box">
-    <img src="assets/game/logo.png" alt="PlayForge Logo">
+    <img src="assets/images/logo.png" alt="PlayForge Logo">
     <span class="brand">PlayForge</span>
   </div>
 
   <nav>
+    <a href="index.html">Home</a>
     <a href="games.html">Games</a>
     <a href="builder.html">Create</a>
     <a href="dashboard.html">Dashboard</a>
     <a href="about.html">Earning</a>
-    <button id="authBtn">Login / Signup</button>
+
+    <button id="loginBtn">Login / Signup</button>
+    <div id="userBox" class="hidden">
+      <span id="username"></span>
+      <button id="logoutBtn">Logout</button>
+    </div>
   </nav>
 </header>
 
 <!-- ================= HERO ================= -->
 <section class="hero">
-  <h1>Create Games. Publish. Grow.</h1>
+  <h1>Create Games. Publish. Earn.</h1>
   <p>A modern game publishing platform for creators.</p>
   <a href="builder.html" class="primary-btn">Start Creating</a>
 </section>
 
-<!-- ================= HOW IT WORKS ================= -->
-<section class="info">
-  <h2>How PlayForge Works</h2>
+<!-- ================= LOGIN MODAL ================= -->
+<div id="authModal" class="modal hidden">
+  <div class="modal-box">
+    <span class="close" id="closeModal">×</span>
 
-  <div class="info-grid">
-    <div class="info-box">
-      <h3>1. Create Game</h3>
-      <p>Build your game using PlayForge tools.</p>
-    </div>
+    <h2>Login / Signup</h2>
 
-    <div class="info-box">
-      <h3>2. Publish</h3>
-      <p>Publish your game directly on PlayForge.</p>
-    </div>
+    <input type="text" id="authName" placeholder="Your Name">
+    <input type="email" id="authEmail" placeholder="Email">
+    <input type="password" id="authPass" placeholder="Password">
 
-    <div class="info-box">
-      <h3>3. Players Play</h3>
-      <p>Gamers discover and play your games.</p>
-    </div>
+    <button id="signupBtn">Signup</button>
+    <button id="loginSubmitBtn">Login</button>
 
-    <div class="info-box">
-      <h3>4. Earn</h3>
-      <p>Earn via ads & revenue sharing system.</p>
-    </div>
+    <p class="note">Demo system (frontend only)</p>
   </div>
-</section>
-
-<!-- ================= WHY PLAYFORGE ================= -->
-<section class="info dark">
-  <h2>Why Create on PlayForge?</h2>
-
-  <div class="info-grid">
-    <div class="info-box">Creator-first platform</div>
-    <div class="info-box">Easy publishing</div>
-    <div class="info-box">Future monetization</div>
-    <div class="info-box">Game-focused community</div>
-  </div>
-</section>
-
-<!-- ================= CREATOR JOURNEY ================= -->
-<section class="info">
-  <h2>Creator Journey</h2>
-
-  <div class="info-grid">
-    <div class="info-box">Sign up</div>
-    <div class="info-box">Create game</div>
-    <div class="info-box">Publish</div>
-    <div class="info-box">Grow & Earn</div>
-  </div>
-</section>
-
-<!-- ================= CTA ================= -->
-<section class="hero small">
-  <h2>Ready to Build Your First Game?</h2>
-  <a href="builder.html" class="primary-btn">Create Your Game</a>
-</section>
+</div>
 
 <!-- ================= FOOTER ================= -->
 <footer>
-  © 2026 PlayForge | Founder: <b>Mohammad Khan</b>
+  <p>© 2026 PlayForge | Created by <b>Mohammad Khan</b></p>
 </footer>
 
-<!-- JS -->
 <script src="js/main.js"></script>
-
 </body>
 </html>
