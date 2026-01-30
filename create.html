@@ -2,166 +2,203 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Forge Editor | PlayForge</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Forge Editor Pro | PlayForge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        :root { --panel-bg: #15151e; --border-clr: #2d2d3d; --accent-blue: #6366f1; }
-        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #0b0b0e; color: white; font-family: 'Poppins', sans-serif; }
+        :root { 
+            --bg-deep: #0d0d12; --panel-bg: #16161f; --border: #262633; 
+            --accent: #6366f1; --text-dim: #94a3b8; 
+        }
+        * { box-sizing: border-box; }
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: var(--bg-deep); color: white; font-family: 'Inter', sans-serif; }
         
-        /* Layout Structure */
-        .editor-container { display: flex; flex-direction: column; height: 100vh; }
-        .top-nav { height: 55px; background: var(--panel-bg); border-bottom: 1px solid var(--border-clr); display: flex; align-items: center; justify-content: space-between; padding: 0 20px; }
-        .main-workspace { display: flex; flex: 1; overflow: hidden; }
+        /* Top Navigation */
+        .header { height: 50px; background: var(--panel-bg); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 15px; }
+        .tabs-container { display: flex; height: 100%; margin-left: 20px; }
+        .tab { padding: 0 20px; display: flex; align-items: center; cursor: pointer; border-right: 1px solid var(--border); font-size: 0.85rem; color: var(--text-dim); transition: 0.2s; }
+        .tab.active { background: var(--bg-deep); color: var(--accent); border-bottom: 2px solid var(--accent); }
 
-        /* Sidebars */
-        .sidebar { width: 240px; background: var(--panel-bg); border-right: 1px solid var(--border-clr); display: flex; flex-direction: column; }
-        .right-sidebar { border-right: none; border-left: 1px solid var(--border-clr); width: 280px; }
-        .panel-header { padding: 12px; font-size: 0.75rem; color: #555; text-transform: uppercase; border-bottom: 1px solid var(--border-clr); letter-spacing: 1px; }
+        .workspace { display: flex; height: calc(100vh - 50px); }
 
-        /* Project Manager Items */
-        .tree-item { padding: 10px 15px; font-size: 0.85rem; color: #a1a1aa; cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 10px; }
-        .tree-item:hover, .tree-item.active { background: #22222f; color: white; border-left: 3px solid var(--accent-blue); }
+        /* Left Sidebar */
+        .sidebar-l { width: 240px; background: var(--panel-bg); border-right: 1px solid var(--border); }
+        .p-label { padding: 12px; font-size: 0.7rem; color: #475569; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; }
+        .menu-i { padding: 10px 15px; font-size: 0.85rem; color: #cbd5e1; cursor: pointer; display: flex; align-items: center; gap: 10px; border-radius: 4px; margin: 0 8px; }
+        .menu-i:hover, .menu-i.active { background: #1e1e2d; color: white; }
 
-        /* Canvas (The Grid) */
-        .canvas-container { flex: 1; background: #111; display: flex; align-items: center; justify-content: center; position: relative; 
-            background-image: linear-gradient(var(--border-clr) 1px, transparent 1px), linear-gradient(90deg, var(--border-clr) 1px, transparent 1px);
-            background-size: 20px 20px; overflow: auto; }
-        canvas { background: #000; box-shadow: 0 0 50px rgba(0,0,0,0.6); border: 1px solid #333; }
+        /* Center: Canvas & Logic Sections */
+        .content-area { flex: 1; position: relative; overflow: hidden; background: #09090b; }
+        #scene-view, #events-view { width: 100%; height: 100%; position: absolute; top: 0; left: 0; display: none; }
+        #scene-view.active, #events-view.active { display: flex; align-items: center; justify-content: center; }
 
-        /* Object Library & Properties */
-        .object-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 15px; }
-        .obj-btn { background: #2d2d3d; padding: 15px; border-radius: 8px; text-align: center; cursor: grab; font-size: 0.8rem; border: 1px solid transparent; }
-        .obj-btn:hover { border-color: var(--accent-blue); background: #35354a; }
-        .properties-panel { padding: 15px; font-size: 0.85rem; color: #a1a1aa; }
-        .prop-row { display: flex; justify-content: space-between; margin-bottom: 8px; border-bottom: 1px solid #222; padding-bottom: 4px; }
-        
-        /* Action Buttons */
-        .btn { padding: 8px 18px; border-radius: 6px; font-weight: 600; cursor: pointer; border: none; font-size: 0.85rem; }
-        .btn-primary { background: var(--accent-blue); color: white; }
-        .btn-secondary { background: #22222f; color: white; border: 1px solid var(--border-clr); }
-        .btn-danger { background: #ef4444; color: white; width: 100%; margin-top: 15px; }
+        /* Canvas Style */
+        .canvas-wrap { position: relative; box-shadow: 0 0 60px rgba(0,0,0,0.5); }
+        canvas { background: #000; border: 1px solid #334155; display: block; image-rendering: pixelated; }
+
+        /* Right Sidebar */
+        .sidebar-r { width: 300px; background: var(--panel-bg); border-left: 1px solid var(--border); display: flex; flex-direction: column; }
+        .obj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 15px; }
+        .obj-box { background: #1e1e2d; border: 1px solid var(--border); border-radius: 8px; padding: 15px; text-align: center; cursor: grab; font-size: 0.8rem; transition: 0.2s; }
+        .obj-box:hover { border-color: var(--accent); background: #252538; transform: translateY(-2px); }
+
+        .props { padding: 15px; background: #11111a; border-radius: 8px; margin: 15px; flex-grow: 1; font-size: 0.85rem; color: var(--text-dim); }
+        .p-row { display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid #1e1e2d; padding-bottom: 5px; }
+        .p-val { color: white; font-weight: 600; }
+
+        /* Event Editor Table */
+        .event-table { width: 100%; color: #cbd5e1; font-size: 0.85rem; border-collapse: collapse; }
+        .event-row { border-bottom: 1px solid var(--border); }
+        .event-cell { padding: 15px; border: 1px solid var(--border); width: 50%; vertical-align: top; }
+        .btn-add { color: var(--accent); cursor: pointer; text-decoration: underline; }
+
+        /* Buttons */
+        .btn-pro { padding: 8px 16px; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 0.85rem; }
+        .primary { background: var(--accent); color: white; }
+        .secondary { background: #1e1e2d; color: #94a3b8; border: 1px solid var(--border); }
+        .danger { background: #ef4444; color: white; width: 100%; padding: 10px; margin-top: 20px; }
     </style>
 </head>
 <body>
 
-<div class="editor-container">
-    <nav class="top-nav">
-        <div style="font-weight: 700; font-size: 1.2rem;">Play<span style="color:var(--accent-blue)">Forge</span> Editor</div>
-        <div style="display:flex; gap:20px; font-size:0.85rem; color:#666;">
-            <span>File</span> <span>Edit</span> <span>Project</span> <span>Scene</span>
-        </div>
-        <div style="display:flex; gap:10px;">
-            <button class="btn btn-secondary">Preview</button>
-            <button class="btn btn-primary" id="publishBtn">Publish Game</button>
-        </div>
-    </nav>
-
-    <div class="main-workspace">
-        <aside class="sidebar">
-            <div class="panel-header">Project Manager</div>
-            <div class="tree-item active">📁 Main Scene</div>
-            <div class="tree-item">📜 Scene Events</div>
-            <div class="tree-item">🖼 Assets Manager</div>
-            <div class="tree-item">⚙️ Game Settings</div>
-        </aside>
-
-        <main class="canvas-container" id="dropZone">
-            <canvas id="gameCanvas" width="800" height="500"></canvas>
-        </main>
-
-        <aside class="sidebar right-sidebar">
-            <div class="panel-header">Object Library</div>
-            <div class="object-grid">
-                <div class="obj-btn" draggable="true" ondragstart="drag(event)" id="sprite">👾 Sprite</div>
-                <div class="obj-btn" draggable="true" ondragstart="drag(event)" id="text">T Text</div>
-                <div class="obj-btn" draggable="true" ondragstart="drag(event)" id="enemy">🟥 Enemy</div>
-                <div class="obj-btn" draggable="true" ondragstart="drag(event)" id="platform">🟦 Platform</div>
-            </div>
-
-            <div class="panel-header">Properties</div>
-            <div class="properties-panel" id="propContent">
-                Select an object to see properties...
-            </div>
-        </aside>
+<div class="header">
+    <div style="font-weight: 800; letter-spacing: -0.5px; font-size: 1.1rem;">Play<span style="color:var(--accent)">Forge</span></div>
+    <div class="tabs-container">
+        <div class="tab active" onclick="switchTab('scene')">🏠 Main Scene</div>
+        <div class="tab" onclick="switchTab('events')">📜 Scene Events</div>
+    </div>
+    <div style="display: flex; gap: 10px;">
+        <button class="btn-pro secondary">Preview</button>
+        <button class="btn-pro primary" onclick="publish()">Publish Game</button>
     </div>
 </div>
 
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-<script src="firebase-config.js"></script>
+<div class="workspace">
+    <aside class="sidebar-l">
+        <div class="p-label">Project</div>
+        <div class="menu-i active">📁 Scenes</div>
+        <div class="menu-i">🖼 Assets Manager</div>
+        <div class="menu-i">⚙️ Settings</div>
+    </aside>
+
+    <main class="content-area">
+        <div id="scene-view" class="active">
+            <div class="canvas-wrap">
+                <canvas id="gameCanvas" width="800" height="450"></canvas>
+            </div>
+        </div>
+
+        <div id="events-view">
+            <div style="padding: 30px; width: 100%;">
+                <h3 style="margin-top:0">Event Sheet</h3>
+                <table class="event-table">
+                    <tr style="background:#16161f">
+                        <th class="event-cell">Conditions (When this happens...)</th>
+                        <th class="event-cell">Actions (Do this...)</th>
+                    </tr>
+                    <tr class="event-row">
+                        <td class="event-cell"><span class="btn-add">+ Add Condition</span></td>
+                        <td class="event-cell"><span class="btn-add">+ Add Action</span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <aside class="sidebar-r">
+        <div class="p-label">Object Library</div>
+        <div class="obj-grid">
+            <div class="obj-box" draggable="true" ondragstart="drag(event)" id="sprite">👾 Sprite</div>
+            <div class="obj-box" draggable="true" ondragstart="drag(event)" id="enemy">🟥 Enemy</div>
+            <div class="obj-box" draggable="true" ondragstart="drag(event)" id="platform">🟦 Platform</div>
+            <div class="obj-box" draggable="true" ondragstart="drag(event)" id="text">T Text</div>
+        </div>
+
+        <div class="p-label">Properties</div>
+        <div class="props" id="propList">
+            Select an object to modify...
+        </div>
+    </aside>
+</div>
 
 <script>
     const canvas = document.getElementById('gameCanvas');
     const ctx = canvas.getContext('2d');
-    let gameObjects = [];
-    let selectedId = null;
+    let objects = [];
+    let selected = null;
 
-    // Drag Function
+    // Tab Switching Logic (Fixes your non-working buttons)
+    function switchTab(tab) {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.getElementById('scene-view').classList.remove('active');
+        document.getElementById('events-view').classList.remove('active');
+
+        if(tab === 'scene') {
+            document.querySelector('.tab:nth-child(1)').classList.add('active');
+            document.getElementById('scene-view').classList.add('active');
+        } else {
+            document.querySelector('.tab:nth-child(2)').classList.add('active');
+            document.getElementById('events-view').classList.add('active');
+        }
+    }
+
+    // Drag & Drop
     function drag(ev) { ev.dataTransfer.setData("type", ev.target.id); }
-
-    // Drop Logic on Canvas
     canvas.addEventListener('dragover', (e) => e.preventDefault());
     canvas.addEventListener('drop', (e) => {
         e.preventDefault();
-        const type = e.dataTransfer.setData ? e.dataTransfer.getData("type") : "sprite";
+        const type = e.dataTransfer.getData("type");
         const rect = canvas.getBoundingClientRect();
-        const x = Math.round((e.clientX - rect.left - 20) / 20) * 20; // Snap to 20px grid
-        const y = Math.round((e.clientY - rect.top - 20) / 20) * 20;
+        const x = Math.round((e.clientX - rect.left - 20) / 25) * 25; // Snapping
+        const y = Math.round((e.clientY - rect.top - 20) / 25) * 25;
 
-        const newObj = { id: Date.now(), type, x, y, w: 40, h: 40, color: getColor(type) };
-        gameObjects.push(newObj);
+        const obj = { id: Date.now(), type, x, y, w: 50, h: 50 };
+        objects.push(obj);
         render();
-        selectObject(newObj.id);
+        updateProps(obj);
     });
-
-    function getColor(type) {
-        if(type === 'enemy') return '#ef4444';
-        if(type === 'platform') return '#3b82f6';
-        return '#6366f1';
-    }
 
     function render() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        gameObjects.forEach(obj => {
-            ctx.fillStyle = obj.color;
-            ctx.fillRect(obj.x, obj.y, obj.w, obj.h);
-            if(obj.id === selectedId) {
-                ctx.strokeStyle = "white";
-                ctx.lineWidth = 2;
-                ctx.strokeRect(obj.x, obj.y, obj.w, obj.h);
+        // Drawing Grid (Subtle GDevelop feel)
+        ctx.strokeStyle = '#1e1e2d';
+        for(let i=0; i<canvas.width; i+=25) { ctx.beginPath(); ctx.moveTo(i,0); ctx.lineTo(i,canvas.height); ctx.stroke(); }
+        for(let j=0; j<canvas.height; j+=25) { ctx.beginPath(); ctx.moveTo(0,j); ctx.lineTo(canvas.width,j); ctx.stroke(); }
+
+        objects.forEach(o => {
+            ctx.fillStyle = o.type === 'enemy' ? '#ef4444' : (o.type === 'platform' ? '#3b82f6' : '#6366f1');
+            ctx.fillRect(o.x, o.y, o.w, o.h);
+            if(selected && o.id === selected.id) {
+                ctx.strokeStyle = 'white'; ctx.lineWidth = 2; ctx.strokeRect(o.x, o.y, o.w, o.h);
             }
         });
     }
 
-    function selectObject(id) {
-        selectedId = id;
-        const obj = gameObjects.find(o => o.id === id);
-        const panel = document.getElementById('propContent');
-        panel.innerHTML = `
-            <div class="prop-row"><span>Type</span> <span style="color:white">${obj.type}</span></div>
-            <div class="prop-row"><span>Position X</span> <span style="color:white">${obj.x}px</span></div>
-            <div class="prop-row"><span>Position Y</span> <span style="color:white">${obj.y}px</span></div>
-            <button class="btn btn-danger" onclick="deleteObj(${obj.id})">Delete Object</button>
+    function updateProps(obj) {
+        selected = obj;
+        document.getElementById('propList').innerHTML = `
+            <div class="p-row"><span>Type</span> <span class="p-val">${obj.type}</span></div>
+            <div class="p-row"><span>X</span> <span class="p-val">${obj.x}px</span></div>
+            <div class="p-row"><span>Y</span> <span class="p-val">${obj.y}px</span></div>
+            <button class="btn-pro danger" onclick="removeObj(${obj.id})">Remove Object</button>
         `;
         render();
     }
 
-    window.deleteObj = (id) => {
-        gameObjects = gameObjects.filter(o => o.id !== id);
-        selectedId = null;
-        document.getElementById('propContent').innerHTML = "Select an object...";
+    window.removeObj = (id) => {
+        objects = objects.filter(o => o.id !== id);
+        selected = null;
+        document.getElementById('propList').innerHTML = "Select an object...";
         render();
+    };
+
+    function publish() {
+        alert("Preparing Forge Project for Upload...");
+        localStorage.setItem('playforge_data', JSON.stringify(objects));
+        window.location.href = 'publish.html';
     }
 
-    // Publish Logic
-    document.getElementById('publishBtn').onclick = () => {
-        if(gameObjects.length === 0) return alert("Game is empty!");
-        localStorage.setItem('forge_game_data', JSON.stringify(gameObjects));
-        window.location.href = "publish.html";
-    };
+    // Initial Render
+    render();
 </script>
-
 </body>
 </html>
