@@ -1,61 +1,34 @@
-const Auth = {
-    init() {
-        this.updateNav();
-        this.bindEvents();
-    },
-    bindEvents() {
-        const loginBtn = document.getElementById('loginBtn');
-        const modal = document.getElementById('authModal');
-        const authForm = document.getElementById('authForm');
-        
-        if (loginBtn) {
-            loginBtn.onclick = () => modal.style.display = 'block';
+// Authentication Logic
+const checkAuthState = (redirectIfLoggedOut = false) => {
+    auth.onAuthStateChanged((user) => {
+        if (user) {
+            console.log("User is logged in:", user.email);
+            // नेविगेशन बार अपडेट करने के लिए main.js का इस्तेमाल होगा
+        } else {
+            if (redirectIfLoggedOut) {
+                alert("Please login to access this page.");
+                window.location.href = "login.html";
+            }
         }
+    });
+};
 
-        window.onclick = (e) => { 
-            if(e.target == modal) modal.style.display = 'none'; 
-        };
-
-        if (authForm) {
-            authForm.onsubmit = (e) => {
-                e.preventDefault();
-                const user = document.getElementById('username').value;
-                localStorage.setItem('pf_user', user);
-                localStorage.setItem('pf_logged', 'true');
-                window.location.href = 'dashboard.html';
-            };
-        }
-
-        const logout = document.getElementById('logoutBtn');
-        if (logout) {
-            logout.onclick = () => {
-                localStorage.removeItem('pf_logged');
-                localStorage.removeItem('pf_user');
-                window.location.href = 'index.html';
-            };
-        }
-
-        const profileName = document.getElementById('profileUser');
-        if (profileName) profileName.innerText = this.getUser();
-    },
-    updateNav() {
-        const section = document.getElementById('auth-section');
-        const isLogged = localStorage.getItem('pf_logged');
-        const user = localStorage.getItem('pf_user');
-
-        if (isLogged && section) {
-            section.innerHTML = `
-                <a href="dashboard.html">Dashboard</a>
-                <a href="account.html" style="color:var(--primary)">👤 ${user}</a>
-            `;
-        }
-    },
-    getUser() { 
-        return localStorage.getItem('pf_user') || 'Guest'; 
-    },
-    isLoggedIn() {
-        return localStorage.getItem('pf_logged') === 'true';
+// Signup Function
+const signupUser = async (email, password) => {
+    try {
+        const cred = await auth.createUserWithEmailAndPassword(email, password);
+        return { success: true, user: cred.user };
+    } catch (error) {
+        return { success: false, error: error.message };
     }
 };
 
-Auth.init();
+// Login Function
+const loginUser = async (email, password) => {
+    try {
+        const cred = await auth.signInWithEmailAndPassword(email, password);
+        return { success: true, user: cred.user };
+    } catch (error) {
+        return { success: false, error: error.message };
+    }
+};
