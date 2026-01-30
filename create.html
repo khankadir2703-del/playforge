@@ -3,259 +3,279 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forge Editor | GDevelop Style</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Forge Engine v1.0 | PlayForge</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-editor: #1a1a24;
+            --bg-main: #0b0b0e;
             --bg-sidebar: #15151e;
+            --bg-panel: #1a1a24;
             --border: #2d2d3d;
             --accent: #6366f1;
-            --canvas-bg: #000000;
+            --text-dim: #a1a1aa;
         }
 
-        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: var(--bg-editor); color: white; font-family: 'Segoe UI', sans-serif; }
+        * { box-sizing: border-box; outline: none; }
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: var(--bg-main); color: white; font-family: 'Inter', sans-serif; }
 
-        /* Toolbar */
-        .toolbar {
-            height: 50px; background: var(--bg-sidebar); border-bottom: 1px solid var(--border);
-            display: flex; align-items: center; justify-content: space-between; padding: 0 15px;
+        /* --- Header --- */
+        header {
+            height: 55px; background: var(--bg-sidebar); border-bottom: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: space-between; padding: 0 20px;
         }
-        .toolbar-brand { font-weight: 800; font-size: 1.2rem; color: white; text-decoration: none; }
-        .toolbar-brand span { color: var(--accent); }
-        .tool-btns { display: flex; gap: 10px; }
+        .logo { font-size: 1.4rem; font-weight: 800; text-decoration: none; color: white; }
+        .logo span { color: var(--accent); }
 
-        /* Editor Main Layout */
-        .editor-container { display: flex; height: calc(100vh - 50px); }
+        /* --- Workspace Layout --- */
+        .workspace { display: flex; height: calc(100vh - 55px); }
 
-        /* Sidebars */
-        .sidebar { width: 260px; background: var(--bg-sidebar); border-right: 1px solid var(--border); display: flex; flex-direction: column; }
-        .right-sidebar { border-right: none; border-left: 1px solid var(--border); }
-        .panel-header { background: #22222f; padding: 8px 12px; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; color: #888; border-bottom: 1px solid var(--border); }
-
-        /* Objects Library */
-        .object-list { padding: 15px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .obj-item {
-            background: #2d2d3d; border: 1px solid transparent; border-radius: 6px; padding: 15px;
-            text-align: center; cursor: grab; transition: 0.2s; font-size: 0.8rem;
+        /* --- Sidebars --- */
+        .sidebar { width: 280px; background: var(--bg-sidebar); display: flex; flex-direction: column; border-right: 1px solid var(--border); }
+        .sidebar.right { border-right: none; border-left: 1px solid var(--border); }
+        
+        .panel-title { 
+            padding: 12px 15px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; 
+            letter-spacing: 1px; color: #555; background: #111; border-bottom: 1px solid var(--border);
         }
-        .obj-item:hover { border-color: var(--accent); background: #35354a; }
-        .obj-item i { display: block; font-size: 1.5rem; margin-bottom: 8px; color: var(--accent); }
 
-        /* Canvas Area */
-        .canvas-area {
-            flex: 1; background: #111; display: flex; align-items: center; justify-content: center;
-            position: relative; overflow: auto;
-            background-image: radial-gradient(#222 1px, transparent 1px); background-size: 20px 20px;
+        /* --- Object Library --- */
+        .obj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 15px; }
+        .obj-card {
+            background: var(--bg-panel); border: 1px solid var(--border); border-radius: 8px;
+            padding: 15px; text-align: center; cursor: grab; transition: 0.2s;
         }
-        canvas { background: var(--canvas-bg); box-shadow: 0 0 50px rgba(0,0,0,0.5); border: 1px solid #333; }
+        .obj-card:hover { border-color: var(--accent); background: #252535; }
+        .obj-card i { font-size: 1.5rem; color: var(--accent); margin-bottom: 8px; display: block; }
+        .obj-card span { font-size: 0.8rem; font-weight: 500; }
 
-        /* Properties Panel */
-        .prop-item { padding: 12px; border-bottom: 1px solid #222; font-size: 0.85rem; }
-        .prop-item label { display: block; color: #666; margin-bottom: 5px; font-size: 0.7rem; }
-        .prop-input { width: 100%; background: #000; border: 1px solid #333; color: white; padding: 5px; border-radius: 4px; }
+        /* --- Canvas Area --- */
+        .viewport {
+            flex: 1; background: #0e0e12; position: relative; overflow: auto;
+            display: flex; align-items: center; justify-content: center;
+            background-image: radial-gradient(circle, #222 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+        canvas { background: #000; box-shadow: 0 10px 50px rgba(0,0,0,0.8); border: 2px solid #333; cursor: crosshair; }
 
-        .btn-small { padding: 6px 15px; font-size: 0.75rem; border-radius: 4px; border: none; cursor: pointer; font-weight: bold; }
-        .btn-accent { background: var(--accent); color: white; }
-        .btn-dark { background: #2d2d3d; color: white; }
+        /* --- Properties Panel --- */
+        .prop-group { padding: 15px; border-bottom: 1px solid var(--border); }
+        .prop-label { font-size: 0.75rem; color: var(--text-dim); margin-bottom: 8px; display: block; }
+        .prop-input { 
+            width: 100%; background: #000; border: 1px solid var(--border); color: white; 
+            padding: 8px; border-radius: 5px; font-size: 0.85rem;
+        }
+
+        /* --- Buttons --- */
+        .btn { padding: 8px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; border: none; font-size: 0.85rem; }
+        .btn-primary { background: var(--accent); color: white; }
+        .btn-dark { background: #2d2d3d; color: white; border: 1px solid #444; }
+        .btn-danger { background: #ef4444; color: white; margin-top: 10px; width: 100%; }
     </style>
 </head>
 <body>
 
-    <div class="toolbar">
-        <a href="index.html" class="toolbar-brand">Play<span>Forge</span></a>
-        <div style="display: flex; gap: 20px; font-size: 0.8rem; color: #666;">
-            <span>File</span><span>Edit</span><span>Project</span><span>Scene</span>
-        </div>
-        <div class="tool-btns">
-            <button class="btn-small btn-dark"><i class="fas fa-play"></i> Preview</button>
-            <button class="btn-small btn-accent" onclick="saveToCloud()"><i class="fas fa-cloud-upload-alt"></i> Publish</button>
-        </div>
+<header>
+    <a href="index.html" class="logo">Play<span>Forge</span></a>
+    <div style="display: flex; gap: 15px;">
+        <button class="btn btn-dark" onclick="toggleGrid()">Toggle Grid</button>
+        <button class="btn btn-primary" onclick="publishToCloud()"><i class="fas fa-rocket"></i> Publish Game</button>
     </div>
+</header>
 
-    <div class="editor-container">
-        <aside class="sidebar">
-            <div class="panel-header">Scene Manager</div>
-            <div style="padding: 10px;">
-                <div style="color: var(--accent); background: #2d2d3d33; padding: 8px; border-radius: 4px; font-size: 0.85rem;">
-                    <i class="fas fa-layer-group"></i> Main Scene
-                </div>
+<div class="workspace">
+    <aside class="sidebar">
+        <div class="panel-title">Project Manager</div>
+        <div style="padding: 10px;">
+            <div style="background: var(--accent); padding: 10px; border-radius: 6px; font-size: 0.9rem;">
+                <i class="fas fa-gamepad"></i> Main Scene
             </div>
-            <div class="panel-header" style="margin-top: auto;">Layers</div>
-            <div style="padding: 10px; font-size: 0.8rem; color: #666;">Base Layer</div>
-        </aside>
+        </div>
+        <div class="panel-title" style="margin-top:auto">Asset Layers</div>
+        <div style="padding: 15px; color: var(--text-dim); font-size: 0.8rem;">Base Layer (Default)</div>
+    </aside>
 
-        <main class="canvas-area">
-            <canvas id="editorCanvas" width="800" height="450"></canvas>
-        </main>
+    <main class="viewport">
+        <canvas id="engineCanvas" width="800" height="480"></canvas>
+    </main>
 
-        <aside class="sidebar right-sidebar">
-            <div class="panel-header">Object Library</div>
-            <div class="object-list">
-                <div class="obj-item" draggable="true" ondragstart="onDragStart(event)" id="sprite">
-                    <i class="fas fa-ghost"></i> Sprite
-                </div>
-                <div class="obj-item" draggable="true" ondragstart="onDragStart(event)" id="platform">
-                    <i class="fas fa-cube"></i> Platform
-                </div>
-                <div class="obj-item" draggable="true" ondragstart="onDragStart(event)" id="enemy">
-                    <i class="fas fa-skull"></i> Enemy
-                </div>
-                <div class="obj-item" draggable="true" ondragstart="onDragStart(event)" id="text">
-                    <i class="fas fa-font"></i> Text
-                </div>
+    <aside class="sidebar right">
+        <div class="panel-title">Object Library</div>
+        <div class="obj-grid">
+            <div class="obj-card" draggable="true" ondragstart="onDragStart(event)" id="player_box">
+                <i class="fas fa-user-astronaut"></i><span>Player</span>
             </div>
-
-            <div class="panel-header">Properties</div>
-            <div id="propertyPanel" class="properties-panel">
-                <div style="padding: 20px; color: #444; text-align: center; font-size: 0.8rem;">
-                    Select an object on the canvas to edit its properties.
-                </div>
+            <div class="obj-card" draggable="true" ondragstart="onDragStart(event)" id="enemy_box">
+                <i class="fas fa-skull-crossbones"></i><span>Enemy</span>
             </div>
-        </aside>
-    </div>
+            <div class="obj-card" draggable="true" ondragstart="onDragStart(event)" id="platform_box">
+                <i class="fas fa-layer-group"></i><span>Platform</span>
+            </div>
+            <div class="obj-card" draggable="true" ondragstart="onDragStart(event)" id="coin_box">
+                <i class="fas fa-coins"></i><span>Coin</span>
+            </div>
+        </div>
 
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-    <script src="firebase-config.js"></script>
+        <div class="panel-title">Properties</div>
+        <div id="propPanel" class="prop-content">
+            <div style="padding: 20px; text-align: center; color: var(--text-dim); font-size: 0.8rem;">
+                Select an object to edit properties
+            </div>
+        </div>
+    </aside>
+</div>
 
-    <script>
-        const canvas = document.getElementById('editorCanvas');
-        const ctx = canvas.getContext('2d');
-        let gameObjects = [];
-        let selectedObj = null;
-        const GRID_SIZE = 20;
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
 
-        // 1. Drag and Drop Logic
-        function onDragStart(ev) {
-            ev.dataTransfer.setData("type", ev.target.id);
-        }
+<script>
+    const canvas = document.getElementById('engineCanvas');
+    const ctx = canvas.getContext('2d');
+    let gameObjects = [];
+    let selectedId = null;
+    const GRID_SIZE = 30;
 
-        canvas.addEventListener('dragover', (e) => e.preventDefault());
+    // --- Core Logic ---
 
-        canvas.addEventListener('drop', (e) => {
-            e.preventDefault();
-            const type = e.dataTransfer.getData("type");
-            const rect = canvas.getBoundingClientRect();
-            
-            // Snap to Grid calculation
-            const rawX = e.clientX - rect.left - 20;
-            const rawY = e.clientY - rect.top - 20;
-            const x = Math.round(rawX / GRID_SIZE) * GRID_SIZE;
-            const y = Math.round(rawY / GRID_SIZE) * GRID_SIZE;
+    function onDragStart(ev) {
+        ev.dataTransfer.setData("objType", ev.target.id);
+    }
 
-            const newObj = {
-                id: Date.now(),
-                type: type,
-                x: x, y: y,
-                w: 40, h: 40,
-                name: type + "_" + (gameObjects.length + 1),
-                color: type === 'enemy' ? '#ef4444' : (type === 'platform' ? '#3b82f6' : '#6366f1')
-            };
+    canvas.addEventListener('dragover', (e) => e.preventDefault());
 
-            gameObjects.push(newObj);
-            selectedObj = newObj;
-            render();
-            updatePropertyPanel();
-        });
+    canvas.addEventListener('drop', (e) => {
+        e.preventDefault();
+        const type = e.dataTransfer.getData("objType").replace('_box', '');
+        const rect = canvas.getBoundingClientRect();
+        
+        // Snapping to Grid
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+        const x = Math.floor(mouseX / GRID_SIZE) * GRID_SIZE;
+        const y = Math.floor(mouseY / GRID_SIZE) * GRID_SIZE;
 
-        // 2. Rendering
-        function render() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            // Draw Objects
-            gameObjects.forEach(obj => {
-                ctx.fillStyle = obj.color;
-                ctx.fillRect(obj.x, obj.y, obj.w, obj.h);
+        const newObj = {
+            id: Date.now(),
+            type: type,
+            x: x, y: y,
+            w: 30, h: 30,
+            color: getObjColor(type),
+            name: type + "_" + (gameObjects.length + 1)
+        };
 
-                // Highlight Selected
-                if (selectedObj && obj.id === selectedObj.id) {
-                    ctx.strokeStyle = '#fff';
-                    ctx.lineWidth = 2;
-                    ctx.strokeRect(obj.x - 2, obj.y - 2, obj.w + 4, obj.h + 4);
-                }
-            });
-        }
-
-        // 3. Selection Logic
-        canvas.addEventListener('mousedown', (e) => {
-            const rect = canvas.getBoundingClientRect();
-            const mouseX = e.clientX - rect.left;
-            const mouseY = e.clientY - rect.top;
-
-            selectedObj = gameObjects.find(obj => 
-                mouseX >= obj.x && mouseX <= obj.x + obj.w &&
-                mouseY >= obj.y && mouseY <= obj.y + obj.h
-            );
-
-            updatePropertyPanel();
-            render();
-        });
-
-        // 4. Property Panel Update
-        function updatePropertyPanel() {
-            const panel = document.getElementById('propertyPanel');
-            if (!selectedObj) {
-                panel.innerHTML = `<div style="padding: 20px; color: #444; text-align: center; font-size: 0.8rem;">Select an object...</div>`;
-                return;
-            }
-
-            panel.innerHTML = `
-                <div class="prop-item">
-                    <label>Object Name</label>
-                    <input type="text" class="prop-input" value="${selectedObj.name}" onchange="updateSelected('name', this.value)">
-                </div>
-                <div class="prop-item">
-                    <label>Position X</label>
-                    <input type="number" class="prop-input" value="${selectedObj.x}" onchange="updateSelected('x', parseInt(this.value))">
-                </div>
-                <div class="prop-item">
-                    <label>Position Y</label>
-                    <input type="number" class="prop-input" value="${selectedObj.y}" onchange="updateSelected('y', parseInt(this.value))">
-                </div>
-                <div style="padding:15px;">
-                    <button class="btn-small btn-dark" style="width:100%; background:#7f1d1d;" onclick="deleteSelected()">Delete Object</button>
-                </div>
-            `;
-        }
-
-        function updateSelected(prop, value) {
-            if (selectedObj) {
-                selectedObj[prop] = value;
-                render();
-            }
-        }
-
-        function deleteSelected() {
-            gameObjects = gameObjects.filter(o => o.id !== selectedObj.id);
-            selectedObj = null;
-            updatePropertyPanel();
-            render();
-        }
-
-        // 5. Cloud Save Logic
-        async function saveToCloud() {
-            if(gameObjects.length === 0) return alert("Nothing to publish!");
-            const title = prompt("Enter Game Title:");
-            if(!title) return;
-
-            try {
-                await db.collection('games').add({
-                    title: title,
-                    data: gameObjects,
-                    views: 0,
-                    devId: auth.currentUser ? auth.currentUser.uid : 'guest',
-                    createdAt: new Date()
-                });
-                alert("Published Successfully to PlayForge!");
-                window.location.href = "dashboard.html";
-            } catch (e) {
-                alert("Error: " + e.message);
-            }
-        }
-
+        gameObjects.push(newObj);
+        selectObject(newObj.id);
         render();
-    </script>
+    });
+
+    function getObjColor(type) {
+        const colors = { player: '#6366f1', enemy: '#ef4444', platform: '#10b981', coin: '#f59e0b' };
+        return colors[type] || '#fff';
+    }
+
+    function render() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Draw Grid (Optional)
+        ctx.strokeStyle = '#111';
+        for(let i=0; i<canvas.width; i+=GRID_SIZE) {
+            ctx.beginPath(); ctx.moveTo(i,0); ctx.lineTo(i,canvas.height); ctx.stroke();
+        }
+        for(let j=0; j<canvas.height; j+=GRID_SIZE) {
+            ctx.beginPath(); ctx.moveTo(0,j); ctx.lineTo(canvas.width,j); ctx.stroke();
+        }
+
+        // Draw Objects
+        gameObjects.forEach(obj => {
+            ctx.fillStyle = obj.color;
+            ctx.fillRect(obj.x, obj.y, obj.w, obj.h);
+            
+            if(selectedId === obj.id) {
+                ctx.strokeStyle = '#fff';
+                ctx.lineWidth = 2;
+                ctx.strokeRect(obj.x - 2, obj.y - 2, obj.w + 4, obj.h + 4);
+            }
+        });
+    }
+
+    // --- Interaction ---
+
+    canvas.addEventListener('mousedown', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        const mx = e.clientX - rect.left;
+        const my = e.clientY - rect.top;
+
+        const found = gameObjects.find(o => mx >= o.x && mx <= o.x+o.w && my >= o.y && my <= o.y+o.h);
+        if(found) selectObject(found.id);
+        else selectObject(null);
+        render();
+    });
+
+    function selectObject(id) {
+        selectedId = id;
+        const panel = document.getElementById('propPanel');
+        if(!id) {
+            panel.innerHTML = `<div style="padding: 20px; text-align: center; color: var(--text-dim);">Select an object</div>`;
+            return;
+        }
+
+        const obj = gameObjects.find(o => o.id === id);
+        panel.innerHTML = `
+            <div class="prop-group">
+                <span class="prop-label">Object Name</span>
+                <input type="text" class="prop-input" value="${obj.name}" oninput="updateObj('name', this.value)">
+            </div>
+            <div class="prop-group">
+                <span class="prop-label">Position X</span>
+                <input type="number" class="prop-input" value="${obj.x}" oninput="updateObj('x', parseInt(this.value))">
+            </div>
+            <div class="prop-group">
+                <span class="prop-label">Position Y</span>
+                <input type="number" class="prop-input" value="${obj.y}" oninput="updateObj('y', parseInt(this.value))">
+            </div>
+            <div style="padding: 15px;">
+                <button class="btn btn-danger" onclick="deleteObj()">Delete Object</button>
+            </div>
+        `;
+    }
+
+    function updateObj(key, val) {
+        const obj = gameObjects.find(o => o.id === selectedId);
+        if(obj) {
+            obj[key] = val;
+            render();
+        }
+    }
+
+    function deleteObj() {
+        gameObjects = gameObjects.filter(o => o.id !== selectedId);
+        selectObject(null);
+        render();
+    }
+
+    // --- Firebase Sync ---
+
+    async function publishToCloud() {
+        if(gameObjects.length === 0) return alert("Canvas is empty!");
+        const gameName = prompt("Enter Game Title:");
+        if(!gameName) return;
+
+        try {
+            await db.collection('games').add({
+                title: gameName,
+                data: JSON.stringify(gameObjects),
+                views: 0,
+                createdAt: new Date(),
+                devId: 'dev_user_1' // यहाँ बाद में auth.uid आएगा
+            });
+            alert("🚀 Game Published Successfully!");
+            window.location.href = "dashboard.html";
+        } catch(err) {
+            alert("Error: " + err.message);
+        }
+    }
+
+    render();
+</script>
 </body>
 </html>
