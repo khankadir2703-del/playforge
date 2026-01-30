@@ -2,30 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Playing - PlayForge</title>
+    <title>Playing Game | PlayForge</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="dark-theme">
-    <nav class="navbar">
-        <div class="logo">PlayForge</div>
-        <div class="nav-links">
-            <a href="games.html">← Back to Library</a>
+<body class="play-page">
+    <div class="game-container">
+        <h1 id="gameTitle">Loading...</h1>
+        <div class="ad-top" style="width:728px; height:90px; background:#222; margin:10px auto; border:1px solid #444; color:#666; display:flex; align-items:center; justify-content:center;">
+            Google AdSense Placeholder (728x90)
         </div>
-    </nav>
 
-    <main class="play-container">
-        <div class="game-header">
-            <h2 id="playingTitle">Game</h2>
-            <p>Created by: <span id="gameCreator" class="primary-text"></span></p>
+        <div class="iframe-wrapper">
+            <iframe id="gameFrame" src="" width="800" height="600" frameborder="0"></iframe>
         </div>
-        <canvas id="playCanvas" width="800" height="500"></canvas>
-        <div class="game-meta-footer">
-            <p><strong>CONTROLS:</strong> Mouse movement to steer. Avoid the obstacles!</p>
-        </div>
-    </main>
 
-    <script src="js/auth.js"></script>
-    <script src="js/games.js"></script>
+        <div class="game-info">
+            <p id="gameDesc"></p>
+            <div class="monetization-notice">
+                Ad revenue shared: 70% to dev, 30% to Forge.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simulation logic for revenue tracking
+        const urlParams = new URLSearchParams(window.location.search);
+        const gameId = urlParams.get('id');
+
+        // Logic would fetch game zip from Firestore and set iframe src
+        // Also increments 'views' and calculates 'revenue' in Firestore
+    </script>
 </body>
 </html>
