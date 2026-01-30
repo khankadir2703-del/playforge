@@ -3,85 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forge Editor | GDevelop Power</title>
+    <title>Forge Editor | PlayForge</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #000; font-family: 'Inter', sans-serif; }
 
-        /* PlayForge Overlay Bar */
-        .forge-overlay {
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 9999; /* इसे सबसे ऊपर रखने के लिए */
+        /* 1. PlayForge Control Panel (Top) */
+        .publish-bar {
+            height: 55px;
+            background: #1a1a24;
             display: flex;
-            gap: 15px;
-            background: rgba(21, 21, 30, 0.9);
-            padding: 10px 25px;
-            border-radius: 50px;
-            border: 1px solid #6366f1;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            backdrop-filter: blur(10px);
             align-items: center;
+            justify-content: space-between;
+            padding: 0 25px;
+            border-bottom: 2px solid #6366f1; /* Indigo line for branding */
+            z-index: 9999;
+            position: relative;
         }
 
-        .logo-small { color: white; font-weight: 800; text-decoration: none; font-size: 1rem; }
-        .logo-small span { color: #6366f1; }
+        .brand { font-size: 1.2rem; font-weight: 800; color: white; text-decoration: none; }
+        .brand span { color: #6366f1; }
 
+        /* 2. Professional Publish Button */
         .btn-publish {
-            background: #6366f1;
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
             color: white;
             border: none;
-            padding: 8px 20px;
-            border-radius: 20px;
+            padding: 10px 24px;
+            border-radius: 8px;
             font-weight: 700;
-            cursor: pointer;
             font-size: 0.85rem;
+            cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 8px;
-            transition: 0.3s;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .btn-publish:hover {
-            background: #4f46e5;
             transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(99, 102, 241, 0.6);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
         }
 
-        /* GDevelop Iframe */
-        .gdevelop-frame {
+        /* 3. Tutorial/Guideline Strip */
+        .tutorial-strip {
+            background: #2d2d3d;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: #ccc;
+            border-bottom: 1px solid #111;
+        }
+        .tutorial-strip b { color: #6366f1; margin: 0 5px; }
+
+        /* 4. The Engine (GDevelop) */
+        .engine-area {
+            height: calc(100vh - 85px); /* Adjusting for both bars */
             width: 100%;
-            height: 100vh;
-            border: none;
         }
-
-        .hint-text { color: #8b8b94; font-size: 0.75rem; margin-right: 10px; }
+        iframe { width: 100%; height: 100%; border: none; }
     </style>
 </head>
 <body>
 
-    <div class="forge-overlay">
-        <a href="index.html" class="logo-small">Play<span>Forge</span></a>
-        <div style="width: 1px; height: 20px; background: #333; margin: 0 10px;"></div>
-        <span class="hint-text">Export your JSON, then click ➜</span>
-        <button class="btn-publish" onclick="goToPublish()">
-            <i class="fas fa-rocket"></i> Publish to PlayForge
+    <header class="publish-bar">
+        <a href="index.html" class="brand">Play<span>Forge</span></a>
+        
+        <button class="btn-publish" onclick="publishGame()">
+            <i class="fas fa-cloud-arrow-up"></i> PUBLISH TO PLAYFORGE
         </button>
+    </header>
+
+    <div class="tutorial-strip">
+        <i class="fas fa-info-circle"></i> 
+        How to publish: 1. Create Game 2. Click <b>File > Export</b> 3. Save <b>JSON</b> 4. Click <b>Publish Button</b> above!
     </div>
 
-    <iframe 
-        src="https://editor.gdevelop.io/" 
-        class="gdevelop-frame" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; usb" 
-        allowfullscreen>
-    </iframe>
+    <main class="engine-area">
+        <iframe src="https://editor.gdevelop.io/" allowfullscreen></iframe>
+    </main>
 
     <script>
-        function goToPublish() {
-            // पब्लिश पेज पर ले जाने से पहले एक कन्फर्मेशन
-            if(confirm("Have you exported your GDevelop JSON file? Click OK to upload and publish on PlayForge.")) {
+        function publishGame() {
+            // पब्लिश करने से पहले यूजर से पूछना
+            const check = confirm("Have you exported your GDevelop JSON file? You need that file to upload on the next page.");
+            if(check) {
                 window.location.href = "publish.html";
             }
         }
