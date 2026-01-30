@@ -3,122 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PlayForge | Professional Game Engine</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    
+    <title>PlayForge | Next-Gen Creator Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        /* 1. Global Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --bg-color: #050505;
+            --nav-bg: rgba(13, 13, 18, 0.8);
+            --accent: #6366f1;
+            --border: rgba(255, 255, 255, 0.1);
+            --text-main: #ffffff;
+            --text-dim: #9ca3af;
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background: #0b0b0e;
+            background-color: var(--bg-color);
             font-family: 'Inter', sans-serif;
-            color: white;
+            color: var(--text-main);
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* 2. Professional Navbar */
+        /* --- Global Professional Navbar --- */
         .navbar {
-            height: 70px;
-            background: #121217;
-            display: flex;
-            align-items: center; /* यह सब कुछ एक लाइन में रखेगा */
-            justify-content: space-between;
-            padding: 0 40px;
-            border-bottom: 1px solid #2d2d3d;
-            position: sticky;
+            position: fixed;
             top: 0;
-            z-index: 1000;
-        }
-
-        /* 3. Logo + Brand Wrapper */
-        .nav-left {
+            width: 100%;
+            height: 72px;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px); /* Apple-style blur effect */
+            border-bottom: 1px solid var(--border);
             display: flex;
-            align-items: center; /* लोगो और टेक्स्ट को एकदम सेंटर में रखने के लिए */
-            gap: 15px; /* लोगो और नाम के बीच की परफेक्ट दूरी */
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10%; /* स्क्रीन के हिसाब से गैप */
+            z-index: 9999;
+        }
+
+        /* Left Side: Logo & Brand */
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
             text-decoration: none;
+            transition: opacity 0.2s;
         }
 
-        /* लोगो को एकदम क्लीन दिखाने के लिए */
-        .site-logo {
-            height: 42px; /* साइज थोड़ा बढ़ा दिया ताकि साफ दिखे */
-            width: 42px;
-            object-fit: cover;
-            border-radius: 10px; /* मॉडर्न लुक के लिए राउंड कॉर्नर */
-            background: #1a1a24; /* अगर लोगो transparent है तो पीछे हल्का रंग दिखेगा */
-            border: 1px solid #333; /* लोगो के चारों तरफ हल्का बॉर्डर */
-            display: block;
+        .nav-brand:hover { opacity: 0.85; }
+
+        .logo-img {
+            height: 40px; /* परफेक्ट प्रोफेशनल साइज */
+            width: 40px;
+            object-fit: contain;
+            border-radius: 10px;
+            /* अगर लोगो न दिखे तो एक स्टाइलिश बैकग्राउंड */
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            padding: 2px;
         }
 
-        /* ब्रांड नाम की स्टाइलिंग */
-        .brand-name {
-            font-size: 1.6rem;
-            font-weight: 900;
-            color: #ffffff;
+        .brand-text {
+            font-size: 1.4rem;
+            font-weight: 800;
             letter-spacing: -0.8px;
+            color: var(--text-main);
+        }
+
+        .brand-text span {
+            color: var(--accent);
+            filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.3));
+        }
+
+        /* Right Side: Links & Button */
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-link {
             text-decoration: none;
-            display: flex;
-            align-items: center;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
         }
 
-        .brand-name span {
-            color: #6366f1; /* Indigo Accent Color */
-            margin-left: 2px;
-        }
+        .nav-link:hover { color: var(--text-main); }
 
-        /* 4. Right Side Menu */
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .btn-create {
-            background: #6366f1;
-            color: white;
-            padding: 10px 22px;
+        .btn-cta {
+            background: var(--accent);
+            color: #fff;
+            padding: 10px 24px;
             border-radius: 8px;
             text-decoration: none;
-            font-weight: 700;
             font-size: 0.9rem;
-            transition: 0.3s all ease;
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2);
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .btn-create:hover {
-            background: #4f46e5;
+        .btn-cta:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+            background: #4f46e5;
         }
 
-        /* Hero Section (सिर्फ दिखाने के लिए) */
+        /* Demo Hero Section */
         .hero {
-            padding: 100px 20px;
+            margin-top: 150px;
             text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, #666);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
     </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <a href="index.html" class="nav-left">
-            <img src="logo.png" alt="Logo" class="site-logo">
-            <h1 class="brand-name">Play<span>Forge</span></h1>
+        <a href="index.html" class="nav-brand">
+            <img src="logo.png" alt="P" class="logo-img">
+            <h1 class="brand-text">Play<span>Forge</span></h1>
         </a>
 
-        <div class="nav-right">
-            <a href="dashboard.html" style="color: #8b8b94; text-decoration: none; font-size: 0.9rem;">Dashboard</a>
-            <a href="create.html" class="btn-create">Create Game</a>
+        <div class="nav-links">
+            <a href="dashboard.html" class="nav-link">Dashboard</a>
+            <a href="create.html" class="btn-cta">Start Creating</a>
         </div>
     </nav>
 
-    <section class="hero">
-        <h2 style="font-size: 3rem; margin-bottom: 10px;">The Future of Web Gaming</h2>
-        <p style="color: #8b8b94;">Start building your dream game in minutes. No coding required.</p>
-    </section>
+    <main class="hero">
+        <h1>Unleash your<br>creativity.</h1>
+    </main>
 
 </body>
 </html>
