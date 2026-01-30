@@ -2,35 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Playing Game | PlayForge</title>
+    <title>Play Game | PlayForge</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="play-page">
-    <div class="game-container">
-        <h1 id="gameTitle">Loading...</h1>
-        <div class="ad-top" style="width:728px; height:90px; background:#222; margin:10px auto; border:1px solid #444; color:#666; display:flex; align-items:center; justify-content:center;">
-            Google AdSense Placeholder (728x90)
+    <nav class="navbar">
+        <div class="logo"><a href="index.html" style="text-decoration:none; color:inherit;">Play<span>Forge</span></a></div>
+        <div class="auth-buttons" id="authSection"></div>
+    </nav>
+
+    <div class="game-container" style="text-align:center; padding: 20px;">
+        <h1 id="gameTitle">Loading Game...</h1>
+        
+        <div class="ad-slot" style="width:728px; height:90px; background:#1a1a24; margin:15px auto; border:1px dashed #444; display:flex; align-items:center; justify-content:center; color:#666;">
+            Google AdSense (Banner 728x90)
         </div>
 
-        <div class="iframe-wrapper">
-            <iframe id="gameFrame" src="" width="800" height="600" frameborder="0"></iframe>
+        <div class="iframe-wrapper" style="background:#000; display:inline-block; padding:10px; border-radius:10px; border:2px solid #6366f1;">
+            <iframe id="gameFrame" src="" width="800" height="600" frameborder="0" allowfullscreen></iframe>
         </div>
 
-        <div class="game-info">
-            <p id="gameDesc"></p>
-            <div class="monetization-notice">
-                Ad revenue shared: 70% to dev, 30% to Forge.
-            </div>
+        <div class="game-details" style="margin-top:20px; color:#a1a1aa;">
+            <p id="gameDesc">Please wait while the forge prepares your game...</p>
         </div>
     </div>
 
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="js/main.js"></script>
+
     <script>
-        // Simulation logic for revenue tracking
         const urlParams = new URLSearchParams(window.location.search);
         const gameId = urlParams.get('id');
 
-        // Logic would fetch game zip from Firestore and set iframe src
-        // Also increments 'views' and calculates 'revenue' in Firestore
+        if (gameId) {
+            db.collection('games').doc(gameId).get().then((doc) => {
+                if (doc.exists) {
+                    const game = doc.data();
+                    document.getElementById('gameTitle').innerText = game.title;
+                    document.getElementById('gameDesc').innerText = game.desc || "No description provided.";
+                    // यहाँ zipUrl को iframe में सेट किया गया है (अगर सीधे HTML फाइल है)
+                    document.getElementById('gameFrame').src = game.zipUrl;
+
+                    // View count बढ़ाना
+                    db.collection('games').doc(gameId).update({
+                        views: firebase.firestore.FieldValue.increment(1)
+                    });
+                }
+            });
+        }
     </script>
 </body>
 </html>
