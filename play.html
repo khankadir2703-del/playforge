@@ -2,55 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Play Game | PlayForge</title>
+    <title>Playing Game | PlayForge</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="play-page">
+<body>
     <nav class="navbar">
-        <div class="logo"><a href="index.html" style="text-decoration:none; color:inherit;">Play<span>Forge</span></a></div>
-        <div class="auth-buttons" id="authSection"></div>
+        <div class="logo-container"><img src="assets/game/logo.png" alt="PlayForge"></div>
+        <a href="games.html" class="btn-secondary">Exit Game</a>
     </nav>
 
-    <div class="game-container" style="text-align:center; padding: 20px;">
-        <h1 id="gameTitle">Loading Game...</h1>
+    <div class="container" style="text-align: center;">
+        <div class="ad-slot">ADVERTISEMENT - RESPONSIVE BANNER</div>
         
-        <div class="ad-slot" style="width:728px; height:90px; background:#1a1a24; margin:15px auto; border:1px dashed #444; display:flex; align-items:center; justify-content:center; color:#666;">
-            Google AdSense (Banner 728x90)
+        <div id="game-container" style="width: 100%; max-width: 900px; height: 500px; background: #000; margin: 0 auto; position: relative;">
+            <iframe id="game-frame" src="" style="width: 100%; height: 100%; border: none;"></iframe>
         </div>
 
-        <div class="iframe-wrapper" style="background:#000; display:inline-block; padding:10px; border-radius:10px; border:2px solid #6366f1;">
-            <iframe id="gameFrame" src="" width="800" height="600" frameborder="0" allowfullscreen></iframe>
-        </div>
-
-        <div class="game-details" style="margin-top:20px; color:#a1a1aa;">
-            <p id="gameDesc">Please wait while the forge prepares your game...</p>
+        <div class="ad-slot">ADVERTISEMENT - VIDEO AD READY</div>
+        
+        <div style="margin-top: 20px; text-align: left;">
+            <h1 id="game-title">Game Title</h1>
+            <p id="game-dev" style="color: var(--primary);">By Developer</p>
         </div>
     </div>
 
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore-compat.js"></script>
     <script src="firebase-config.js"></script>
-    <script src="js/main.js"></script>
-
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const gameId = urlParams.get('id');
 
-        if (gameId) {
-            db.collection('games').doc(gameId).get().then((doc) => {
-                if (doc.exists) {
-                    const game = doc.data();
-                    document.getElementById('gameTitle').innerText = game.title;
-                    document.getElementById('gameDesc').innerText = game.desc || "No description provided.";
-                    // यहाँ zipUrl को iframe में सेट किया गया है (अगर सीधे HTML फाइल है)
-                    document.getElementById('gameFrame').src = game.zipUrl;
-
-                    // View count बढ़ाना
-                    db.collection('games').doc(gameId).update({
-                        views: firebase.firestore.FieldValue.increment(1)
-                    });
-                }
+        if(gameId) {
+            db.collection('games').doc(gameId).get().then(doc => {
+                const data = doc.data();
+                document.getElementById('game-frame').src = data.gameUrl;
+                document.getElementById('game-title').innerText = data.title;
+                // Add view for revenue calculation
+                db.collection('games').doc(gameId).update({ views: firebase.firestore.FieldValue.increment(1) });
             });
         }
     </script>
