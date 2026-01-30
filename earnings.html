@@ -1,23 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Earning – PlayForge</title>
-<link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <title>Earnings Dashboard | PlayForge</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-<header class="simple-nav"><a href="index.html">← Home</a></header>
-
-<h2 class="page-title">How Earning Works</h2>
-
-<div class="card">
-<ul>
-<li>Ads shown inside games</li>
-<li>Revenue shared with creators</li>
-<li>Withdraw after minimum threshold</li>
-<li>No fake earnings shown</li>
-</ul>
-</div>
-
+    <div class="dashboard-wrapper">
+        <aside class="sidebar">
+            <nav>
+                <a href="dashboard.html">My Games</a>
+                <a href="earnings.html" class="active">Earnings</a>
+                <a href="publish.html">New Game</a>
+            </nav>
+        </aside>
+        <main class="content">
+            <h1>Financial Overview</h1>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Impressions</h3>
+                    <p id="totalViews">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Estimated Revenue</h3>
+                    <p id="totalEarned">$0.00</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Net Developer Pay (70%)</h3>
+                    <p id="devPay" style="color: var(--success);">$0.00</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+        // Simple logic: Revenue = Views * 0.01 (Example CPM)
+        // Then split 70/30
+    </script>
 </body>
 </html>
