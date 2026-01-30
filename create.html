@@ -2,50 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Builder - PlayForge</title>
+    <title>Forge Editor | PlayForge</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="dark-theme">
-    <nav class="navbar">
-        <div class="logo">PlayForge</div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="dashboard.html">Dashboard</a>
-            <div id="auth-section"></div>
+<body>
+    <div class="editor-header navbar">
+        <div class="logo">Play<span>Forge</span> Editor</div>
+        <div>
+            <button class="btn secondary" onclick="previewGame()">Preview</button>
+            <button class="btn primary" id="exportBtn">Export Game</button>
         </div>
-    </nav>
+    </div>
 
-    <main class="builder-container">
+    <div id="editor-container">
         <div class="sidebar">
-            <h3>Forge Engine v1.0</h3>
-            <div class="control-group">
-                <label>Game Title</label>
-                <input type="text" id="gameTitle" placeholder="My Awesome Game">
-            </div>
-            <div class="control-group">
-                <label>Player Theme</label>
-                <input type="color" id="playerColor" value="#00ff88">
-            </div>
-            <div class="control-group">
-                <label>Difficulty Scaling</label>
-                <select id="difficulty">
-                    <option value="1">Casual</option>
-                    <option value="2">Normal</option>
-                    <option value="3">Hardcore</option>
-                </select>
-            </div>
-            <button id="saveGame" class="btn-primary" style="width: 100%; margin-top: 20px;">Publish to Store</button>
-        </div>
-        <div class="preview-area">
-            <div class="canvas-wrapper">
-                <canvas id="builderCanvas" width="600" height="400"></canvas>
-                <p class="hint">Testing: Use Arrow Keys to Move Player</p>
+            <h3>Assets</h3>
+            <div class="asset-item" draggable="true" ondragstart="drag(event)" id="player">🟦 Player Square</div>
+            <div class="asset-item" draggable="true" ondragstart="drag(event)" id="enemy">🟥 Enemy Square</div>
+            <hr>
+            <div class="controls-info">
+                <p>Drag objects to canvas.</p>
+                <p>WASD to move in preview.</p>
             </div>
         </div>
-    </main>
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+    </div>
 
-    <script src="js/auth.js"></script>
-    <script src="js/builder.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="js/editor.js"></script>
 </body>
 </html>
