@@ -2,51 +2,65 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creator Dashboard - PlayForge</title>
+    <title>Developer Dashboard | PlayForge</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="dark-theme">
-    <nav class="navbar">
-        <div class="logo">PlayForge</div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="builder.html">Open Builder</a>
-            <div id="auth-section"></div>
-        </div>
-    </nav>
+<body>
+    <div class="dashboard-layout">
+        <nav class="side-nav">
+            <h2>PlayForge</h2>
+            <a href="dashboard.html" class="active">My Games</a>
+            <a href="earnings.html">Earnings</a>
+            <a href="publish.html">Publish New</a>
+            <button onclick="auth.signOut().then(()=>window.location.href='index.html')" class="btn secondary">Logout</button>
+        </nav>
 
-    <main class="container">
-        <h2>Creator Analytics</h2>
-        <div class="stats-grid">
-            <div class="stat-card">
-                <h4>Total Engagement (Plays)</h4>
-                <p id="totalPlays">0</p>
-            </div>
-            <div class="stat-card">
-                <h4>Projected Revenue</h4>
-                <p id="totalEarnings">$0.00</p>
-            </div>
-        </div>
+        <main class="main-content">
+            <header>
+                <h1>My Published Games</h1>
+                <a href="publish.html" class="btn primary">+ New Game</a>
+            </header>
+            
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Game</th>
+                        <th>Status</th>
+                        <th>Views</th>
+                        <th>Earnings</th>
+                    </tr>
+                </thead>
+                <tbody id="myGamesList">
+                    </tbody>
+            </table>
+        </main>
+    </div>
 
-        <div id="withdrawSection" class="withdraw-card hidden">
-            <div class="alert-box">
-                <h3>Threshold Reached!</h3>
-                <p>Your earnings have exceeded $1.00. You can now request a demo withdrawal.</p>
-                <div class="withdraw-form">
-                    <input type="email" placeholder="Payment Email (PayPal/Stripe)" id="payEmail">
-                    <button class="btn-primary" onclick="alert('Demo: Transfer initiated to ' + document.getElementById('payEmail').value)">Process Payment</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="my-games" style="margin-top: 40px;">
-            <h3>Your Projects</h3>
-            <div id="myGamesList" class="games-grid" style="margin-top: 20px;"></div>
-        </div>
-    </main>
-
-    <script src="js/auth.js"></script>
-    <script src="js/dashboard.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script>
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                db.collection('games').where('developerId', '==', user.uid).get().then(snap => {
+                    const list = document.getElementById('myGamesList');
+                    snap.forEach(doc => {
+                        const game = doc.data();
+                        list.innerHTML += `
+                            <tr>
+                                <td>${game.title}</td>
+                                <td><span class="status-badge">Live</span></td>
+                                <td>${game.views || 0}</td>
+                                <td>$${(game.views * 0.007).toFixed(2)}</td>
+                            </tr>
+                        `;
+                    });
+                });
+            } else {
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
 </body>
 </html>
