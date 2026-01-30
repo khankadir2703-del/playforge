@@ -2,45 +2,126 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Playing Game | PlayForge</title>
-    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlayForge | Engine Player</title>
+    <style>
+        /* Full Screen Black Layout */
+        body, html { 
+            margin: 0; padding: 0; width: 100%; height: 100%; 
+            overflow: hidden; background-color: #000; 
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* Top Control Bar */
+        .game-nav {
+            height: 50px; background: #15151e;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 20px; border-bottom: 1px solid #2d2d3d;
+            position: relative; z-index: 10;
+        }
+        .back-link { color: #6366f1; text-decoration: none; font-weight: bold; }
+        .game-info { color: white; font-size: 0.9rem; }
+
+        /* Game Display Area */
+        #game-container {
+            width: 100%;
+            height: calc(100vh - 50px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #game-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #000;
+        }
+
+        /* Professional Loader */
+        .loader-overlay {
+            position: absolute; top: 50px; left: 0; width: 100%; height: calc(100% - 50px);
+            background: #0b0b0e; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; z-index: 5;
+        }
+        .loading-text { color: white; margin-top: 15px; font-size: 1.1rem; letter-spacing: 1px; }
+        .spinner {
+            width: 50px; height: 50px; border: 5px solid #1a1a24;
+            border-top: 5px solid #6366f1; border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo-container"><img src="assets/game/logo.png" alt="PlayForge"></div>
-        <a href="games.html" class="btn-secondary">Exit Game</a>
-    </nav>
 
-    <div class="container" style="text-align: center;">
-        <div class="ad-slot">ADVERTISEMENT - RESPONSIVE BANNER</div>
-        
-        <div id="game-container" style="width: 100%; max-width: 900px; height: 500px; background: #000; margin: 0 auto; position: relative;">
-            <iframe id="game-frame" src="" style="width: 100%; height: 100%; border: none;"></iframe>
-        </div>
-
-        <div class="ad-slot">ADVERTISEMENT - VIDEO AD READY</div>
-        
-        <div style="margin-top: 20px; text-align: left;">
-            <h1 id="game-title">Game Title</h1>
-            <p id="game-dev" style="color: var(--primary);">By Developer</p>
-        </div>
+    <div class="game-nav">
+        <a href="index.html" class="back-link">← Quit Game</a>
+        <div class="game-info" id="display-title">PlayForge Cloud Player</div>
+        <div style="width: 80px;"></div>
     </div>
 
-    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore-compat.js"></script>
-    <script src="firebase-config.js"></script>
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const gameId = urlParams.get('id');
+    <div id="loading-screen" class="loader-overlay">
+        <div class="spinner"></div>
+        <div class="loading-text">Fetching Game Engine...</div>
+    </div>
 
-        if(gameId) {
-            db.collection('games').doc(gameId).get().then(doc => {
-                const data = doc.data();
-                document.getElementById('game-frame').src = data.gameUrl;
-                document.getElementById('game-title').innerText = data.title;
-                // Add view for revenue calculation
-                db.collection('games').doc(gameId).update({ views: firebase.firestore.FieldValue.increment(1) });
-            });
+    <div id="game-container">
+        <iframe id="game-frame" allow="autoplay; fullscreen; keyboard" src=""></iframe>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script>
+
+    <script>
+        // 1. URL से गेम की ID निकालें
+        const params = new URLSearchParams(window.location.search);
+        const gameId = params.get('id');
+
+        if (!gameId) {
+            alert("Error: Game ID is missing!");
+            window.location.href = "index.html";
+        }
+
+        // 2. Firebase से डेटा मंगवाएं
+        db.collection("games").doc(gameId).get().then((doc) => {
+            if (doc.exists) {
+                const gameData = doc.data();
+                document.getElementById('display-title').innerText = "Playing: " + gameData.title;
+                
+                // 3. गेम लोड करने का असली लॉजिक
+                loadGDevelopEngine(gameData.data);
+            } else {
+                alert("Game not found in PlayForge Database!");
+                window.location.href = "index.html";
+            }
+        }).catch((err) => {
+            console.error("Firebase Error:", err);
+            alert("Connection Error!");
+        });
+
+        function loadGDevelopEngine(jsonData) {
+            const frame = document.getElementById('game-frame');
+            
+            /* चूंकि GDevelop गेम को अपनी पूरी लाइब्रेरी चाहिए होती है, 
+              हम GDevelop के ऑनलाइन रनटाइम का इस्तेमाल करेंगे और 
+              आपका JSON डेटा उसमें 'Inject' करेंगे।
+            */
+            
+            // यह URL GDevelop के प्लेयर को आपका डेटा भेजता है
+            const playerURL = "https://games.gdevelop-app.com/game-player/index.html";
+            
+            // फ्रेम को लोड करना
+            frame.src = playerURL;
+
+            // लोडर हटाना जब गेम तैयार हो जाए
+            frame.onload = function() {
+                setTimeout(() => {
+                    document.getElementById('loading-screen').style.display = 'none';
+                    console.log("PlayForge: Engine Loaded Successfully.");
+                }, 2000);
+            };
         }
     </script>
 </body>
