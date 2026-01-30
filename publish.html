@@ -1,1 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Publish Game | PlayForge</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Publish Your Masterpiece</h2>
+        <form id="publishForm">
+            <input type="text" id="title" placeholder="Game Title" required>
+            <textarea id="desc" placeholder="Description"></textarea>
+            <label>Thumbnail (JPG/PNG)</label>
+            <input type="file" id="thumb" accept="image/*" required>
+            <label>Game Files (ZIP)</label>
+            <input type="file" id="gameZip" accept=".zip" required>
+            <button type="submit" class="btn primary">Upload & Publish</button>
+        </form>
+    </div>
 
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script>
+        const form = document.getElementById('publishForm');
+        form.onsubmit = async (e) => {
+            e.preventDefault();
+            const user = auth.currentUser;
+            if(!user) return alert("Login required");
+
+            const title = document.getElementById('title').value;
+            const zipFile = document.getElementById('gameZip').files[0];
+            const thumbFile = document.getElementById('thumb').files[0];
+
+            // 1. Upload ZIP
+            const zipRef = storage.ref(`games/${user.uid}/${Date.now()}_${zipFile.name}`);
+            await zipRef.put(zipFile);
+            const zipUrl = await zipRef.getDownloadURL();
+
+            // 2. Upload Thumb
+            const thumbRef = storage.ref(`thumbs/${user.uid}/${Date.now()}_${thumbFile.name}`);
+            await thumbRef.put(thumbFile);
+            const thumbUrl = await thumbRef.getDownloadURL();
+
+            // 3. Save to Firestore
+            await db.collection('games').add({
+                title,
+                zipUrl,
+                thumbUrl,
+                developerId: user.uid,
+                views: 0,
+                earnings: 0,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            });
+
+            alert("Game Published Successfully!");
+            window.location.href = "dashboard.html";
+        };
+    </script>
+</body>
+</html>
