@@ -1,66 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Developer Dashboard | PlayForge</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <div class="dashboard-layout">
-        <nav class="side-nav">
-            <h2>PlayForge</h2>
-            <a href="dashboard.html" class="active">My Games</a>
-            <a href="earnings.html">Earnings</a>
-            <a href="publish.html">Publish New</a>
-            <button onclick="auth.signOut().then(()=>window.location.href='index.html')" class="btn secondary">Logout</button>
+<div class="dashboard-wrapper" style="display: flex; min-height: 100vh; background: #0b0b0e;">
+    <aside style="width: 280px; background: #15151e; border-right: 1px solid #2d2d3d; padding: 2rem; display: flex; flex-direction: column;">
+        <div class="logo" style="font-size: 1.5rem; margin-bottom: 3rem;">Play<span style="color:#6366f1;">Forge</span></div>
+        <nav style="display: flex; flex-direction: column; gap: 10px; flex-grow: 1;">
+            <a href="#" class="nav-item active">📊 Overview</a>
+            <a href="games.html" class="nav-item">🎮 My Games</a>
+            <a href="earnings.html" class="nav-item">💰 Revenue</a>
+            <a href="create.html" class="nav-item">🛠 Engine Settings</a>
         </nav>
+        <button onclick="logout()" class="btn secondary" style="width: 100%;">🚪 Logout</button>
+    </aside>
 
-        <main class="main-content">
-            <header>
-                <h1>My Published Games</h1>
-                <a href="publish.html" class="btn primary">+ New Game</a>
-            </header>
-            
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>Game</th>
-                        <th>Status</th>
-                        <th>Views</th>
-                        <th>Earnings</th>
-                    </tr>
-                </thead>
-                <tbody id="myGamesList">
-                    </tbody>
-            </table>
-        </main>
-    </div>
+    <main style="flex: 1; padding: 3rem; overflow-y: auto;">
+        <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem;">
+            <div>
+                <h1 style="font-size: 2.5rem;">Developer <span class="gradient-text">Console</span></h1>
+                <p style="color: #a1a1aa;">Welcome back! Here is what's happening with your games.</p>
+            </div>
+            <a href="publish.html" class="btn primary" style="padding: 1rem 2rem; border-radius: 50px;">+ Publish New Game</a>
+        </header>
 
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-    <script src="firebase-config.js"></script>
-    <script>
-        auth.onAuthStateChanged(user => {
-            if (user) {
-                db.collection('games').where('developerId', '==', user.uid).get().then(snap => {
-                    const list = document.getElementById('myGamesList');
-                    snap.forEach(doc => {
-                        const game = doc.data();
-                        list.innerHTML += `
-                            <tr>
-                                <td>${game.title}</td>
-                                <td><span class="status-badge">Live</span></td>
-                                <td>${game.views || 0}</td>
-                                <td>$${(game.views * 0.007).toFixed(2)}</td>
-                            </tr>
-                        `;
-                    });
-                });
-            } else {
-                window.location.href = 'login.html';
-            }
-        });
-    </script>
-</body>
-</html>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 3rem;">
+            <div class="glass-card">
+                <small>Total Plays</small>
+                <h2>12.4k</h2>
+                <div style="color: #10b981; font-size: 0.8rem;">↑ 12% this week</div>
+            </div>
+            <div class="glass-card">
+                <small>Active Installs</small>
+                <h2>1,042</h2>
+            </div>
+            <div class="glass-card">
+                <small>Current Balance</small>
+                <h2>$142.50</h2>
+            </div>
+        </div>
+
+        <h3 style="margin-bottom: 1.5rem;">Recent Uploads</h3>
+        <div id="myGamesList" class="game-list-compact">
+            <div class="glass-card" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <div style="width: 50px; height: 50px; background: #333; border-radius: 8px;"></div>
+                    <div>
+                        <strong>Example Game</strong><br>
+                        <small style="color:#666;">Last updated: 2 days ago</small>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn secondary small">Edit</button>
+                    <button class="btn primary small">Analytics</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<style>
+    .nav-item { padding: 12px 20px; color: #a1a1aa; text-decoration: none; border-radius: 10px; transition: 0.3s; }
+    .nav-item:hover, .nav-item.active { background: #6366f122; color: #6366f1; }
+    .glass-card { background: #1a1a24; border: 1px solid #2d2d3d; padding: 1.5rem; border-radius: 16px; }
+    .gradient-text { background: linear-gradient(90deg, #6366f1, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+</style>
