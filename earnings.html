@@ -6,62 +6,39 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo">Play<span>Forge</span></div>
-        <div id="authSection"></div>
-    </nav>
-
-    <div class="dashboard-container" style="display:flex; min-height:90vh;">
-        <aside class="sidebar" style="width:250px; background:#1a1a24; padding:20px;">
-            <ul style="list-style:none;">
-                <li><a href="dashboard.html" style="color:#fff; text-decoration:none;">My Games</a></li>
-                <li style="margin-top:15px;"><a href="earnings.html" style="color:#6366f1; text-decoration:none; font-weight:bold;">Earnings</a></li>
-            </ul>
-        </aside>
-
-        <main style="flex-grow:1; padding:40px;">
-            <h1>Revenue Dashboard</h1>
-            <div class="stats-grid" style="display:grid; grid-template-columns: repeat(3, 1fr); gap:20px; margin-top:30px;">
-                <div class="stat-card" style="background:#1a1a24; padding:30px; border-radius:15px; text-align:center;">
-                    <h3 style="color:#a1a1aa;">Total Views</h3>
-                    <p id="totalViews" style="font-size:2rem; font-weight:bold;">0</p>
-                </div>
-                <div class="stat-card" style="background:#1a1a24; padding:30px; border-radius:15px; text-align:center;">
-                    <h3 style="color:#a1a1aa;">Gross Revenue</h3>
-                    <p id="grossRev" style="font-size:2rem; font-weight:bold;">$0.00</p>
-                </div>
-                <div class="stat-card" style="background:#1a1a24; padding:30px; border-radius:15px; text-align:center; border:1px solid #10b981;">
-                    <h3 style="color:#10b981;">Your Share (70%)</h3>
-                    <p id="devShare" style="font-size:2rem; font-weight:bold; color:#10b981;">$0.00</p>
-                </div>
+    <div class="container">
+        <h1>Developer Monetization</h1>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px;">
+            <div class="game-card" style="padding: 30px;">
+                <p>Net Earnings (Developer 70%)</p>
+                <h2 id="dev-money" style="font-size: 3rem; color: var(--success);">$0.00</h2>
             </div>
-        </main>
+            <div class="game-card" style="padding: 30px;">
+                <p>Total Ad Views</p>
+                <h2 id="total-views" style="font-size: 3rem; color: var(--primary);">0</h2>
+            </div>
+        </div>
+        <div class="ad-slot">Your payout threshold: $100.00</div>
     </div>
 
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore-compat.js"></script>
     <script src="firebase-config.js"></script>
-    <script src="js/main.js"></script>
-
     <script>
         auth.onAuthStateChanged(user => {
-            if (user) {
+            if(user) {
                 db.collection('games').where('developerId', '==', user.uid).get().then(snap => {
-                    let totalViews = 0;
-                    snap.forEach(doc => {
-                        totalViews += (doc.data().views || 0);
-                    });
+                    let views = 0;
+                    snap.forEach(d => views += (d.data().views || 0));
                     
-                    const gross = totalViews * 0.01; // $10 per 1000 views simulation
-                    const share = gross * 0.70;
+                    const cpm = 2.0; // $2.00 per 1000 views
+                    const totalRev = (views / 1000) * cpm;
+                    const devShare = totalRev * 0.70; // 70% share
 
-                    document.getElementById('totalViews').innerText = totalViews.toLocaleString();
-                    document.getElementById('grossRev').innerText = `$${gross.toFixed(2)}`;
-                    document.getElementById('devShare').innerText = `$${share.toFixed(2)}`;
+                    document.getElementById('dev-money').innerText = `$${devShare.toFixed(2)}`;
+                    document.getElementById('total-views').innerText = views.toLocaleString();
                 });
-            } else {
-                window.location.href = "login.html";
             }
         });
     </script>
