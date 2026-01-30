@@ -2,35 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Account - PlayForge</title>
+    <title>Join PlayForge | Create & Earn</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="dark-theme">
-    <nav class="navbar">
-        <div class="logo">PlayForge</div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <div id="auth-section"></div>
-        </div>
-    </nav>
+<body class="auth-page">
+    <div class="auth-card">
+        <h2>Create Developer Account</h2>
+        <form id="signupForm">
+            <input type="text" id="username" placeholder="Full Name" required>
+            <input type="email" id="email" placeholder="Email Address" required>
+            <input type="password" id="password" placeholder="Password (min 6 chars)" required>
+            <button type="submit" class="btn primary">Create Account</button>
+        </form>
+        <p>Already have an account? <a href="login.html">Login here</a></p>
+    </div>
 
-    <main class="container">
-        <div class="account-card">
-            <div class="profile-header">
-                <div class="avatar-large">PF</div>
-                <h2 id="profileUser">Username</h2>
-                <span class="badge">Verified Creator</span>
-            </div>
-            <div class="profile-meta">
-                <p><strong>Platform Architect:</strong> Mohammad Khan</p>
-                <p><strong>Tier:</strong> Professional Developer</p>
-                <p><strong>Region:</strong> Global</p>
-            </div>
-            <button id="logoutBtn" class="btn-outline" style="width: 100%; margin-top: 20px;">Sign Out</button>
-        </div>
-    </main>
-
-    <script src="js/auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script>
+        document.getElementById('signupForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const pass = document.getElementById('password').value;
+            try {
+                await auth.createUserWithEmailAndPassword(email, pass);
+                alert("Account created! Welcome to PlayForge.");
+                window.location.href = "dashboard.html";
+            } catch (err) { alert(err.message); }
+        };
+    </script>
 </body>
 </html>
