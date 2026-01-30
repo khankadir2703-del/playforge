@@ -1,34 +1,27 @@
-// Authentication Logic
-const checkAuthState = (redirectIfLoggedOut = false) => {
-    auth.onAuthStateChanged((user) => {
-        if (user) {
-            console.log("User is logged in:", user.email);
-            // नेविगेशन बार अपडेट करने के लिए main.js का इस्तेमाल होगा
-        } else {
-            if (redirectIfLoggedOut) {
-                alert("Please login to access this page.");
-                window.location.href = "login.html";
-            }
-        }
-    });
-};
-
-// Signup Function
-const signupUser = async (email, password) => {
+// Signup Logic
+async function handleSignup(email, password, role) {
     try {
-        const cred = await auth.createUserWithEmailAndPassword(email, password);
-        return { success: true, user: cred.user };
-    } catch (error) {
-        return { success: false, error: error.message };
-    }
-};
+        const res = await auth.createUserWithEmailAndPassword(email, password);
+        await db.collection('users').doc(res.user.uid).set({
+            uid: res.user.uid,
+            email: email,
+            role: role,
+            revenue: 0,
+            createdAt: new Date()
+        });
+        window.location.href = 'dashboard.html';
+    } catch (err) { alert(err.message); }
+}
 
-// Login Function
-const loginUser = async (email, password) => {
+// Login Logic
+async function handleLogin(email, password) {
     try {
-        const cred = await auth.signInWithEmailAndPassword(email, password);
-        return { success: true, user: cred.user };
-    } catch (error) {
-        return { success: false, error: error.message };
-    }
-};
+        await auth.signInWithEmailAndPassword(email, password);
+        window.location.href = 'dashboard.html';
+    } catch (err) { alert(err.message); }
+}
+
+// Logout
+function logout() {
+    auth.signOut().then(() => window.location.href = 'index.html');
+}
