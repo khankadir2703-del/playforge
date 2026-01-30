@@ -3,88 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PlayForge Engine | Create Mode</title>
+    <title>PlayForge | Create Mode</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #111; font-family: 'Inter', sans-serif; }
-
-        /* Floating Header for PlayForge Branding */
-        .engine-header {
-            position: fixed;
-            top: 0;
-            left: 0;
+        /* CSS reset to ensure full screen */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
             width: 100%;
-            height: 45px;
-            background: #1a1a24;
+            overflow: hidden;
+            background: #000;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Minimalistic Top Bar */
+        .header-bar {
+            height: 40px;
+            background: #111116;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 20px;
-            border-bottom: 1px solid #333;
-            z-index: 1000;
+            padding: 0 15px;
+            border-bottom: 1px solid #2d2d3a;
+            position: relative;
+            z-index: 999;
         }
 
-        .logo { font-size: 1.1rem; font-weight: 800; text-decoration: none; color: white; }
-        .logo span { color: #6366f1; }
+        .brand {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1rem;
+            letter-spacing: -0.5px;
+        }
 
-        .publish-btn {
+        .brand span {
+            color: #6366f1;
+        }
+
+        /* Action Buttons */
+        .actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .status-text {
+            color: #8b8b94;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+
+        .btn-publish {
             background: #6366f1;
             color: white;
             border: none;
-            padding: 6px 15px;
+            padding: 4px 12px;
             border-radius: 4px;
+            font-size: 0.75rem;
             font-weight: 700;
-            font-size: 0.8rem;
             cursor: pointer;
-            transition: 0.2s;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
+            transition: 0.2s ease;
         }
 
-        .publish-btn:hover { background: #4f46e5; transform: scale(1.03); }
-
-        /* The Engine Container */
-        .iframe-container {
-            width: 100%;
-            height: calc(100vh - 45px);
-            margin-top: 45px;
-            background: #000;
+        .btn-publish:hover {
+            background: #4f46e5;
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.4);
         }
 
-        iframe {
+        /* Full Screen Editor */
+        .editor-frame {
             width: 100%;
-            height: 100%;
+            height: calc(100vh - 40px); /* Adjusting for the 40px header */
             border: none;
+            background: #000;
         }
     </style>
 </head>
 <body>
 
-    <div class="engine-header">
-        <a href="index.html" class="logo">Play<span>Forge</span> <small style="font-size: 0.6rem; color: #666; font-weight: normal;">Powered by GDevelop</small></a>
+    <header class="header-bar">
+        <a href="index.html" class="brand">Play<span>Forge</span></a>
         
-        <div style="display: flex; align-items: center; gap: 20px;">
-            <span style="color: #888; font-size: 0.7rem;"><i class="fas fa-info-circle"></i> Create your game, Export as JSON, then click Publish</span>
-            <button class="publish-btn" onclick="goToPublish()">
-                <i class="fas fa-upload"></i> PUBLISH TO PLAYFORGE
+        <div class="actions">
+            <span class="status-text"><i class="fas fa-magic"></i> Create anything. No code.</span>
+            <button class="btn-publish" onclick="openPublish()">
+                <i class="fas fa-cloud-arrow-up"></i> PUBLISH
             </button>
         </div>
-    </div>
+    </header>
 
-    <div class="iframe-container">
-        <iframe 
-            src="https://editor.gdevelop.io/" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; usb" 
-            allowfullscreen>
-        </iframe>
-    </div>
+    <iframe 
+        id="gdevelop-engine"
+        src="https://editor.gdevelop.io/" 
+        class="editor-frame" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; usb" 
+        allowfullscreen>
+    </iframe>
 
     <script>
-        function goToPublish() {
-            // पब्लिश करने से पहले यूजर को गाइड करना
-            const confirmPublish = confirm("Before publishing, make sure you have exported your game from the editor (File > Export > Download as JSON). Ready to go?");
-            if (confirmPublish) {
+        function openPublish() {
+            // यूजर को पब्लिश पेज पर भेजने से पहले गाइड करें
+            const msg = "Step 1: Save/Export your project in the editor.\nStep 2: Download the JSON file.\nStep 3: Click OK to go to the Publish page.";
+            if (confirm(msg)) {
                 window.location.href = "publish.html";
             }
         }
