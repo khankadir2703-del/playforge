@@ -1,60 +1,43 @@
-if (!Auth.isLoggedIn()) {
-    alert("Please login to access the Builder");
-    window.location.href = 'index.html';
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+let gameObjects = [];
+
+// Drag and Drop Logic
+function drag(ev) {
+    ev.dataTransfer.setData("type", ev.target.id);
 }
 
-const canvas = document.getElementById('builderCanvas');
-if (canvas) {
-    const ctx = canvas.getContext('2d');
-    let player = { x: 290, y: 190, size: 20, color: '#00ff88' };
-    
-    function draw() {
-        ctx.fillStyle = '#0a0a0c';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
-        // Grid lines for "studio" look
-        ctx.strokeStyle = '#1e1e24';
-        for(let i=0; i<canvas.width; i+=40) {
-            ctx.beginPath(); ctx.moveTo(i,0); ctx.lineTo(i, canvas.height); ctx.stroke();
-        }
-        for(let i=0; i<canvas.height; i+=40) {
-            ctx.beginPath(); ctx.moveTo(0,i); ctx.lineTo(canvas.width, i); ctx.stroke();
-        }
+canvas.addEventListener('dragover', (e) => e.preventDefault());
 
-        ctx.fillStyle = player.color;
-        ctx.fillRect(player.x, player.y, player.size, player.size);
-        requestAnimationFrame(draw);
-    }
+canvas.addEventListener('drop', (e) => {
+    e.preventDefault();
+    const type = e.dataTransfer.getData("type");
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
 
-    window.onkeydown = (e) => {
-        if(e.key === 'ArrowUp') player.y -= 10;
-        if(e.key === 'ArrowDown') player.y += 10;
-        if(e.key === 'ArrowLeft') player.x -= 10;
-        if(e.key === 'ArrowRight') player.x += 10;
-    };
-
-    document.getElementById('playerColor').oninput = (e) => {
-        player.color = e.target.value;
-    };
-
-    document.getElementById('saveGame').onclick = () => {
-        const title = document.getElementById('gameTitle').value || "Project X";
-        const games = JSON.parse(localStorage.getItem('pf_games') || '[]');
-        
-        const newGame = {
-            id: Date.now(),
-            title: title,
-            creator: Auth.getUser(),
-            color: player.color,
-            difficulty: parseInt(document.getElementById('difficulty').value),
-            plays: 0
-        };
-
-        games.push(newGame);
-        localStorage.setItem('pf_games', JSON.stringify(games));
-        alert('Game Published Successfully to Mohammad Khan\'s PlayForge!');
-        window.location.href = 'games.html';
-    };
-
+    gameObjects.push({ type, x, y, width: 50, height: 50 });
     draw();
+});
+
+function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    gameObjects.forEach(obj => {
+        ctx.fillStyle = obj.type === 'player' ? '#6366f1' : '#ef4444';
+        ctx.fillRect(obj.x, obj.y, obj.width, obj.height);
+    });
 }
+
+document.getElementById('exportBtn').addEventListener('click', () => {
+    const gameData = {
+        version: "1.0",
+        objects: gameObjects
+    };
+    const blob = new Blob([JSON.stringify(gameData)], {type: "application/json"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = "my-game-config.json";
+    a.click();
+    alert("Game configuration exported! You can now publish it.");
+});
