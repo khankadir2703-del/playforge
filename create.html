@@ -3,144 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>PlayForge Engine | Create Mode</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <title>PlayForge | Game Engine</title>
     <style>
-        /* 1. Full Screen Reset */
-        * { box-sizing: border-box; }
-        body, html {
+        /* पूरी स्क्रीन को एडिटर के लिए खाली करना */
+        html, body {
             margin: 0;
             padding: 0;
-            height: 100%;
-            width: 100%;
-            overflow: hidden; /* Scrollbar को पूरी तरह हटाने के लिए */
-            background: #111116;
-            font-family: 'Inter', sans-serif;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden; /* कोई स्क्रॉल बार नहीं */
+            background-color: #000; /* लोडिंग के समय काला बैकग्राउंड */
         }
 
-        /* 2. Professional Navigation Bar */
-        .navbar {
-            height: 48px;
-            background: #1a1a24;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 20px;
-            border-bottom: 1px solid #2d2d3a;
-            position: relative;
-            z-index: 1000;
-        }
-
-        .brand-logo {
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 1.2rem;
-            letter-spacing: -0.5px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .brand-logo span { color: #6366f1; }
-
-        /* 3. Status & Info Area */
-        .engine-status {
-            color: #8b8b94;
-            font-size: 0.75rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .status-dot {
-            height: 8px;
-            width: 8px;
-            background: #10b981;
-            border-radius: 50%;
-            box-shadow: 0 0 8px #10b981;
-        }
-
-        /* 4. Action Buttons */
-        .btn-publish {
-            background: #6366f1;
-            color: white;
-            border: none;
-            padding: 6px 16px;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.2s ease;
-        }
-
-        .btn-publish:hover {
-            background: #4f46e5;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-        }
-
-        /* 5. GDevelop Engine Container */
-        .iframe-wrapper {
-            width: 100%;
-            height: calc(100vh - 48px); /* Navbar की हाइट काटकर पूरा एरिया */
-            background: #000;
-        }
-
-        #gdevelop-iframe {
+        /* एडिटर को पूरी स्क्रीन पर फैलाना */
+        #engine-frame {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             border: none;
-            display: block;
+        }
+
+        /* लोडिंग टेक्स्ट (सिर्फ तब तक जब तक एडिटर लोड हो रहा है) */
+        .loading-screen {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #6366f1;
+            font-family: sans-serif;
+            font-weight: bold;
+            z-index: -1;
         }
     </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <a href="index.html" class="brand-logo">
-            <i class="fas fa-cubes"></i> Play<span>Forge</span>
-        </a>
-        
-        <div class="engine-status">
-            <div class="status-dot"></div>
-            <span>GDevelop Engine v5 - Active</span>
-        </div>
+    <div class="loading-screen">Loading PlayForge Engine...</div>
 
-        <button class="btn-publish" onclick="handlePublish()">
-            <i class="fas fa-rocket"></i> PUBLISH GAME
-        </button>
-    </nav>
+    <iframe 
+        id="engine-frame"
+        src="https://editor.gdevelop.io/" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; usb" 
+        allowfullscreen>
+    </iframe>
 
-    <main class="iframe-wrapper">
-        <iframe 
-            id="gdevelop-iframe"
-            src="https://editor.gdevelop.io/" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; usb" 
-            allowfullscreen>
-        </iframe>
-    </main>
-
-    <script>
-        function handlePublish() {
-            // पब्लिश करने के लिए गाइडेंस पॉपअप
-            const userChoice = confirm(
-                "Finalizing your game?\n\n" +
-                "1. Go to 'File' in the GDevelop editor.\n" +
-                "2. Click 'Export' and download as JSON.\n" +
-                "3. Click OK here to go to the PlayForge upload page."
-            );
-            
-            if (userChoice) {
-                window.location.href = "publish.html";
-            }
-        }
-    </script>
 </body>
 </html>
