@@ -104,7 +104,25 @@ body {
 .game-card img { width: 100%; height: 150px; object-fit: cover; }
 
 .card-content { padding: 1rem; }
+.game-card {
+    background: var(--bg-card);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #2a2a35;
+}
 
+.game-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+    border-color: var(--primary);
+}
+
+.section-title {
+    text-align: center;
+    margin: 50px 0 30px;
+    font-size: 2.5rem;
+}
 /* Create Page Canvas */
 #editor-container {
     display: flex;
