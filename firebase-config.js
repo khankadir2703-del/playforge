@@ -1,12 +1,14 @@
+// REPLACE WITH YOUR ACTUAL FIREBASE PROJECT KEYS
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "playforge-app.firebaseapp.com",
-    projectId: "playforge-app",
-    storageBucket: "playforge-app.appspot.com",
-    messagingSenderId: "SENDER_ID",
-    appId: "APP_ID"
+  apiKey: "YOUR_API_KEY",
+  authDomain: "your-app.firebaseapp.com",
+  projectId: "your-app",
+  storageBucket: "your-app.appspot.com",
+  messagingSenderId: "123456789",
+  appId: "1:123456789:web:abcdef"
 };
 
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
