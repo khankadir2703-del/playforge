@@ -2,27 +2,45 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Browse Games - PlayForge</title>
+    <title>Games Library | PlayForge</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="dark-theme">
+<body>
     <nav class="navbar">
-        <div class="logo">PlayForge</div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="games.html" class="active">Browse Games</a>
-            <div id="auth-section"></div>
-        </div>
+        <div class="logo">Play<span>Forge</span></div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="games.html">Browse Games</a></li>
+        </ul>
     </nav>
 
-    <main class="container">
-        <h2 class="section-title">Community Games</h2>
-        <div id="games-grid" class="games-grid">
-            </div>
-    </main>
+    <div class="container">
+        <h2 class="section-title">All Games</h2>
+        <div id="gamesLibrary" class="game-grid">
+            <p>Fetching games from forge...</p>
+        </div>
+    </div>
 
-    <script src="js/auth.js"></script>
-    <script src="js/games.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script>
+        const library = document.getElementById('gamesLibrary');
+        db.collection('games').orderBy('createdAt', 'desc').get().then((snapshot) => {
+            library.innerHTML = '';
+            snapshot.forEach(doc => {
+                const game = doc.data();
+                library.innerHTML += `
+                    <div class="game-card">
+                        <img src="${game.thumbUrl}" alt="${game.title}">
+                        <div class="card-content">
+                            <h3>${game.title}</h3>
+                            <a href="play.html?id=${doc.id}" class="btn primary">Play Now</a>
+                        </div>
+                    </div>
+                `;
+            });
+        });
+    </script>
 </body>
 </html>
