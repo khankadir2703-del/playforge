@@ -2,18 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Terms of Service | PlayForge</title>
+    <title>Terms & Policy | PlayForge</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="legal-container" style="padding: 50px 10%;">
-        <h1>Monetization & Terms</h1>
-        <p>Welcome to PlayForge. By publishing games here, you agree to:</p>
-        <ul>
-            <li><strong>Revenue Share:</strong> 70% of ad revenue goes to the Developer, 30% to the Platform.</li>
-            <li><strong>Content:</strong> No adult or copyrighted content without permission.</li>
-            <li><strong>Payment:</strong> Earnings are calculated based on valid impressions.</li>
-        </ul>
+    <nav class="navbar">
+        <div class="logo"><a href="index.html" style="text-decoration:none; color:inherit;">Play<span>Forge</span></a></div>
+        <div id="authSection"></div>
+    </nav>
+
+    <div class="legal-container" style="padding: 80px 15%; max-width: 1200px; margin: auto;">
+        <h1 style="font-size: 3rem; margin-bottom: 20px;">Monetization & Developer Terms</h1>
+        <hr style="border: 0; border-top: 1px solid #333; margin-bottom: 40px;">
+        
+        <section style="margin-bottom: 30px;">
+            <h3>1. Revenue Distribution</h3>
+            <p>PlayForge operates on a transparent 70/30 revenue share model. Developers receive 70% of all advertisement revenue generated within their game pages.</p>
+        </section>
+
+        <section style="margin-bottom: 30px;">
+            <h3>2. Content Policy</h3>
+            <p>Games must not contain harmful code, excessive gore, or copyrighted assets without a license. All uploads are scanned for security.</p>
+        </section>
+
+        <section style="margin-bottom: 30px;">
+            <h3>3. Payouts</h3>
+            <p>Earnings are updated in real-time. Payouts are processed when the developer reaches a minimum threshold of $50.00.</p>
+        </section>
     </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
