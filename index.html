@@ -3,146 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PlayForge | Next-Gen Creator Platform</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>PlayForge | Game Engine</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-color: #050505;
-            --nav-bg: rgba(13, 13, 18, 0.8);
-            --accent: #6366f1;
-            --border: rgba(255, 255, 255, 0.1);
-            --text-main: #ffffff;
-            --text-dim: #9ca3af;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: #0b0b0e; font-family: 'Inter', sans-serif; color: white; }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            background-color: var(--bg-color);
-            font-family: 'Inter', sans-serif;
-            color: var(--text-main);
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* --- Global Professional Navbar --- */
+        /* --- Navbar Area --- */
         .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            height: 72px;
-            background: var(--nav-bg);
-            backdrop-filter: blur(12px); /* Apple-style blur effect */
-            border-bottom: 1px solid var(--border);
+            height: 65px;
+            background: #15151e;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 10%; /* स्क्रीन के हिसाब से गैप */
-            z-index: 9999;
+            padding: 0 25px;
+            border-bottom: 1px solid #2d2d3d;
         }
 
-        /* Left Side: Logo & Brand */
-        .nav-brand {
+        /* Logo + Name Wrapper */
+        .nav-left {
             display: flex;
             align-items: center;
-            gap: 14px;
-            text-decoration: none;
-            transition: opacity 0.2s;
+            gap: 12px; /* लोगो और नाम के बीच 12px की खाली जगह */
         }
 
-        .nav-brand:hover { opacity: 0.85; }
-
-        .logo-img {
-            height: 40px; /* परफेक्ट प्रोफेशनल साइज */
-            width: 40px;
-            object-fit: contain;
-            border-radius: 10px;
-            /* अगर लोगो न दिखे तो एक स्टाइलिश बैकग्राउंड */
-            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-            padding: 2px;
+        /* लोगो की सेटिंग */
+        .site-logo {
+            height: 40px; /* लोगो की ऊँचाई */
+            width: 40px;  /* लोगो की चौड़ाई */
+            object-fit: contain; /* फोटो फटेगी नहीं */
+            border-radius: 8px; /* किनारों को हल्का गोल करने के लिए */
         }
 
-        .brand-text {
-            font-size: 1.4rem;
+        .brand-name {
+            font-size: 1.5rem;
             font-weight: 800;
-            letter-spacing: -0.8px;
-            color: var(--text-main);
+            text-decoration: none;
+            color: #ffffff;
+            letter-spacing: -0.5px;
         }
 
-        .brand-text span {
-            color: var(--accent);
-            filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.3));
+        .brand-name span {
+            color: #6366f1; /* 'Forge' को नीला/Indigo रंग देने के लिए */
         }
 
-        /* Right Side: Links & Button */
-        .nav-links {
+        .nav-right {
             display: flex;
-            align-items: center;
-            gap: 30px;
+            gap: 15px;
         }
 
-        .nav-link {
-            text-decoration: none;
-            color: var(--text-dim);
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        .nav-link:hover { color: var(--text-main); }
-
-        .btn-cta {
-            background: var(--accent);
-            color: #fff;
-            padding: 10px 24px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 0.9rem;
+        .btn {
+            padding: 8px 18px;
+            border-radius: 6px;
             font-weight: 600;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(255,255,255,0.1);
+            text-decoration: none;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
         }
 
-        .btn-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
-            background: #4f46e5;
-        }
-
-        /* Demo Hero Section */
-        .hero {
-            margin-top: 150px;
-            text-align: center;
-            padding: 0 20px;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 800;
-            letter-spacing: -2px;
-            margin-bottom: 20px;
-            background: linear-gradient(to right, #fff, #666);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        .btn-primary { background: #6366f1; color: white; }
     </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <a href="index.html" class="nav-brand">
-            <img src="logo.png" alt="P" class="logo-img">
-            <h1 class="brand-text">Play<span>Forge</span></h1>
-        </a>
+        <div class="nav-left">
+            <img src="logo.png" alt="PF" class="site-logo">
+            
+            <a href="index.html" class="brand-name">Play<span>Forge</span></a>
+        </div>
 
-        <div class="nav-links">
-            <a href="dashboard.html" class="nav-link">Dashboard</a>
-            <a href="create.html" class="btn-cta">Start Creating</a>
+        <div class="nav-right">
+            <a href="create.html" class="btn btn-primary">Create Game</a>
         </div>
     </nav>
 
-    <main class="hero">
-        <h1>Unleash your<br>creativity.</h1>
-    </main>
+    <div style="padding: 50px; text-align: center;">
+        <h1>Welcome to PlayForge</h1>
+        <p style="color: #8b8b94; margin-top: 10px;">The ultimate destination for no-code game creators.</p>
+    </div>
 
 </body>
 </html>
