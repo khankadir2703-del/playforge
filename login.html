@@ -3,34 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>Login | PlayForge</title>
-    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth-compat.js"></script>
     <style>
-        body { background: #0d0d16; color: white; font-family: sans-serif; text-align: center; padding-top: 100px; }
-        .box { background: #161625; padding: 30px; border-radius: 10px; width: 300px; margin: auto; }
-        input { width: 90%; padding: 10px; margin: 10px 0; border-radius: 5px; border: none; }
-        button { width: 95%; padding: 10px; background: #6c63ff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        body { background: #0d0d16; color: white; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background: #161625; padding: 40px; border-radius: 10px; width: 300px; text-align: center; }
+        input { width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 5px; border: none; background: #0d0d16; color: white; }
+        button { width: 100%; padding: 10px; background: #6c63ff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        #err { color: #ff4d4d; margin-top: 10px; font-size: 14px; }
     </style>
 </head>
 <body>
-    <div class="box">
-        <h2>Login</h2>
+    <div class="card">
+        <h2 style="color: #4ecca3;">Login</h2>
         <input type="email" id="email" placeholder="Email">
-        <input type="password" id="password" placeholder="Password">
-        <button id="loginBtn">Login</button>
-        <p id="error" style="color: red;"></p>
+        <input type="password" id="pass" placeholder="Password">
+        <button onclick="login()">Sign In</button>
+        <p id="err"></p>
+        <a href="index.html" style="color: #94a3b8; text-decoration: none; font-size: 12px; display: block; margin-top: 15px;">← Back</a>
     </div>
 
-    <script src="firebase-config.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth-compat.js"></script>
     <script>
-        const auth = firebase.auth(); // Error fix line
-        document.getElementById('loginBtn').addEventListener('click', () => {
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            auth.signInWithEmailAndPassword(email, password)
+        // Config
+        const firebaseConfig = {
+            apiKey: "AIzaSyC_ed7CPLdUtM2vFWJLjT7r-7n5iw1XlVU",
+            authDomain: "playforge-d46a3.firebaseapp.com",
+            projectId: "playforge-d46a3",
+            storageBucket: "playforge-d46a3.firebasestorage.app",
+            messagingSenderId: "347695622009",
+            appId: "1:347695622009:web:f8fe89ddc24363ab4571a8"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        function login() {
+            const e = document.getElementById('email').value;
+            const p = document.getElementById('pass').value;
+            auth.signInWithEmailAndPassword(e, p)
                 .then(() => { window.location.href = "index.html"; })
-                .catch((err) => { document.getElementById('error').innerText = err.message; });
-        });
+                .catch(err => { document.getElementById('err').innerText = err.message; });
+        }
     </script>
 </body>
 </html>
