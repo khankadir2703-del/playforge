@@ -3,45 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PlayForge | Home</title>
+    <title>PlayForge | Professional Game Platform</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #0d0d16; color: white; margin: 0; text-align: center; }
-        header { background: #161625; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; }
-        .logo { color: #4ecca3; font-size: 24px; font-weight: bold; }
-        nav a { color: #cbd5e0; text-decoration: none; margin-left: 20px; }
-        .btn-login { border: 1px solid #4ecca3; color: #4ecca3; padding: 8px 18px; border-radius: 5px; text-decoration: none; }
-        .hero { padding: 100px 20px; }
-        h1 { font-size: 3rem; }
+        /* All-in-one Professional Design */
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            background-color: #0d0d16;
+            color: #ffffff;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 6%;
+            background: #161625;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.4);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo h2 {
+            color: #4ecca3;
+            margin: 0;
+            font-size: 26px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+
+        nav ul li a {
+            color: #cbd5e0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #4ecca3;
+        }
+
+        .btn-publish {
+            background: #6c63ff;
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .btn-login {
+            border: 1px solid #4ecca3;
+            padding: 7px 15px;
+            border-radius: 6px;
+            color: #4ecca3 !important;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(to bottom, #1c1c3a, #0d0d16);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .search-box {
+            margin-top: 20px;
+        }
+
+        .search-box input {
+            padding: 15px 25px;
+            width: 400px;
+            border-radius: 30px;
+            border: none;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .content {
+            padding: 50px 8%;
+        }
+
+        .section-title {
+            border-left: 5px solid #6c63ff;
+            padding-left: 15px;
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        #games-display {
+            background: #161625;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px dashed #2d2d44;
+            color: #777;
+        }
     </style>
 </head>
 <body>
+
     <header>
-        <div class="logo">PlayForge</div>
+        <div class="logo">
+            <h2>PlayForge</h2>
+        </div>
         <nav>
-            <a href="index.html">Home</a>
-            <a href="login.html" class="btn-login">Login</a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="games.html">Games</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="earnings.html">Earnings</a></li>
+                <li><a href="create.html" class="btn-publish">Publish Game</a></li>
+                <li><a href="login.html" class="btn-login">Login</a></li>
+            </ul>
         </nav>
     </header>
 
-    <div class="hero">
-        <h1>Welcome to PlayForge</h1>
-        <p>Aapki website GitHub par live hone ke liye taiyar hai!</p>
-    </div>
+    <section class="hero">
+        <h1>The Future of Web Gaming</h1>
+        <div class="search-box">
+            <input type="text" placeholder="Search for games...">
+        </div>
+    </section>
 
-    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth-compat.js"></script>
+    <main class="content">
+        <h2 class="section-title">Latest Community Games</h2>
+        <div id="games-display">
+            <p>No games found yet. Start by publishing your first game!</p>
+        </div>
+    </main>
 
-    <script>
-        // Aapka Naya Firebase Config
-        const firebaseConfig = {
-            apiKey: "AIzaSyC_ed7CPLdUtM2vFWJLjT7r-7n5iw1XlVU",
-            authDomain: "playforge-d46a3.firebaseapp.com",
-            projectId: "playforge-d46a3",
-            storageBucket: "playforge-d46a3.firebasestorage.app",
-            messagingSenderId: "347695622009",
-            appId: "1:347695622009:web:f8fe89ddc24363ab4571a8"
-        };
-        firebase.initializeApp(firebaseConfig);
-    </script>
+    <script src="firebase-config.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
