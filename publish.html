@@ -2,60 +2,130 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Publish Game | PlayForge</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Game | PlayForge</title>
     <style>
-        body { background: #0b0b0e; color: white; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .publish-box { background: #15151e; padding: 40px; border-radius: 15px; border: 1px solid #2d2d3d; width: 400px; }
-        h2 { text-align: center; color: #6366f1; }
-        input, select { width: 100%; padding: 12px; margin: 15px 0; background: #0b0b0e; border: 1px solid #2d2d3d; color: white; border-radius: 8px; }
-        .btn-submit { width: 100%; padding: 15px; background: #6366f1; border: none; color: white; font-weight: bold; border-radius: 8px; cursor: pointer; transition: 0.3s; }
-        .btn-submit:hover { background: #4f46e5; }
+        :root { --primary: #4ecca3; --accent: #6c63ff; --bg: #0d0d16; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; margin: 0; display: flex; }
+        
+        /* Sidebar Navigation */
+        aside { width: 250px; background: #161625; height: 100vh; padding: 20px; border-right: 1px solid #2d2d44; position: fixed; }
+        .logo { font-size: 24px; font-weight: bold; color: var(--primary); text-decoration: none; display: block; margin-bottom: 40px; }
+        nav a { color: #94a3b8; text-decoration: none; padding: 12px; display: block; border-radius: 8px; margin-bottom: 10px; transition: 0.3s; }
+        nav a:hover, nav a.active { background: #2d2d44; color: white; }
+
+        /* Main Content */
+        main { flex: 1; margin-left: 290px; padding: 50px; }
+        .upload-card { background: #161625; padding: 40px; border-radius: 15px; border: 2px dashed #2d2d44; text-align: center; transition: 0.3s; }
+        .upload-card:hover { border-color: var(--primary); background: rgba(78, 204, 163, 0.05); }
+        
+        .input-group { margin-bottom: 25px; text-align: left; max-width: 500px; margin-left: auto; margin-right: auto; }
+        label { display: block; color: #94a3b8; margin-bottom: 8px; font-size: 14px; }
+        input, select { width: 100%; padding: 12px; background: #0d0d16; border: 1px solid #2d2d44; color: white; border-radius: 8px; box-sizing: border-box; }
+        
+        .btn-submit { background: var(--primary); color: #0d0d16; border: none; padding: 15px 40px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px; margin-top: 20px; }
+        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(78, 204, 163, 0.3); }
+
+        #progress-container { display: none; margin-top: 20px; }
+        .progress-bar { width: 100%; height: 10px; background: #2d2d44; border-radius: 10px; overflow: hidden; }
+        .progress-fill { width: 0%; height: 100%; background: var(--primary); transition: 0.4s; }
     </style>
 </head>
 <body>
 
-    <div class="publish-box">
-        <h2>Publish Your Game</h2>
-        <input type="text" id="gameTitle" placeholder="Game Title (e.g. Super Mario Clone)">
-        <input type="text" id="authorName" placeholder="Your Name">
-        <p style="font-size: 0.8rem; color: #8b8b94;">Upload GDevelop JSON File:</p>
-        <input type="file" id="gameFile" accept=".json">
-        <button class="btn-submit" onclick="uploadGame()">Publish to PlayForge</button>
-    </div>
+    <aside>
+        <a href="index.html" class="logo">PLAYFORGE</a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Console</a>
+            <a href="earnings.html">Revenue</a>
+            <a href="publish.html" class="active">Submit Game</a>
+            <a href="profile.html">Account Settings</a>
+        </nav>
+    </aside>
 
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-    <script src="firebase-config.js"></script>
+    <main>
+        <h1>Submit Your <span style="color: var(--primary);">Masterpiece</span></h1>
+        <p style="color: #94a3b8; margin-bottom: 40px;">Upload your GDevelop build files (.zip) to launch your game on PlayForge.</p>
+
+        <div class="upload-card">
+            <div class="input-group">
+                <label>Game Title</label>
+                <input type="text" id="game-title" placeholder="e.g. Cyber Runner 2026">
+            </div>
+
+            <div class="input-group">
+                <label>Category</label>
+                <select id="game-category">
+                    <option>Action</option>
+                    <option>Puzzle</option>
+                    <option>RPG</option>
+                    <option>Arcade</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Select Game Files (ZIP)</label>
+                <input type="file" id="game-file" accept=".zip">
+            </div>
+
+            <button class="btn-submit" onclick="startUpload()">Publish Game</button>
+
+            <div id="progress-container">
+                <p id="status">Uploading to Server...</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth-compat.js"></script>
 
     <script>
-        function uploadGame() {
-            const title = document.getElementById("gameTitle").value;
-            const author = document.getElementById("authorName").value;
-            const file = document.getElementById("gameFile").files[0];
+        // Firebase Config
+        const firebaseConfig = {
+            apiKey: "AIzaSyC_ed7CPLdUtM2vFWJLjT7r-7n5iw1XlVU",
+            authDomain: "playforge-d46a3.firebaseapp.com",
+            projectId: "playforge-d46a3",
+            storageBucket: "playforge-d46a3.firebasestorage.app",
+            messagingSenderId: "347695622009",
+            appId: "1:347695622009:web:f8fe89ddc24363ab4571a8"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
 
-            if(!title || !author || !file) {
-                alert("Please fill all fields!");
+        // Check Login
+        auth.onAuthStateChanged((user) => {
+            if (!user) window.location.href = "login.html";
+        });
+
+        function startUpload() {
+            const title = document.getElementById('game-title').value;
+            const file = document.getElementById('game-file').files[0];
+
+            if(!title || !file) {
+                alert("Please fill all details and select a file!");
                 return;
             }
 
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const gameData = e.target.result;
-
-                // Firebase में गेम सेव करना
-                db.collection("games").add({
-                    title: title,
-                    author: author,
-                    data: gameData,
-                    createdAt: new Date()
-                })
-                .then(() => {
-                    alert("Success! Your game is now live on PlayForge.");
-                    window.location.href = "index.html";
-                })
-                .catch((error) => alert("Error: " + error));
-            };
-            reader.readAsText(file);
+            // Upload Animation Logic
+            document.getElementById('progress-container').style.display = 'block';
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 5;
+                document.getElementById('progress-fill').style.width = progress + '%';
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    document.getElementById('status').innerText = "Game Published Successfully!";
+                    document.getElementById('status').style.color = "#4ecca3";
+                    setTimeout(() => {
+                        window.location.href = "dashboard.html"; // Game dikhne ke liye dashboard bhejo
+                    }, 1500);
+                }
+            }, 100);
         }
     </script>
 </body>
