@@ -11,15 +11,13 @@
         nav { flex: 1; }
         nav a { color: var(--text-dim); text-decoration: none; padding: 14px; display: block; border-radius: 8px; margin-bottom: 10px; font-size: 14px; }
         nav a.active { background: #232339; color: white; font-weight: bold; }
-        .logout-btn { color: var(--danger); text-decoration: none; padding: 15px; border-top: 1px solid #2d2d44; font-weight: 800; font-size: 14px; margin-top: auto; }
-        .logout-btn:hover { background: var(--danger); color: white; border-radius: 8px; }
+        .logout-btn { color: var(--danger); text-decoration: none; padding: 15px; border-top: 1px solid #2d2d44; font-weight: 800; margin-top: auto; }
 
         main { flex: 1; margin-left: 320px; padding: 60px 50px; }
         .edit-card { max-width: 600px; background: rgba(22, 22, 37, 0.6); padding: 40px; border-radius: 20px; border: 1px solid #2d2d44; }
         .form-group { margin-bottom: 25px; }
         label { display: block; color: var(--text-dim); margin-bottom: 10px; font-size: 14px; font-weight: bold; }
         input { width: 100%; padding: 14px; background: #0d0d16; border: 1px solid #2d2d44; color: white; border-radius: 8px; font-size: 15px; box-sizing: border-box; outline: none; }
-        input:focus { border-color: var(--primary); }
         .save-btn { background: var(--primary); color: #0d0d16; padding: 15px; border: none; border-radius: 8px; font-weight: 800; cursor: pointer; width: 100%; margin-top: 10px; }
     </style>
 </head>
@@ -28,28 +26,19 @@
         <a href="index.html" class="logo">PLAYFORGE</a>
         <nav>
             <a href="index.html">Home Overview</a>
+            <a href="about.html">About Us</a>
             <a href="dashboard.html">Developer Console</a>
-            <a href="revenue.html">Revenue Analytics</a>
             <a href="account.html" class="active">Account Settings</a>
         </nav>
         <a href="index.html" class="logout-btn">LOGOUT</a>
     </aside>
     <main>
-        <h1>Account <span style="color:var(--primary)">Settings</span></h1>
+        <h1>Account <span>Settings</span></h1>
         <div class="edit-card">
             <form onsubmit="event.preventDefault(); alert('Profile Saved!');">
-                <div class="form-group">
-                    <label>Username</label>
-                    <input type="text" value="Mohammad Khan">
-                </div>
-                <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="email" value="admin@playforge.com">
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" value="password123">
-                </div>
+                <div class="form-group"><label>Username</label><input type="text" value="Mohammad Khan"></div>
+                <div class="form-group"><label>Email Address</label><input type="email" value="admin@playforge.com"></div>
+                <div class="form-group"><label>Password</label><input type="password" value="password123"></div>
                 <button type="submit" class="save-btn">Save Profile Changes</button>
             </form>
         </div>
