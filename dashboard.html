@@ -7,42 +7,46 @@
         :root { --primary: #4ecca3; --bg: #0d0d16; --card: #161625; }
         body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; margin: 0; display: flex; }
         
-        aside { width: 250px; background: var(--card); height: 100vh; padding: 25px; border-right: 1px solid #2d2d44; position: fixed; }
-        .logo { font-size: 24px; font-weight: bold; color: var(--primary); text-decoration: none; display: block; margin-bottom: 50px; }
-        nav a { color: #94a3b8; text-decoration: none; padding: 12px; display: block; border-radius: 8px; margin-bottom: 10px; transition: 0.3s; }
-        nav a:hover, nav a.active { background: #2d2d44; color: white; }
+        aside { width: 280px; background: var(--card); height: 100vh; padding: 30px; border-right: 1px solid #2d2d44; position: fixed; }
+        .logo-side { display: flex; align-items: center; margin-bottom: 50px; text-decoration: none; }
+        .logo-side img { height: 40px; margin-right: 12px; }
+        .logo-side span { color: white; font-size: 22px; font-weight: 800; letter-spacing: 1px; }
 
-        main { flex: 1; margin-left: 300px; padding: 50px; }
-        .header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
-        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .stat-card { background: var(--card); padding: 30px; border-radius: 12px; border: 1px solid #2d2d44; }
-        .stat-card h3 { color: #94a3b8; font-size: 13px; margin: 0; text-transform: uppercase; }
-        .stat-card p { font-size: 32px; font-weight: bold; margin: 15px 0 0; color: var(--primary); }
-        .btn-new { background: var(--primary); color: #0d0d16; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold; }
+        nav a { color: #94a3b8; text-decoration: none; padding: 15px; display: block; border-radius: 8px; margin-bottom: 8px; transition: 0.3s; }
+        nav a:hover, nav a.active { background: rgba(78, 204, 163, 0.1); color: var(--primary); }
+
+        main { flex: 1; margin-left: 320px; padding: 60px; }
+        .header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 50px; }
+        .stats-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+        .stat-card { background: var(--card); padding: 35px; border-radius: 16px; border: 1px solid #2d2d44; position: relative; overflow: hidden; }
+        .stat-card h3 { color: #94a3b8; font-size: 14px; margin: 0; text-transform: uppercase; letter-spacing: 1px; }
+        .stat-card p { font-size: 36px; font-weight: 800; margin: 15px 0 0; color: var(--primary); }
     </style>
 </head>
 <body>
     <aside>
-        <a href="index.html" class="logo">PLAYFORGE</a>
+        <a href="index.html" class="logo-side">
+            <img src="logo.png" alt="Logo">
+            <span>PLAYFORGE</span>
+        </a>
         <nav>
-            <a href="index.html">Home</a>
-            <a href="studio.html">Creative Studio</a>
             <a href="dashboard.html" class="active">Developer Console</a>
             <a href="earnings.html">Revenue Analytics</a>
+            <a href="index.html" style="margin-top: 40px;">← Back to Home</a>
         </nav>
     </aside>
     <main>
-        <div class="header-flex">
+        <div class="header-row">
             <h1>Console <span style="color: var(--primary);">Overview</span></h1>
-            <a href="publish.html" class="btn-new">+ Publish New Game</a>
+            <a href="publish.html" style="background: var(--primary); color: #0d0d16; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: bold;">+ Publish New Game</a>
         </div>
-        <div class="stats-grid">
+        <div class="stats-container">
             <div class="stat-card"><h3>Total Impressions</h3><p>0</p></div>
             <div class="stat-card"><h3>Live Projects</h3><p>0</p></div>
             <div class="stat-card"><h3>Estimated Revenue</h3><p>$0.00</p></div>
         </div>
-        <div style="margin-top: 50px; background: var(--card); padding: 60px; border-radius: 15px; text-align: center; border: 1px dashed #2d2d44;">
-            <p style="color: #94a3b8; font-size: 1.1rem;">No games found. Start by creating and publishing your first masterpiece!</p>
+        <div style="margin-top: 60px; background: var(--card); padding: 80px; border-radius: 20px; text-align: center; border: 2px dashed #2d2d44;">
+            <p style="color: #94a3b8; font-size: 1.2rem;">Ready to launch? Your gaming legacy starts here.</p>
         </div>
     </main>
 </body>
