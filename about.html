@@ -5,44 +5,26 @@
     <title>About | PlayForge Studio</title>
     <style>
         :root { --primary: #4ecca3; --accent: #6c63ff; --bg: #0d0d16; }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; margin: 0; padding: 40px 20px; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; margin: 0; padding: 40px; }
+        .logo { font-size: 22px; font-weight: bold; color: var(--primary); text-decoration: none; margin-bottom: 40px; display: inline-block; }
         
-        header { display: flex; align-items: center; gap: 10px; margin-bottom: 30px; }
-        header img { height: 40px; }
-        header b { font-size: 20px; letter-spacing: 1px; }
-
-        .container { max-width: 900px; margin: auto; background: #161625; padding: 60px; border-radius: 24px; border: 1px solid #2d2d44; text-align: center; }
-        h1 { color: var(--primary); font-size: 48px; margin-bottom: 20px; }
-        
-        .founder-box { margin-top: 50px; padding-top: 40px; border-top: 1px solid #2d2d44; }
-        .founder-name { font-size: 42px; font-weight: 900; color: var(--accent); margin: 15px 0; }
-        
-        .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; text-align: left; margin: 40px 0; }
-        .feature-card { background: #0d0d16; padding: 25px; border-radius: 12px; border-left: 4px solid var(--primary); }
+        .container { max-width: 800px; margin: auto; background: #161625; padding: 60px; border-radius: 20px; border: 1px solid #2d2d44; text-align: center; }
+        h1 { font-size: 40px; color: var(--primary); margin-bottom: 20px; }
+        .founder-name { font-size: 36px; font-weight: 900; color: var(--accent); margin: 20px 0; }
     </style>
 </head>
 <body>
-    <header>
-        <img src="logo.png" alt="Logo">
-        <b>PLAYFORGE</b>
-    </header>
-
+    <a href="index.html" class="logo">PLAYFORGE</a>
     <div class="container">
         <h1>PLAYFORGE STUDIO</h1>
-        <p style="font-size: 1.2rem; color: #94a3b8; line-height: 1.6;">The premier destination for next-gen game developers using GDevelop technology. We provide a professional ecosystem to build and host your creations.</p>
+        <p style="color: #94a3b8; font-size: 1.1rem;">The premier destination for next-gen game developers using GDevelop technology.</p>
         
-        <div class="feature-grid">
-            <div class="feature-card"><h3>Global Hosting</h3><p>Fast and reliable cloud hosting for your HTML5 games.</p></div>
-            <div class="feature-card"><h3>Creator Analytics</h3><p>Detailed insights into your game's performance.</p></div>
-        </div>
-
-        <div class="founder-box">
+        <div style="margin-top: 50px; padding-top: 30px; border-top: 1px solid #2d2d44;">
             <p style="text-transform: uppercase; color: #94a3b8; letter-spacing: 2px;">Visionary Founder</p>
             <div class="founder-name">Mohammad Khan</div>
-            <p style="font-style: italic; color: #cbd5e0;">"Forge your legacy in the digital world."</p>
         </div>
         
-        <a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: bold; margin-top: 30px; display: inline-block;">← RETURN HOME</a>
+        <a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: bold; margin-top: 30px; display: inline-block;">← BACK HOME</a>
     </div>
 </body>
 </html>
