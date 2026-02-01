@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | PlayForge</title>
+    <style>
+        :root { --primary: #4ecca3; --accent: #6c63ff; --bg: #0d0d16; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; margin: 0; display: flex; }
+        
+        /* Sidebar */
+        aside { width: 250px; background: #161625; height: 100vh; padding: 20px; border-right: 1px solid #2d2d44; }
+        .logo { font-size: 24px; font-weight: bold; color: var(--primary); text-decoration: none; display: block; margin-bottom: 40px; }
+        nav a { color: #94a3b8; text-decoration: none; padding: 12px; display: block; border-radius: 8px; margin-bottom: 10px; transition: 0.3s; }
+        nav a:hover, nav a.active { background: #2d2d44; color: white; }
+
+        /* Main Profile Content */
+        main { flex: 1; padding: 50px; }
+        .profile-card { background: #161625; padding: 30px; border-radius: 15px; border: 1px solid #2d2d44; max-width: 600px; }
+        .avatar { width: 100px; height: 100px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 40px; margin-bottom: 20px; }
+        
+        .info-group { margin-bottom: 20px; }
+        label { display: block; color: #94a3b8; font-size: 14px; margin-bottom: 5px; }
+        .data-box { background: #0d0d16; padding: 12px; border-radius: 8px; border: 1px solid #2d2d44; color: #fff; }
+
+        .btn-logout { background: #ff4d4d; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-top: 20px; }
+        .btn-logout:hover { background: #ff3333; }
+    </style>
+</head>
+<body>
+
+    <aside>
+        <a href="index.html" class="logo">PLAYFORGE</a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Console</a>
+            <a href="earnings.html">Revenue</a>
+            <a href="profile.html" class="active">Account Settings</a>
+        </nav>
+    </aside>
+
+    <main>
+        <h1>Account <span style="color: var(--primary);">Settings</span></h1>
+        
+        <div class="profile-card">
+            <div class="avatar" id="user-initial">M</div>
+            
+            <div class="info-group">
+                <label>Full Name</label>
+                <div class="data-box" id="display-name">Mohammad Khan</div>
+            </div>
+
+            <div class="info-group">
+                <label>Email Address</label>
+                <div class="data-box" id="user-email">Loading...</div>
+            </div>
+
+            <div class="info-group">
+                <label>Account Status</label>
+                <div class="data-box" style="color: var(--primary);">Verified Developer</div>
+            </div>
+
+            <button class="btn-logout" onclick="logout()">Sign Out</button>
+        </div>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth-compat.js"></script>
+    
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyC_ed7CPLdUtM2vFWJLjT7r-7n5iw1XlVU",
+            authDomain: "playforge-d46a3.firebaseapp.com",
+            projectId: "playforge-d46a3",
+            storageBucket: "playforge-d46a3.firebasestorage.app",
+            messagingSenderId: "347695622009",
+            appId: "1:347695622009:web:f8fe89ddc24363ab4571a8"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        // Check Login Status
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                document.getElementById('user-email').innerText = user.email;
+                // Pehla letter avatar ke liye
+                document.getElementById('user-initial').innerText = user.email.charAt(0).toUpperCase();
+            } else {
+                window.location.href = "login.html";
+            }
+        });
+
+        // Logout Function
+        function logout() {
+            auth.signOut().then(() => {
+                window.location.href = "index.html";
+            });
+        }
+    </script>
+</body>
+</html>
