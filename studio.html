@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlayForge Creative Studio</title>
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #0d0d16; font-family: 'Segoe UI', sans-serif; }
+        /* Professional Top Bar */
+        .studio-bar { 
+            height: 70px; background: #161625; display: flex; justify-content: space-between; 
+            align-items: center; padding: 0 30px; border-bottom: 2px solid #4ecca3; box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+        .logo { color: #4ecca3; font-weight: 800; font-size: 22px; text-decoration: none; letter-spacing: 1px; }
+        /* The Big Option you asked for */
+        .btn-publish-big { 
+            background: #4ecca3; color: #0d0d16; padding: 12px 30px; border-radius: 6px; 
+            font-weight: 900; text-decoration: none; font-size: 18px; border: none; cursor: pointer;
+            box-shadow: 0 0 20px rgba(78, 204, 163, 0.4); transition: 0.3s;
+        }
+        .btn-publish-big:hover { transform: translateY(-2px); box-shadow: 0 0 35px rgba(78, 204, 163, 0.7); }
+        iframe { width: 100%; height: calc(100vh - 72px); border: none; }
+    </style>
+</head>
+<body>
+    <div class="studio-bar">
+        <a href="dashboard.html" class="logo">← PLAYFORGE STUDIO</a>
+        <a href="publish.html" class="btn-publish-big">🚀 PUBLISH TO PLAYFORGE</a>
+    </div>
+    <iframe src="https://editor.gdevelop.io/"></iframe>
+</body>
+</html>
