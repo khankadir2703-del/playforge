@@ -2,30 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | PlayForge</title>
     <style>
         :root { --primary: #4ecca3; --bg: #0d0d16; --card: #161625; --text-dim: #94a3b8; }
         body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; margin: 0; }
-        
-        /* Navbar */
-        header { display: flex; justify-content: space-between; align-items: center; padding: 25px 8%; background: var(--card); border-bottom: 1px solid #2d2d44; position: sticky; top: 0; z-index: 1000; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 25px 8%; background: var(--card); border-bottom: 1px solid #2d2d44; }
         .logo { font-size: 26px; font-weight: 900; color: var(--primary); text-decoration: none; }
-        nav a { color: var(--text-dim); text-decoration: none; margin-left: 30px; font-weight: bold; font-size: 14px; transition: 0.3s; }
-        nav a:hover { color: white; }
-
-        /* Content Section */
-        .container { max-width: 1000px; margin: 100px auto; padding: 0 40px; text-align: center; }
+        nav a { color: var(--text-dim); text-decoration: none; margin-left: 30px; font-weight: bold; font-size: 14px; }
+        .container { max-width: 900px; margin: 80px auto; padding: 0 20px; text-align: center; }
         h1 { font-size: 64px; font-weight: 800; color: var(--primary); margin-bottom: 10px; }
-        .founder-tag { font-size: 18px; color: white; background: #6c63ff; display: inline-block; padding: 5px 20px; border-radius: 50px; margin-bottom: 30px; font-weight: bold; }
-        
-        .main-p { font-size: 24px; line-height: 1.6; color: #e2e8f0; margin-bottom: 60px; }
-
-        /* Tutorial Section */
-        .tutorial-box { background: var(--card); border: 1px solid #2d2d44; border-radius: 20px; padding: 40px; text-align: left; }
-        .tutorial-box h2 { color: var(--primary); margin-top: 0; border-bottom: 1px solid #2d2d44; padding-bottom: 15px; }
-        .tutorial-line { display: flex; align-items: flex-start; margin-bottom: 20px; color: var(--text-dim); font-size: 17px; line-height: 1.5; }
-        .step-num { background: var(--primary); color: #0d0d16; min-width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; margin-right: 15px; font-size: 14px; }
+        .founder { font-size: 18px; color: white; background: #6c63ff; padding: 5px 20px; border-radius: 50px; display: inline-block; margin-bottom: 30px; font-weight: bold; }
+        .tutorial-box { background: var(--card); border: 1px solid #2d2d44; border-radius: 20px; padding: 30px; text-align: left; margin-top: 50px; }
+        .step { margin-bottom: 15px; color: var(--text-dim); font-size: 16px; }
+        .step strong { color: var(--primary); }
     </style>
 </head>
 <body>
@@ -38,37 +27,17 @@
             <a href="account.html">ACCOUNT</a>
         </nav>
     </header>
-
     <div class="container">
         <h1>About PlayForge</h1>
-        <div class="founder-tag">Created by: Mohammad Khan</div>
+        <div class="founder">Founder: Mohammad Khan</div>
+        <p style="font-size: 20px; color: #94a3b8;">PlayForge is a professional workspace for GDevelop creators to build and monetize games.</p>
         
-        <p class="main-p">
-            PlayForge is a professional workspace designed for GDevelop creators. Our mission is to provide tools that help developers forge, publish, and monetize their games easily.
-        </p>
-
         <div class="tutorial-box">
-            <h2>PlayForge Quick Tutorial</h2>
-            
-            <div class="tutorial-line">
-                <div class="step-num">1</div>
-                <div><strong>Create Your Account:</strong> Start by setting up your profile in the Account Settings to manage your developer identity.</div>
-            </div>
-
-            <div class="tutorial-line">
-                <div class="step-num">2</div>
-                <div><strong>Open Creative Studio:</strong> Click the "Open Creative Studio" button on the home page to access your main developer dashboard.</div>
-            </div>
-
-            <div class="tutorial-line">
-                <div class="step-num">3</div>
-                <div><strong>Publish Your Game:</strong> Go to the Developer Console and click "Publish New Game" to upload your GDevelop projects.</div>
-            </div>
-
-            <div class="tutorial-line">
-                <div class="step-num">4</div>
-                <div><strong>Track Analytics:</strong> Monitor your Total Impressions and Earnings in real-time through the Console Overview.</div>
-            </div>
+            <h2 style="color: white; margin-top: 0;">PlayForge Tutorial</h2>
+            <div class="step">1. <strong>Setup:</strong> Go to <b>Account Settings</b> to update your profile.</div>
+            <div class="step">2. <strong>Create:</strong> Click <b>Open Creative Studio</b> to enter the dashboard.</div>
+            <div class="step">3. <strong>Console:</strong> Use the <b>Developer Console</b> to track your "Total Impressions".</div>
+            <div class="step">4. <strong>Logout:</strong> Use the red <b>Logout</b> button at the bottom sidebar when done.</div>
         </div>
     </div>
 </body>
