@@ -5,144 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PlayForge | Next-Gen Gaming Studio</title>
     <style>
-        :root {
-            --primary: #4ecca3;
-            --accent: #6c63ff;
-            --bg: #0d0d16;
-        }
-
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            font-family: 'Segoe UI', Roboto, sans-serif;
-            background: var(--bg);
-            color: white;
-            overflow: hidden;
-        }
-
-        /* Immersive Gaming Background */
+        :root { --primary: #4ecca3; --accent: #6c63ff; --bg: #0d0d16; }
+        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; overflow: hidden; }
+        
+        /* Immersive Background */
         .hero-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(rgba(13, 13, 22, 0.7), rgba(13, 13, 22, 0.8)), 
                         url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            z-index: -1;
+            background-size: cover; background-position: center; z-index: -1;
         }
 
         header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%;
-            background: rgba(22, 22, 37, 0.6);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            position: relative;
-            z-index: 100;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 5%; background: rgba(22, 22, 37, 0.6); backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,255,255,0.05); position: relative; z-index: 100;
         }
 
         .logo { font-size: 26px; font-weight: 800; color: var(--primary); text-decoration: none; letter-spacing: 2px; }
-
-        nav a {
-            color: #94a3b8;
-            text-decoration: none;
-            margin-left: 25px;
-            font-weight: 600;
-            font-size: 13px;
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
-
+        nav { display: flex; align-items: center; }
+        nav a { color: #94a3b8; text-decoration: none; margin-left: 25px; font-weight: 600; font-size: 13px; text-transform: uppercase; transition: 0.3s; }
         nav a:hover { color: var(--primary); }
 
-        .auth-btn {
-            border: 2px solid var(--primary);
-            padding: 8px 22px;
-            border-radius: 4px;
-            color: var(--primary) !important;
-        }
+        .auth-btn { border: 2px solid var(--primary); padding: 8px 22px; border-radius: 4px; color: var(--primary) !important; }
 
-        /* Hero Content */
-        .hero-content {
-            height: 70vh; /* Positioned slightly higher */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
-        }
-
-        .hero-content h1 {
-            font-size: 4rem;
-            margin-bottom: 10px;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: -1px;
-        }
-
-        .hero-content p {
-            max-width: 750px;
-            font-size: 1.1rem;
-            color: #cbd5e0;
-            margin-bottom: 35px; /* Space for the button */
-        }
-
-        /* Centralized Create Game Button */
+        .hero-content { height: 75vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px; }
+        .hero-content h1 { font-size: 4rem; margin-bottom: 10px; font-weight: 900; text-transform: uppercase; }
+        
+        /* Centralized Create Button */
         .btn-create {
-            background: var(--accent);
-            color: white;
-            padding: 18px 45px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 20px;
-            text-transform: uppercase;
-            box-shadow: 0 0 30px rgba(108, 99, 255, 0.5);
-            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: var(--accent); color: white; padding: 18px 45px; border-radius: 8px;
+            text-decoration: none; font-weight: 800; font-size: 20px; text-transform: uppercase;
+            box-shadow: 0 0 30px rgba(108, 99, 255, 0.5); transition: 0.3s; margin-bottom: 30px;
         }
-
-        .btn-create:hover { 
-            transform: scale(1.1); 
-            box-shadow: 0 0 50px rgba(108, 99, 255, 0.8);
-            background: #7c75ff;
-        }
-
+        .btn-create:hover { transform: scale(1.1); box-shadow: 0 0 50px rgba(108, 99, 255, 0.8); }
+        .hero-content p { max-width: 750px; font-size: 1.1rem; color: #cbd5e0; }
     </style>
 </head>
 <body>
-
     <div class="hero-bg"></div>
-
     <header>
         <a href="index.html" class="logo">PLAYFORGE</a>
         <nav>
             <a href="index.html">Home</a>
-            <a href="dashboard.html">Console</a>
+            <a href="about.html">About</a> <a href="dashboard.html">Console</a>
             <a href="earnings.html">Revenue</a>
-            <a href="publish.html">Submit Game</a>
             <a href="login.html" id="nav-auth-btn" class="auth-btn">Account</a>
         </nav>
     </header>
 
     <div class="hero-content">
         <h1>Unleash Your Creations.</h1>
-        <h1>Experience the Future.</h1>
-        
         <a href="https://gdevelop.io/create" target="_blank" class="btn-create">Create Game</a>
-
-        <p style="margin-top: 30px;">Dive into a vibrant community where developers forge immersive games and players discover their next adventure. Publish, track, and build with PlayForge.</p>
+        <p>Step into the ultimate professional studio for web developers. Build, publish, and dominate the leaderboard with PlayForge.</p>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth-compat.js"></script>
-    
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyC_ed7CPLdUtM2vFWJLjT7r-7n5iw1XlVU",
@@ -153,17 +72,10 @@
             appId: "1:347695622009:web:f8fe89ddc24363ab4571a8"
         };
         firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-
-        auth.onAuthStateChanged((user) => {
-            const authBtn = document.getElementById('nav-auth-btn');
-            if (user) {
-                authBtn.innerText = "ACCOUNT";
-                authBtn.href = "profile.html"; 
-            } else {
-                authBtn.innerText = "LOGIN";
-                authBtn.href = "login.html";
-            }
+        firebase.auth().onAuthStateChanged((user) => {
+            const btn = document.getElementById('nav-auth-btn');
+            if (user) { btn.innerText = "ACCOUNT"; btn.href = "profile.html"; }
+            else { btn.innerText = "LOGIN"; btn.href = "login.html"; }
         });
     </script>
 </body>
