@@ -4,21 +4,18 @@
     <meta charset="UTF-8">
     <title>Console | PlayForge</title>
     <style>
-        :root { --primary: #4ecca3; --bg: #0d0d16; --card: #161625; --text-dim: #94a3b8; --danger: #ff4e4e; }
+        :root { --primary: #4ecca3; --bg: #0d0d16; --card: #161625; --text-dim: #94a3b8; }
         body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; margin: 0; display: flex; }
         aside { width: 260px; background: var(--card); height: 100vh; padding: 30px; border-right: 1px solid #2d2d44; position: fixed; display: flex; flex-direction: column; }
         .logo { font-size: 24px; font-weight: 900; color: var(--primary); text-decoration: none; margin-bottom: 50px; }
         nav { flex: 1; }
-        nav a { color: var(--text-dim); text-decoration: none; padding: 14px; display: block; border-radius: 8px; margin-bottom: 10px; font-size: 14px; }
-        nav a.active { background: #232339; color: white; font-weight: bold; }
-        .logout-btn { color: var(--danger); text-decoration: none; padding: 15px; border-top: 1px solid #2d2d44; font-weight: 800; font-size: 14px; margin-top: auto; }
-        .logout-btn:hover { background: var(--danger); color: white; border-radius: 8px; }
+        nav a { color: var(--text-dim); text-decoration: none; padding: 14px; display: block; border-radius: 8px; margin-bottom: 10px; }
+        nav a.active { background: #232339; color: white; }
+        .logout-btn { color: #ff4e4e; text-decoration: none; padding: 15px; border-top: 1px solid #2d2d44; font-weight: bold; margin-top: auto; }
         main { flex: 1; margin-left: 320px; padding: 50px; }
-        .header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
-        .btn-pub { background: var(--primary); color: #0d0d16; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; }
         .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         .card { background: var(--card); padding: 30px; border-radius: 16px; border: 1px solid #2d2d44; }
-        .card p { font-size: 36px; font-weight: 800; color: var(--primary); margin-top: 15px; }
+        .card p { font-size: 36px; font-weight: 800; color: var(--primary); margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -26,21 +23,18 @@
         <a href="index.html" class="logo">PLAYFORGE</a>
         <nav>
             <a href="index.html">Home Overview</a>
+            <a href="about.html">About Us</a>
             <a href="dashboard.html" class="active">Developer Console</a>
-            <a href="revenue.html">Revenue Analytics</a>
             <a href="account.html">Account Settings</a>
         </nav>
         <a href="index.html" class="logout-btn">LOGOUT</a>
     </aside>
     <main>
-        <div class="header-flex">
-            <h1>Console <span style="color:var(--primary)">Overview</span></h1>
-            <a href="#" class="btn-pub">+ Publish New Game</a>
-        </div>
+        <h1>Console Overview</h1>
         <div class="stats">
-            <div class="card"><h3>TOTAL IMPRESSIONS</h3><p>0</p></div>
-            <div class="card"><h3>LIVE PROJECTS</h3><p>0</p></div>
-            <div class="card"><h3>TOTAL EARNINGS</h3><p>$0.00</p></div>
+            <div class="card"><h3>Impressions</h3><p>0</p></div>
+            <div class="card"><h3>Projects</h3><p>0</p></div>
+            <div class="card"><h3>Earnings</h3><p>$0.00</p></div>
         </div>
     </main>
 </body>
