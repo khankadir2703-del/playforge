@@ -5,21 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Account Settings | PlayForge</title>
     <style>
-        :root { --primary: #4ecca3; --bg: #0d0d16; --card: #161625; --text-dim: #94a3b8; --nav-hover: #2d2d44; }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; margin: 0; display: flex; }
+        :root { --primary: #4ecca3; --bg: #0d0d16; --card: #161625; --text-dim: #94a3b8; --nav-active: #232339; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; margin: 0; display: flex; overflow-x: hidden; }
 
         /* Sidebar Navigation */
         aside { width: 260px; background: var(--card); height: 100vh; padding: 30px; border-right: 1px solid #2d2d44; position: fixed; }
-        .logo { font-size: 24px; font-weight: 900; color: var(--primary); text-decoration: none; display: block; margin-bottom: 50px; letter-spacing: 1px; text-transform: uppercase; }
+        .logo { font-size: 24px; font-weight: 900; color: var(--primary); text-decoration: none; display: block; margin-bottom: 50px; letter-spacing: 1px; }
         nav a { color: var(--text-dim); text-decoration: none; padding: 14px; display: block; border-radius: 8px; margin-bottom: 10px; font-size: 14px; transition: 0.3s; }
-        nav a:hover { background: var(--nav-hover); color: white; }
-        nav a.active { background: #232339; color: white; }
+        nav a:hover { background: rgba(255,255,255,0.05); color: white; }
+        nav a.active { background: var(--nav-active); color: white; font-weight: bold; }
 
-        /* Account Settings Section */
-        main { flex: 1; margin-left: 320px; padding: 50px; }
-        h1 { font-size: 32px; margin-bottom: 40px; font-weight: 700; }
+        /* Main Section */
+        main { flex: 1; margin-left: 320px; padding: 60px 50px; }
+        h1 { font-size: 36px; margin-bottom: 40px; }
         h1 span { color: var(--primary); }
 
+        /* Edit Card */
         .settings-card { 
             max-width: 600px; 
             background: rgba(22, 22, 37, 0.5); 
@@ -31,7 +32,7 @@
         .input-group { margin-bottom: 25px; }
         label { display: block; color: var(--text-dim); margin-bottom: 12px; font-size: 14px; }
         
-        /* Edit Mode Inputs */
+        /* Functional Inputs */
         input { 
             width: 100%; 
             padding: 14px; 
@@ -41,11 +42,12 @@
             border-radius: 8px; 
             font-size: 15px; 
             box-sizing: border-box; 
+            outline: none;
             transition: 0.3s;
         }
-        input:focus { border-color: var(--primary); outline: none; background: #121220; }
+        input:focus { border-color: var(--primary); background: #121220; }
 
-        /* Green Save Button */
+        /* Working Button */
         .save-btn { 
             background: var(--primary); 
             color: #0d0d16; 
@@ -58,7 +60,8 @@
             margin-top: 10px;
             transition: 0.3s;
         }
-        .save-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(78, 204, 163, 0.2); }
+        .save-btn:active { transform: scale(0.98); }
+        .save-btn:hover { opacity: 0.9; box-shadow: 0 0 15px rgba(78, 204, 163, 0.3); }
     </style>
 </head>
 <body>
@@ -77,22 +80,24 @@
         <h1>Account <span>Settings</span></h1>
 
         <div class="settings-card">
-            <div class="input-group">
-                <label>Display Name</label>
-                <input type="text" value="Mohammad Khan" placeholder="Enter your display name">
-            </div>
+            <form onsubmit="event.preventDefault(); alert('Profile updated successfully!');">
+                <div class="input-group">
+                    <label>Display Name</label>
+                    <input type="text" value="Mohammad Khan" placeholder="Edit name...">
+                </div>
 
-            <div class="input-group">
-                <label>Email Address</label>
-                <input type="email" value="admin@playforge.com" placeholder="Enter your email address">
-            </div>
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" value="admin@playforge.com" placeholder="Edit email...">
+                </div>
 
-            <div class="input-group">
-                <label>Change Password</label>
-                <input type="password" placeholder="Enter new password (optional)">
-            </div>
+                <div class="input-group">
+                    <label>Change Password</label>
+                    <input type="password" placeholder="Enter new password">
+                </div>
 
-            <button class="save-btn">Save Profile Changes</button>
+                <button type="submit" class="save-btn">Save Profile Changes</button>
+            </form>
         </div>
     </main>
 
