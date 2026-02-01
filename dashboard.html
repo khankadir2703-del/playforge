@@ -6,16 +6,19 @@
     <style>
         :root { --primary: #4ecca3; --bg: #0d0d16; --card: #161625; --text-dim: #94a3b8; }
         body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; margin: 0; display: flex; }
-        aside { width: 260px; background: var(--card); height: 100vh; padding: 30px; border-right: 1px solid #2d2d44; position: fixed; display: flex; flex-direction: column; }
-        .logo { font-size: 24px; font-weight: 900; color: var(--primary); text-decoration: none; margin-bottom: 50px; }
-        nav { flex: 1; }
-        nav a { color: var(--text-dim); text-decoration: none; padding: 14px; display: block; border-radius: 8px; margin-bottom: 10px; }
-        nav a.active { background: #232339; color: white; }
-        .logout-btn { color: #ff4e4e; text-decoration: none; padding: 15px; border-top: 1px solid #2d2d44; font-weight: bold; margin-top: auto; }
-        main { flex: 1; margin-left: 320px; padding: 50px; }
-        .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .card { background: var(--card); padding: 30px; border-radius: 16px; border: 1px solid #2d2d44; }
-        .card p { font-size: 36px; font-weight: 800; color: var(--primary); margin-top: 10px; }
+        aside { width: 280px; background: var(--card); height: 100vh; padding: 35px; border-right: 1px solid #2d2d44; position: fixed; display: flex; flex-direction: column; box-sizing: border-box; }
+        .logo { font-size: 24px; font-weight: 900; color: var(--primary); text-decoration: none; margin-bottom: 60px; }
+        nav { flex-grow: 1; }
+        nav a { color: var(--text-dim); text-decoration: none; padding: 16px; display: block; border-radius: 10px; margin-bottom: 12px; }
+        nav a.active { background: #232339; color: white; font-weight: bold; }
+        .logout-btn { color: #ff4e4e; text-decoration: none; padding: 18px; border-top: 1px solid #2d2d44; font-weight: 800; margin-top: auto; }
+        
+        main { flex: 1; margin-left: 280px; padding: 60px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+        .stat-card { background: var(--card); padding: 40px; border-radius: 20px; border: 1px solid #2d2d44; }
+        .stat-card h3 { font-size: 13px; color: var(--text-dim); text-transform: uppercase; margin: 0; letter-spacing: 1px; }
+        .stat-card p { font-size: 45px; font-weight: 800; color: var(--primary); margin: 20px 0 0; }
+        .btn-pub { background: var(--primary); color: #0d0d16; padding: 14px 25px; border-radius: 10px; text-decoration: none; font-weight: 800; }
     </style>
 </head>
 <body>
@@ -29,12 +32,16 @@
         </nav>
         <a href="index.html" class="logout-btn">LOGOUT</a>
     </aside>
+
     <main>
-        <h1>Console Overview</h1>
-        <div class="stats">
-            <div class="card"><h3>Impressions</h3><p>0</p></div>
-            <div class="card"><h3>Projects</h3><p>0</p></div>
-            <div class="card"><h3>Earnings</h3><p>$0.00</p></div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 50px;">
+            <h1>Console <span style="color:var(--primary)">Overview</span></h1>
+            <a href="#" class="btn-pub">+ Publish New Game</a>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-card"><h3>TOTAL IMPRESSIONS</h3><p>0</p></div>
+            <div class="stat-card"><h3>LIVE PROJECTS</h3><p>0</p></div>
+            <div class="stat-card"><h3>TOTAL EARNINGS</h3><p>$0.00</p></div>
         </div>
     </main>
 </body>
