@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PlayForge | The Future of Web Gaming</title>
+    <title>PlayForge | Gaming Hub</title>
     <style>
-        /* Professional Dark Theme Design */
         body { font-family: 'Segoe UI', sans-serif; background: #0d0d16; color: white; margin: 0; }
         header { 
             background: #161625; 
@@ -13,32 +12,24 @@
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
-            position: sticky; 
-            top: 0; 
-            z-index: 1000;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            border-bottom: 1px solid #2d2d44;
         }
-        .logo { font-size: 26px; font-weight: bold; color: #4ecca3; text-decoration: none; }
-        nav a { color: #cbd5e0; text-decoration: none; margin-left: 25px; font-weight: 500; transition: 0.3s; }
+        .logo { font-size: 24px; font-weight: bold; color: #4ecca3; text-decoration: none; }
+        nav { display: flex; align-items: center; gap: 20px; }
+        nav a { color: #94a3b8; text-decoration: none; font-size: 15px; transition: 0.3s; }
         nav a:hover { color: #4ecca3; }
         
-        /* Special Button for Login/Account */
         .auth-btn { 
-            border: 2px solid #6c63ff; 
-            color: white !important; 
-            padding: 8px 20px; 
-            border-radius: 6px; 
-            background: rgba(108, 99, 255, 0.1);
+            border: 1px solid #4ecca3; 
+            padding: 7px 15px; 
+            border-radius: 5px; 
+            color: #4ecca3 !important;
+            font-weight: bold;
         }
-        .auth-btn:hover { background: #6c63ff; }
 
-        .hero { 
-            padding: 150px 20px; 
-            text-align: center; 
-            background: linear-gradient(to bottom, #1c1c3a, #0d0d16); 
-        }
-        h1 { font-size: 3.5rem; margin-bottom: 20px; }
-        .hero p { color: #94a3b8; font-size: 1.2rem; max-width: 600px; margin: auto; }
+        .hero { padding: 120px 20px; text-align: center; }
+        h1 { font-size: 3.5rem; margin-bottom: 15px; }
+        p { color: #94a3b8; font-size: 1.2rem; }
     </style>
 </head>
 <body>
@@ -47,7 +38,9 @@
         <a href="index.html" class="logo">PlayForge</a>
         <nav>
             <a href="index.html">Home</a>
-            <a href="#">Games</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="earnings.html">Earnings</a>
+            <a href="publish.html">Publish Game</a>
             <a href="login.html" id="nav-auth-btn" class="auth-btn">Login</a>
         </nav>
     </header>
@@ -61,7 +54,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth-compat.js"></script>
     
     <script>
-        // Aapka Naya Firebase Config
+        // Aapka Project Config
         const firebaseConfig = {
             apiKey: "AIzaSyC_ed7CPLdUtM2vFWJLjT7r-7n5iw1XlVU",
             authDomain: "playforge-d46a3.firebaseapp.com",
@@ -73,21 +66,17 @@
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
 
-        // 🛠️ Login Status Check karne wala Logic
+        // Check Login Status
         auth.onAuthStateChanged((user) => {
             const authBtn = document.getElementById('nav-auth-btn');
             if (user) {
-                // Agar user login hai
                 authBtn.innerText = "Account";
-                authBtn.href = "dashboard.html"; // Dashboard par bhejega
-                authBtn.style.borderColor = "#4ecca3";
+                authBtn.href = "dashboard.html";
             } else {
-                // Agar user login nahi hai
                 authBtn.innerText = "Login";
                 authBtn.href = "login.html";
             }
         });
     </script>
-
 </body>
 </html>
