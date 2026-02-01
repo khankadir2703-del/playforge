@@ -3,9 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PlayForge | Gaming Hub</title>
+    <title>PlayForge | Elevate Your Gaming Experience</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #0d0d16; color: white; margin: 0; }
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            background: #0d0d16; 
+            color: white; 
+            margin: 0; 
+            overflow-x: hidden; /* Horizontal scrolling prevent */
+        }
         header { 
             background: #161625; 
             padding: 15px 5%; 
@@ -13,6 +19,9 @@
             justify-content: space-between; 
             align-items: center; 
             border-bottom: 1px solid #2d2d44;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
         .logo { font-size: 24px; font-weight: bold; color: #4ecca3; text-decoration: none; }
         nav { display: flex; align-items: center; gap: 20px; }
@@ -26,10 +35,34 @@
             color: #4ecca3 !important;
             font-weight: bold;
         }
+        .auth-btn:hover { background: #4ecca3; color: white !important; }
 
-        .hero { padding: 120px 20px; text-align: center; }
-        h1 { font-size: 3.5rem; margin-bottom: 15px; }
-        p { color: #94a3b8; font-size: 1.2rem; }
+        /* Gaming Studio Hero Section */
+        .hero { 
+            padding: 180px 20px; /* Increased padding for more space */
+            text-align: center; 
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1594833202970-137a6b412970?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center; 
+            background-size: cover;
+            min-height: 600px; /* Ensure good height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .hero h1 { 
+            font-size: 4rem; /* Larger font size */
+            margin-bottom: 20px; 
+            line-height: 1.2;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.6); /* Text shadow for better readability */
+        }
+        .hero p { 
+            color: #d1d9e6; /* Lighter grey for description */
+            font-size: 1.4rem; /* Larger font size */
+            max-width: 800px; 
+            margin: auto; 
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        }
     </style>
 </head>
 <body>
@@ -46,8 +79,8 @@
     </header>
 
     <section class="hero">
-        <h1>The Future of Web Gaming</h1>
-        <p>Aapka gaming platform ab live hai. Games khelein, upload karein aur community ka hissa banein.</p>
+        <h1>Unleash Your Creations.<br>Experience the Future of Web Gaming.</h1>
+        <p>Dive into a vibrant community where developers forge immersive games and players discover their next adventure. Publish your innovations, track your success, and build the ultimate gaming universe with PlayForge.</p>
     </section>
 
     <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
