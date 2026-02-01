@@ -5,19 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PlayForge | Unleash Your Creations</title>
     <style>
-        :root { --primary: #4ecca3; --bg: #0d0d16; --text: #94a3b8; }
+        :root { --primary: #4ecca3; --bg: #0d0d16; --text-dim: #94a3b8; }
         body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; margin: 0; }
-        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 8%; background: rgba(22, 22, 37, 0.95); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        
+        /* Navbar Styling */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 25px 8%; background: rgba(22, 22, 37, 0.95); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .logo { font-size: 26px; font-weight: 900; color: var(--primary); text-decoration: none; letter-spacing: 1px; }
         nav { display: flex; align-items: center; }
-        nav a { color: var(--text); text-decoration: none; margin-left: 30px; font-size: 14px; font-weight: bold; transition: 0.3s; }
+        nav a { color: var(--text-dim); text-decoration: none; margin-left: 30px; font-size: 14px; font-weight: bold; transition: 0.3s; text-transform: uppercase; }
         nav a:hover { color: white; }
-        .btn-account { border: 2px solid var(--primary); padding: 8px 22px; border-radius: 6px; color: var(--primary); text-decoration: none; }
-        .hero { text-align: center; padding: 160px 20px; }
-        .hero h1 { font-size: 72px; font-weight: 900; margin-bottom: 20px; line-height: 1.1; letter-spacing: -1px; }
-        .hero-btn { background: #6c63ff; color: white; padding: 18px 45px; border-radius: 12px; text-decoration: none; font-weight: 800; font-size: 18px; display: inline-block; box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3); transition: 0.3s; }
-        .hero-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 25px rgba(108, 99, 255, 0.4); }
-        .sub-text { color: var(--text); max-width: 600px; margin: 35px auto; font-size: 18px; line-height: 1.6; }
+        .btn-account { border: 2px solid var(--primary); padding: 8px 22px; border-radius: 6px; color: var(--primary); text-decoration: none; transition: 0.3s; }
+        .btn-account:hover { background: var(--primary); color: #0d0d16; }
+
+        /* Hero Section */
+        .hero { text-align: center; padding: 160px 20px; max-width: 1000px; margin: 0 auto; }
+        .hero h1 { font-size: clamp(40px, 8vw, 75px); font-weight: 900; margin-bottom: 25px; line-height: 1.1; letter-spacing: -2px; }
+        .hero-btn { background: #6c63ff; color: white; padding: 20px 45px; border-radius: 15px; text-decoration: none; font-weight: 800; font-size: 18px; display: inline-block; transition: 0.4s; box-shadow: 0 15px 30px rgba(108, 99, 255, 0.3); }
+        .hero-btn:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(108, 99, 255, 0.4); }
+        .sub-text { color: var(--text-dim); font-size: 18px; margin-top: 40px; }
     </style>
 </head>
 <body>
@@ -30,6 +35,7 @@
             <a href="account.html" class="btn-account">ACCOUNT</a>
         </nav>
     </header>
+
     <div class="hero">
         <h1>UNLEASH YOUR<br>CREATIONS.</h1>
         <a href="dashboard.html" class="hero-btn">OPEN CREATIVE STUDIO</a>
