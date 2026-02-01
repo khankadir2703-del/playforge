@@ -2,39 +2,65 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Console | PlayForge</title>
     <style>
-        :root { --primary: #4ecca3; --bg: #0d0d16; --card: #161625; }
+        :root { --primary: #4ecca3; --bg: #0d0d16; --card: #161625; --text-dim: #94a3b8; }
         body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; margin: 0; display: flex; }
         
+        /* Sidebar Navigation */
         aside { width: 260px; background: var(--card); height: 100vh; padding: 30px; border-right: 1px solid #2d2d44; position: fixed; }
-        .logo { font-size: 24px; font-weight: 900; color: var(--primary); text-decoration: none; display: block; margin-bottom: 50px; }
-
-        nav a { color: #94a3b8; text-decoration: none; padding: 12px; display: block; border-radius: 8px; margin-bottom: 10px; }
+        .logo { font-size: 24px; font-weight: 900; color: var(--primary); text-decoration: none; display: block; margin-bottom: 50px; letter-spacing: 1px; }
+        nav a { color: var(--text-dim); text-decoration: none; padding: 14px; display: block; border-radius: 8px; margin-bottom: 10px; transition: 0.3s; font-size: 14px; font-weight: 600; }
         nav a:hover, nav a.active { background: #2d2d44; color: white; }
 
+        /* Main Area */
         main { flex: 1; margin-left: 320px; padding: 50px; }
-        .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .stat-card { background: var(--card); padding: 30px; border-radius: 12px; border: 1px solid #2d2d44; }
-        .stat-card p { font-size: 32px; font-weight: bold; color: var(--primary); margin-top: 10px; }
+        .header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        
+        .stat-card { background: var(--card); padding: 30px; border-radius: 16px; border: 1px solid #2d2d44; transition: 0.3s; }
+        .stat-card:hover { border-color: var(--primary); transform: translateY(-5px); }
+        .stat-card h3 { color: var(--text-dim); font-size: 13px; margin: 0; text-transform: uppercase; letter-spacing: 1px; }
+        .stat-card p { font-size: 36px; font-weight: 800; margin: 15px 0 0; color: var(--primary); }
+
+        .btn-publish { background: var(--primary); color: #0d0d16; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 14px; }
     </style>
 </head>
 <body>
     <aside>
         <a href="index.html" class="logo">PLAYFORGE</a>
         <nav>
-            <a href="index.html">Home</a>
+            <a href="index.html">Home Overview</a>
             <a href="dashboard.html" class="active">Developer Console</a>
-            <a href="#">Revenue Analytics</a>
-            <a href="#">Account Settings</a>
+            <a href="revenue.html">Revenue Analytics</a>
+            <a href="account.html">Account Settings</a>
         </nav>
     </aside>
+
     <main>
-        <h1>Console <span style="color:var(--primary)">Overview</span></h1>
-        <div class="stats">
-            <div class="stat-card"><h3>Total Impressions</h3><p>0</p></div>
-            <div class="stat-card"><h3>Live Projects</h3><p>0</p></div>
-            <div class="stat-card"><h3>Earnings</h3><p>$0.00</p></div>
+        <div class="header-flex">
+            <h1>Console <span style="color: var(--primary);">Overview</span></h1>
+            <a href="#" class="btn-publish">+ Publish New Game</a>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Total Impressions</h3>
+                <p>12,480</p>
+            </div>
+            <div class="stat-card">
+                <h3>Live Projects</h3>
+                <p>0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Total Earnings</h3>
+                <p>$0.00</p>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px; background: var(--card); padding: 80px; border-radius: 20px; text-align: center; border: 1px dashed #2d2d44;">
+            <p style="color: var(--text-dim); font-size: 18px;">No projects published yet. Let's start building!</p>
         </div>
     </main>
 </body>
