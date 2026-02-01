@@ -3,91 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PlayForge | Elevate Your Gaming Experience</title>
+    <title>PlayForge | Next-Gen Gaming Studio</title>
     <style>
-        body { 
-            font-family: 'Segoe UI', sans-serif; 
-            background: #0d0d16; 
-            color: white; 
-            margin: 0; 
-            overflow-x: hidden; /* Horizontal scrolling prevent */
+        :root {
+            --primary: #4ecca3;
+            --accent: #6c63ff;
+            --bg: #0d0d16;
         }
-        header { 
-            background: #161625; 
-            padding: 15px 5%; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            border-bottom: 1px solid #2d2d44;
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Full Screen Gaming Background */
+        .hero-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(13, 13, 22, 0.8), rgba(13, 13, 22, 0.8)), 
+                        url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(22, 22, 37, 0.7);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
             position: sticky;
             top: 0;
-            z-index: 1000;
+            z-index: 100;
         }
-        .logo { font-size: 24px; font-weight: bold; color: #4ecca3; text-decoration: none; }
-        nav { display: flex; align-items: center; gap: 20px; }
-        nav a { color: #94a3b8; text-decoration: none; font-size: 15px; transition: 0.3s; }
-        nav a:hover { color: #4ecca3; }
-        
-        .auth-btn { 
-            border: 1px solid #4ecca3; 
-            padding: 7px 15px; 
-            border-radius: 5px; 
-            color: #4ecca3 !important;
-            font-weight: bold;
-        }
-        .auth-btn:hover { background: #4ecca3; color: white !important; }
 
-        /* Gaming Studio Hero Section */
-        .hero { 
-            padding: 180px 20px; /* Increased padding for more space */
-            text-align: center; 
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1594833202970-137a6b412970?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center; 
-            background-size: cover;
-            min-height: 600px; /* Ensure good height */
+        .logo { font-size: 28px; font-weight: 800; color: var(--primary); text-decoration: none; letter-spacing: 1px; }
+
+        nav a {
+            color: #94a3b8;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 500;
+            transition: 0.3s;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        nav a:hover { color: var(--primary); }
+
+        .auth-btn {
+            border: 2px solid var(--primary);
+            padding: 10px 25px;
+            border-radius: 50px;
+            color: var(--primary) !important;
+            transition: 0.4s;
+            background: transparent;
+        }
+
+        .auth-btn:hover {
+            background: var(--primary);
+            color: var(--bg) !important;
+            box-shadow: 0 0 20px var(--primary);
+        }
+
+        /* Hero Content */
+        .hero-content {
+            height: 80vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            position: relative;
+            text-align: center;
+            padding: 0 20px;
         }
-        .hero h1 { 
-            font-size: 4rem; /* Larger font size */
-            margin-bottom: 20px; 
-            line-height: 1.2;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.6); /* Text shadow for better readability */
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
         }
-        .hero p { 
-            color: #d1d9e6; /* Lighter grey for description */
-            font-size: 1.4rem; /* Larger font size */
-            max-width: 800px; 
-            margin: auto; 
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+
+        .hero-content p {
+            max-width: 700px;
+            font-size: 1.2rem;
+            color: #cbd5e0;
+            line-height: 1.6;
+            margin-bottom: 30px;
         }
+
+        .btn-main {
+            background: var(--accent);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            box-shadow: 0 10px 30px rgba(108, 99, 255, 0.4);
+            transition: 0.3s;
+        }
+
+        .btn-main:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(108, 99, 255, 0.6); }
+
     </style>
 </head>
 <body>
 
+    <div class="hero-bg"></div>
+
     <header>
-        <a href="index.html" class="logo">PlayForge</a>
+        <a href="index.html" class="logo">PLAYFORGE</a>
         <nav>
             <a href="index.html">Home</a>
-            <a href="dashboard.html">Dashboard</a>
-            <a href="earnings.html">Earnings</a>
-            <a href="publish.html">Publish Game</a>
-            <a href="login.html" id="nav-auth-btn" class="auth-btn">Login</a>
+            <a href="dashboard.html">Console</a>
+            <a href="earnings.html">Revenue</a>
+            <a href="publish.html">Submit Game</a>
+            <a href="login.html" id="nav-auth-btn" class="auth-btn">Join Now</a>
         </nav>
     </header>
 
-    <section class="hero">
-        <h1>Unleash Your Creations.<br>Experience the Future of Web Gaming.</h1>
-        <p>Dive into a vibrant community where developers forge immersive games and players discover their next adventure. Publish your innovations, track your success, and build the ultimate gaming universe with PlayForge.</p>
-    </section>
+    <div class="hero-content">
+        <h1>FORGE YOUR LEGACY</h1>
+        <p>The world's most powerful web gaming engine is here. Build, publish, and monetize your creations in a professional studio environment designed for next-gen developers.</p>
+        <a href="publish.html" class="btn-main">Get Started for Free</a>
+    </div>
 
     <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth-compat.js"></script>
     
     <script>
-        // Aapka Project Config
         const firebaseConfig = {
             apiKey: "AIzaSyC_ed7CPLdUtM2vFWJLjT7r-7n5iw1XlVU",
             authDomain: "playforge-d46a3.firebaseapp.com",
@@ -99,14 +157,13 @@
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
 
-        // Check Login Status
         auth.onAuthStateChanged((user) => {
             const authBtn = document.getElementById('nav-auth-btn');
             if (user) {
-                authBtn.innerText = "Account";
-                authBtn.href = "dashboard.html";
+                authBtn.innerText = "ACCOUNT";
+                authBtn.href = "profile.html"; // Dashboard ki jagah Profile par bhejein
             } else {
-                authBtn.innerText = "Login";
+                authBtn.innerText = "LOGIN";
                 authBtn.href = "login.html";
             }
         });
