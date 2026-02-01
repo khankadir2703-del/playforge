@@ -5,46 +5,57 @@
     <title>About | PlayForge Studio</title>
     <style>
         :root { --primary: #4ecca3; --accent: #6c63ff; --bg: #0d0d16; }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; margin: 0; padding: 60px 20px; }
-        .container { max-width: 900px; margin: auto; background: #161625; padding: 70px; border-radius: 24px; border: 1px solid #2d2d44; box-shadow: 0 30px 60px rgba(0,0,0,0.6); }
-        h1 { color: var(--primary); font-size: 48px; text-align: center; margin-bottom: 10px; letter-spacing: 2px; }
-        .sub-text { text-align: center; font-size: 1.2rem; color: #94a3b8; margin-bottom: 50px; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; margin: 0; padding: 60px 0; }
         
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 60px; }
-        .card { background: #0d0d16; padding: 30px; border-radius: 15px; border-left: 4px solid var(--accent); }
-        .card h3 { margin-top: 0; color: var(--primary); }
+        .nav-header { position: absolute; top: 30px; left: 5%; display: flex; align-items: center; text-decoration: none; }
+        .nav-header img { height: 45px; margin-right: 12px; }
+        .nav-header span { color: white; font-size: 22px; font-weight: 800; }
+
+        .container { max-width: 1000px; margin: 40px auto; background: #161625; padding: 80px; border-radius: 30px; border: 1px solid #2d2d44; box-shadow: 0 40px 100px rgba(0,0,0,0.7); }
+        h1 { color: var(--primary); font-size: 56px; text-align: center; margin-bottom: 20px; letter-spacing: -1px; }
+        .mission { text-align: center; font-size: 1.4rem; color: #cbd5e0; margin-bottom: 60px; line-height: 1.6; }
         
-        .founder-section { text-align: center; padding-top: 50px; border-top: 1px solid #2d2d44; }
-        .founder-label { text-transform: uppercase; letter-spacing: 3px; color: #94a3b8; font-size: 12px; }
-        .founder-name { font-size: 42px; font-weight: 900; color: var(--accent); margin: 10px 0; }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 60px 0; }
+        .about-card { background: #0d0d16; padding: 40px; border-radius: 20px; border-top: 5px solid var(--accent); }
+        .about-card h3 { font-size: 24px; color: var(--primary); margin-top: 0; }
+        .about-card p { color: #94a3b8; line-height: 1.6; }
+
+        .founder-wrap { text-align: center; margin-top: 80px; padding-top: 60px; border-top: 1px solid #2d2d44; }
+        .founder-title { text-transform: uppercase; letter-spacing: 4px; color: #94a3b8; font-size: 14px; margin-bottom: 10px; }
+        .founder-name { font-size: 48px; font-weight: 900; color: var(--accent); margin: 0; text-shadow: 0 0 30px rgba(108, 99, 255, 0.3); }
         
-        .btn-home { display: inline-block; margin-top: 40px; color: var(--primary); text-decoration: none; font-weight: bold; border: 2px solid var(--primary); padding: 12px 35px; border-radius: 10px; transition: 0.3s; }
-        .btn-home:hover { background: var(--primary); color: #0d0d16; }
+        .back-link { display: inline-block; margin-top: 50px; color: var(--primary); text-decoration: none; font-weight: 800; font-size: 18px; transition: 0.3s; }
+        .back-link:hover { letter-spacing: 2px; }
     </style>
 </head>
 <body>
+    <a href="index.html" class="nav-header">
+        <img src="logo.png" alt="PlayForge">
+        <span>PLAYFORGE</span>
+    </a>
+
     <div class="container">
-        <h1>PLAYFORGE STUDIO</h1>
-        <p class="sub-text">The premier destination for next-gen game developers using GDevelop technology.</p>
+        <h1>BEYOND GAMING.</h1>
+        <p class="mission">PlayForge is the premier destination for next-gen game developers using GDevelop technology. We provide the tools to forge, test, and launch global hits.</p>
         
-        <div class="grid">
-            <div class="card">
-                <h3>Global Hosting</h3>
-                <p>Deploy your HTML5 games to our high-performance cloud infrastructure instantly.</p>
+        <div class="about-grid">
+            <div class="about-card">
+                <h3>Global Infrastructure</h3>
+                <p>Deploy your creations to a high-performance cloud network designed for low-latency HTML5 gaming.</p>
             </div>
-            <div class="card">
-                <h3>Revenue Share</h3>
-                <p>Maximize your earnings with our developer-first monetization and ad-integration tools.</p>
+            <div class="about-card">
+                <h3>Creator Economy</h3>
+                <p>Advanced monetization tools that ensure developers earn more for every play and every impression.</p>
             </div>
         </div>
 
-        <div class="founder-section">
-            <p class="founder-label">Visionary Founder</p>
+        <div class="founder-wrap">
+            <p class="founder-title">Visionary Founder</p>
             <div class="founder-name">Mohammad Khan</div>
-            <p style="color: #cbd5e0; font-style: italic;">"Forge your legacy in the digital world."</p>
+            <p style="color: #94a3b8; font-style: italic; margin-top: 20px; font-size: 1.1rem;">"Our goal is to empower every creator to build their digital legacy without limits."</p>
         </div>
-
-        <center><a href="index.html" class="btn-home">← Back to Home</a></center>
+        
+        <center><a href="index.html" class="back-link">← RETURN TO HOME</a></center>
     </div>
 </body>
 </html>
