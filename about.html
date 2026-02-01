@@ -5,39 +5,44 @@
     <title>About | PlayForge Studio</title>
     <style>
         :root { --primary: #4ecca3; --accent: #6c63ff; --bg: #0d0d16; }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; margin: 0; padding: 50px 0; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; margin: 0; padding: 40px 20px; }
         
-        .top-nav { position: absolute; top: 20px; left: 5%; display: flex; align-items: center; gap: 12px; text-decoration: none; }
-        .top-nav img { height: 40px; }
-        .top-nav span { color: white; font-size: 20px; font-weight: 800; letter-spacing: 1px; }
+        header { display: flex; align-items: center; gap: 10px; margin-bottom: 30px; }
+        header img { height: 40px; }
+        header b { font-size: 20px; letter-spacing: 1px; }
 
-        .container { max-width: 900px; margin: 60px auto; background: #161625; padding: 70px; border-radius: 30px; border: 1px solid #2d2d44; box-shadow: 0 30px 60px rgba(0,0,0,0.6); text-align: center; }
-        h1 { color: var(--primary); font-size: 50px; margin-bottom: 20px; }
+        .container { max-width: 900px; margin: auto; background: #161625; padding: 60px; border-radius: 24px; border: 1px solid #2d2d44; text-align: center; }
+        h1 { color: var(--primary); font-size: 48px; margin-bottom: 20px; }
         
-        .founder-box { margin-top: 60px; padding-top: 50px; border-top: 1px solid #2d2d44; }
-        .founder-label { text-transform: uppercase; letter-spacing: 4px; color: #94a3b8; font-size: 14px; }
-        .founder-name { font-size: 48px; font-weight: 900; color: var(--accent); margin: 15px 0; }
+        .founder-box { margin-top: 50px; padding-top: 40px; border-top: 1px solid #2d2d44; }
+        .founder-name { font-size: 42px; font-weight: 900; color: var(--accent); margin: 15px 0; }
         
-        .info-text { font-size: 1.3rem; color: #cbd5e0; line-height: 1.6; margin-bottom: 40px; }
+        .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; text-align: left; margin: 40px 0; }
+        .feature-card { background: #0d0d16; padding: 25px; border-radius: 12px; border-left: 4px solid var(--primary); }
     </style>
 </head>
 <body>
-    <a href="index.html" class="top-nav">
-        <img src="./logo.png" alt="Logo">
-        <span>PLAYFORGE</span>
-    </a>
+    <header>
+        <img src="logo.png" alt="Logo">
+        <b>PLAYFORGE</b>
+    </header>
 
     <div class="container">
         <h1>PLAYFORGE STUDIO</h1>
-        <p class="info-text">The premier destination for next-gen game developers using GDevelop technology. We provide a professional ecosystem to build, host, and monetize your digital dreams.</p>
+        <p style="font-size: 1.2rem; color: #94a3b8; line-height: 1.6;">The premier destination for next-gen game developers using GDevelop technology. We provide a professional ecosystem to build and host your creations.</p>
         
+        <div class="feature-grid">
+            <div class="feature-card"><h3>Global Hosting</h3><p>Fast and reliable cloud hosting for your HTML5 games.</p></div>
+            <div class="feature-card"><h3>Creator Analytics</h3><p>Detailed insights into your game's performance.</p></div>
+        </div>
+
         <div class="founder-box">
-            <p class="founder-label">Visionary Founder</p>
+            <p style="text-transform: uppercase; color: #94a3b8; letter-spacing: 2px;">Visionary Founder</p>
             <div class="founder-name">Mohammad Khan</div>
-            <p style="color: #94a3b8; font-style: italic;">"Empowering the creators of tomorrow to forge their legacy today."</p>
+            <p style="font-style: italic; color: #cbd5e0;">"Forge your legacy in the digital world."</p>
         </div>
         
-        <a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: bold; margin-top: 40px; display: inline-block;">← BACK TO HOME</a>
+        <a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: bold; margin-top: 30px; display: inline-block;">← RETURN HOME</a>
     </div>
 </body>
 </html>
