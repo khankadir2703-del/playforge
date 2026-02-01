@@ -2,70 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Account Settings | PlayForge</title>
     <style>
-        :root { --primary: #4ecca3; --bg: #0d0d16; --card: #161625; --text-dim: #94a3b8; --nav-active: #232339; }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; margin: 0; display: flex; overflow-x: hidden; }
-
-        /* Sidebar Navigation */
-        aside { width: 260px; background: var(--card); height: 100vh; padding: 30px; border-right: 1px solid #2d2d44; position: fixed; }
-        .logo { font-size: 24px; font-weight: 900; color: var(--primary); text-decoration: none; display: block; margin-bottom: 50px; letter-spacing: 1px; }
-        nav a { color: var(--text-dim); text-decoration: none; padding: 14px; display: block; border-radius: 8px; margin-bottom: 10px; font-size: 14px; transition: 0.3s; }
-        nav a:hover { background: rgba(255,255,255,0.05); color: white; }
-        nav a.active { background: var(--nav-active); color: white; font-weight: bold; }
-
-        /* Main Section */
-        main { flex: 1; margin-left: 320px; padding: 60px 50px; }
-        h1 { font-size: 36px; margin-bottom: 40px; }
-        h1 span { color: var(--primary); }
-
-        /* Edit Card */
-        .settings-card { 
-            max-width: 600px; 
-            background: rgba(22, 22, 37, 0.5); 
-            padding: 40px; 
-            border-radius: 20px; 
-            border: 1px solid #2d2d44; 
-        }
-
-        .input-group { margin-bottom: 25px; }
-        label { display: block; color: var(--text-dim); margin-bottom: 12px; font-size: 14px; }
+        :root { --primary: #4ecca3; --bg: #0d0d16; --card: #161625; --text-dim: #94a3b8; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; margin: 0; display: flex; }
         
-        /* Functional Inputs */
+        /* Sidebar */
+        aside { width: 280px; background: var(--card); height: 100vh; padding: 35px; border-right: 1px solid #2d2d44; position: fixed; display: flex; flex-direction: column; }
+        .logo { font-size: 24px; font-weight: 900; color: var(--primary); text-decoration: none; margin-bottom: 60px; }
+        nav { flex-grow: 1; }
+        nav a { color: var(--text-dim); text-decoration: none; padding: 16px; display: block; border-radius: 10px; margin-bottom: 12px; }
+        nav a.active { background: #232339; color: white; font-weight: bold; }
+        .logout-btn { color: #ff5f5f; text-decoration: none; padding: 15px; border-top: 1px solid #2d2d44; font-weight: 800; margin-top: auto; }
+
+        /* Account Card */
+        main { flex: 1; margin-left: 320px; padding: 60px; }
+        h1 { font-size: 36px; margin-bottom: 40px; }
+        .settings-card { max-width: 650px; background: rgba(22, 22, 37, 0.6); padding: 45px; border-radius: 24px; border: 1px solid #2d2d44; }
+        
+        .input-group { margin-bottom: 30px; }
+        label { display: block; color: var(--text-dim); margin-bottom: 12px; font-size: 14px; font-weight: 600; }
+        
+        /* Editable Inputs */
         input { 
-            width: 100%; 
-            padding: 14px; 
-            background: #0d0d16; 
-            border: 1px solid #2d2d44; 
-            color: white; 
-            border-radius: 8px; 
-            font-size: 15px; 
-            box-sizing: border-box; 
-            outline: none;
-            transition: 0.3s;
+            width: 100%; padding: 16px; background: #0d0d16; border: 1px solid #2d2d44; 
+            color: white; border-radius: 10px; font-size: 16px; box-sizing: border-box; 
+            outline: none; transition: 0.3s;
         }
         input:focus { border-color: var(--primary); background: #121220; }
 
-        /* Working Button */
         .save-btn { 
-            background: var(--primary); 
-            color: #0d0d16; 
-            padding: 14px 28px; 
-            border: none; 
-            border-radius: 8px; 
-            font-weight: 800; 
-            cursor: pointer; 
-            font-size: 14px;
-            margin-top: 10px;
-            transition: 0.3s;
+            background: var(--primary); color: #0d0d16; padding: 16px 35px; border: none; 
+            border-radius: 10px; font-weight: 900; cursor: pointer; font-size: 15px; 
+            transition: 0.3s; box-shadow: 0 10px 20px rgba(78, 204, 163, 0.2);
         }
-        .save-btn:active { transform: scale(0.98); }
-        .save-btn:hover { opacity: 0.9; box-shadow: 0 0 15px rgba(78, 204, 163, 0.3); }
+        .save-btn:hover { transform: translateY(-2px); opacity: 0.9; }
     </style>
 </head>
 <body>
-
     <aside>
         <a href="index.html" class="logo">PLAYFORGE</a>
         <nav>
@@ -74,32 +48,28 @@
             <a href="revenue.html">Revenue Analytics</a>
             <a href="account.html" class="active">Account Settings</a>
         </nav>
+        <a href="index.html" class="logout-btn">LOGOUT</a>
     </aside>
 
     <main>
-        <h1>Account <span>Settings</span></h1>
-
+        <h1>Account <span style="color: var(--primary);">Settings</span></h1>
         <div class="settings-card">
-            <form onsubmit="event.preventDefault(); alert('Profile updated successfully!');">
+            <form onsubmit="event.preventDefault(); alert('Changes saved successfully!');">
                 <div class="input-group">
                     <label>Display Name</label>
-                    <input type="text" value="Mohammad Khan" placeholder="Edit name...">
+                    <input type="text" value="Mohammad Khan">
                 </div>
-
                 <div class="input-group">
                     <label>Email Address</label>
-                    <input type="email" value="admin@playforge.com" placeholder="Edit email...">
+                    <input type="email" value="admin@playforge.com">
                 </div>
-
                 <div class="input-group">
-                    <label>Change Password</label>
-                    <input type="password" placeholder="Enter new password">
+                    <label>New Password</label>
+                    <input type="password" placeholder="Leave blank to keep current">
                 </div>
-
                 <button type="submit" class="save-btn">Save Profile Changes</button>
             </form>
         </div>
     </main>
-
 </body>
 </html>
