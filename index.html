@@ -6,7 +6,7 @@
     <title>PlayForge | Unleash Your Creations</title>
     <style>
         :root { --primary: #4ecca3; --accent: #6c63ff; --bg: #0d0d16; }
-        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: white; overflow: hidden; }
+        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; overflow: hidden; }
         
         .hero-wrapper {
             height: 100vh;
@@ -16,49 +16,47 @@
 
         header {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 5%; background: rgba(22, 22, 37, 0.8); backdrop-filter: blur(12px);
+            padding: 10px 5%; background: rgba(22, 22, 37, 0.8); backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255,255,255,0.1); z-index: 100;
         }
 
-        /* Top Left Logo */
-        .logo-box { display: flex; align-items: center; text-decoration: none; transition: 0.3s; }
-        .logo-box:hover { opacity: 0.8; }
-        .logo-img { height: 50px; width: auto; margin-right: 12px; }
-        .logo-text { font-size: 24px; font-weight: 900; color: white; letter-spacing: 2px; }
+        /* Top Left Logo Fix */
+        .logo-container { display: flex; align-items: center; text-decoration: none; gap: 15px; }
+        .logo-img { height: 45px; width: auto; object-fit: contain; }
+        .logo-text { font-size: 24px; font-weight: 900; color: white; letter-spacing: 2px; text-transform: uppercase; }
 
         nav a { color: #94a3b8; text-decoration: none; margin-left: 25px; font-weight: 600; font-size: 14px; text-transform: uppercase; transition: 0.3s; }
         nav a:hover { color: var(--primary); }
 
-        .hero-content { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px; }
-        .hero-content h1 { font-size: 5rem; margin: 0; font-weight: 900; letter-spacing: -2px; line-height: 1; text-transform: uppercase; }
+        .hero-content { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .hero-content h1 { font-size: 5rem; margin: 0; font-weight: 900; letter-spacing: -2px; line-height: 1; }
         
         .btn-studio { 
             background: var(--accent); color: white; padding: 20px 50px; border-radius: 10px; 
             text-decoration: none; font-weight: 800; font-size: 22px; margin: 35px 0;
-            box-shadow: 0 10px 30px rgba(108, 99, 255, 0.4); transition: 0.4s; text-transform: uppercase;
+            box-shadow: 0 10px 30px rgba(108, 99, 255, 0.4); transition: 0.4s;
         }
-        .btn-studio:hover { transform: translateY(-5px); box-shadow: 0 15px 45px rgba(108, 99, 255, 0.6); }
+        .btn-studio:hover { transform: translateY(-3px); box-shadow: 0 15px 45px rgba(108, 99, 255, 0.6); }
         .hero-content p { color: #94a3b8; max-width: 700px; font-size: 1.2rem; line-height: 1.6; }
     </style>
 </head>
 <body>
     <div class="hero-wrapper">
         <header>
-            <a href="index.html" class="logo-box">
-                <img src="logo.png" alt="PlayForge" class="logo-img">
+            <a href="index.html" class="logo-container">
+                <img src="./logo.png" alt="PlayForge Logo" class="logo-img">
                 <span class="logo-text">PLAYFORGE</span>
             </a>
             <nav>
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
                 <a href="dashboard.html">Console</a>
-                <a href="login.html" style="color: var(--primary); border: 1px solid var(--primary); padding: 6px 18px; border-radius: 5px;">Account</a>
             </nav>
         </header>
         <div class="hero-content">
             <h1>UNLEASH YOUR<br>CREATIONS.</h1>
             <a href="studio.html" class="btn-studio">OPEN CREATIVE STUDIO</a>
-            <p>The most powerful professional workspace for GDevelop creators. Forge, publish, and dominate the charts with PlayForge.</p>
+            <p>The world's most powerful professional workspace for GDevelop creators. Forge, publish, and dominate the charts with PlayForge.</p>
         </div>
     </div>
 </body>
