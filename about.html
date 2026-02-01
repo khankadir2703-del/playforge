@@ -2,30 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>About | PlayForge Studio</title>
+    <title>About | PlayForge</title>
     <style>
         :root { --primary: #4ecca3; --accent: #6c63ff; --bg: #0d0d16; }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; margin: 0; padding: 40px; }
-        .logo { font-size: 22px; font-weight: bold; color: var(--primary); text-decoration: none; margin-bottom: 40px; display: inline-block; letter-spacing: 1px; }
-        
-        .container { max-width: 800px; margin: auto; background: #161625; padding: 60px; border-radius: 20px; border: 1px solid #2d2d44; text-align: center; }
-        h1 { font-size: 40px; color: var(--primary); margin-bottom: 20px; }
-        .founder-name { font-size: 36px; font-weight: 900; color: var(--accent); margin: 20px 0; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; margin: 0; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: #161625; }
+        .logo { font-size: 22px; font-weight: bold; color: var(--primary); text-decoration: none; }
+        nav a { color: #94a3b8; text-decoration: none; margin-left: 20px; font-size: 13px; text-transform: uppercase; }
+
+        .container { max-width: 800px; margin: 60px auto; background: #161625; padding: 60px; border-radius: 20px; text-align: center; border: 1px solid #2d2d44; }
+        h1 { color: var(--primary); }
+        .founder { font-size: 36px; color: var(--accent); font-weight: 900; margin: 20px 0; }
     </style>
 </head>
 <body>
-    <a href="index.html" class="logo">PLAYFORGE</a>
+    <header>
+        <a href="index.html" class="logo">PLAYFORGE</a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="dashboard.html">Console</a>
+        </nav>
+    </header>
     <div class="container">
         <h1>PLAYFORGE STUDIO</h1>
-        <p style="color: #94a3b8; font-size: 1.1rem;">The premier destination for next-gen game developers using GDevelop technology.</p>
-        
-        <div style="margin-top: 50px; padding-top: 30px; border-top: 1px solid #2d2d44;">
-            <p style="text-transform: uppercase; color: #94a3b8; letter-spacing: 2px;">Visionary Founder</p>
-            <div class="founder-name">Mohammad Khan</div>
-            <p style="color: #cbd5e0; font-style: italic;">"Forge your legacy."</p>
+        <p style="color: #94a3b8;">The premier destination for next-gen game developers using GDevelop technology.</p>
+        <div style="margin-top: 40px; border-top: 1px solid #2d2d44; padding-top: 30px;">
+            <p>VISIONARY FOUNDER</p>
+            <div class="founder">Mohammad Khan</div>
         </div>
-        
-        <a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: bold; margin-top: 30px; display: inline-block;">← BACK HOME</a>
     </div>
 </body>
 </html>
