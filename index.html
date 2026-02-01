@@ -8,7 +8,6 @@
         :root { --primary: #4ecca3; --accent: #6c63ff; --bg: #0d0d16; }
         body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; overflow-x: hidden; }
         
-        /* Gaming Background */
         .hero-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(rgba(13, 13, 22, 0.85), rgba(13, 13, 22, 0.85)), 
@@ -26,13 +25,11 @@
         nav { display: flex; align-items: center; }
         nav a { color: #94a3b8; text-decoration: none; margin-left: 20px; font-weight: 600; font-size: 13px; text-transform: uppercase; transition: 0.3s; }
         nav a:hover { color: var(--primary); }
-
         .auth-btn { border: 2px solid var(--primary); padding: 6px 18px; border-radius: 4px; color: var(--primary) !important; }
 
         .hero-content { height: 85vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px; }
         .hero-content h1 { font-size: 4.5rem; margin: 0; font-weight: 900; text-transform: uppercase; letter-spacing: -2px; }
         
-        /* Centralized GDevelop Button */
         .btn-create {
             background: var(--accent); color: white; padding: 15px 40px; border-radius: 8px;
             text-decoration: none; font-weight: 800; font-size: 22px; text-transform: uppercase;
@@ -40,7 +37,6 @@
             display: inline-block;
         }
         .btn-create:hover { transform: scale(1.05); box-shadow: 0 0 50px rgba(108, 99, 255, 0.7); background: #7c75ff; }
-        
         .hero-content p { max-width: 650px; font-size: 1.1rem; color: #94a3b8; line-height: 1.6; }
     </style>
 </head>
@@ -59,9 +55,7 @@
 
     <div class="hero-content">
         <h1>UNLEASH YOUR CREATIONS.</h1>
-        
-        <a href="https://gdevelop.io/create" target="_blank" class="btn-create">CREATE GAME</a>
-        
+        <a href="https://editor.gdevelop.io/" target="_blank" class="btn-create">CREATE GAME</a>
         <p>Step into the ultimate professional studio for web developers. Build, publish, and dominate the leaderboard with PlayForge.</p>
     </div>
 
@@ -79,21 +73,9 @@
         firebase.initializeApp(firebaseConfig);
         firebase.auth().onAuthStateChanged((user) => {
             const btn = document.getElementById('nav-auth-btn');
-            if (user) { 
-                btn.innerText = "ACCOUNT"; 
-                btn.href = "profile.html";
-            } else { 
-                btn.innerText = "LOGIN"; 
-                btn.href = "login.html"; 
-            }
+            if (user) { btn.innerText = "ACCOUNT"; btn.href = "profile.html"; }
+            else { btn.innerText = "LOGIN"; btn.href = "login.html"; }
         });
     </script>
 </body>
 </html>
-<div class="hero-content">
-    <h1>UNLEASH YOUR CREATIONS.</h1>
-    
-    <a href="https://editor.gdevelop.io/" target="_blank" class="btn-create">CREATE GAME</a>
-    
-    <p>Step into the ultimate professional studio for web developers. Build, publish, and dominate the leaderboard with PlayForge.</p>
-</div>
