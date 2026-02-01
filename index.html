@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PlayForge | Next-Gen Gaming Studio</title>
+    <title>PlayForge | Unleash Your Creations</title>
     <style>
         :root { --primary: #4ecca3; --accent: #6c63ff; --bg: #0d0d16; }
         body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; overflow: hidden; }
@@ -17,12 +17,12 @@
         header {
             display: flex; justify-content: space-between; align-items: center;
             padding: 20px 8%; background: rgba(22, 22, 37, 0.8); backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255,255,255,0.05); z-index: 10;
+            border-bottom: 1px solid rgba(255,255,255,0.05); z-index: 100;
         }
 
-        /* Pure Text Logo - No Images */
+        /* Pehle jaisa Text Logo */
         .logo { font-size: 26px; font-weight: 900; color: var(--primary); text-decoration: none; letter-spacing: 2px; }
-        
+
         nav a { color: #94a3b8; text-decoration: none; margin-left: 25px; font-weight: 600; font-size: 13px; text-transform: uppercase; transition: 0.3s; }
         nav a:hover { color: var(--primary); }
 
@@ -32,8 +32,10 @@
         .btn-studio { 
             background: var(--accent); color: white; padding: 18px 45px; border-radius: 8px; 
             text-decoration: none; font-weight: 800; font-size: 20px; margin: 30px 0;
-            box-shadow: 0 0 30px rgba(108, 99, 255, 0.4);
+            box-shadow: 0 0 30px rgba(108, 99, 255, 0.4); transition: 0.3s;
         }
+        .btn-studio:hover { transform: scale(1.05); }
+        .hero-content p { color: #94a3b8; max-width: 650px; font-size: 1.1rem; line-height: 1.6; }
     </style>
 </head>
 <body>
@@ -49,7 +51,7 @@
         <div class="hero-content">
             <h1>UNLEASH YOUR<br>CREATIONS.</h1>
             <a href="studio.html" class="btn-studio">OPEN CREATIVE STUDIO</a>
-            <p style="color:#94a3b8; max-width:650px;">The world's most powerful professional workspace for GDevelop creators.</p>
+            <p>The world's most powerful professional workspace for GDevelop creators.</p>
         </div>
     </div>
 </body>
