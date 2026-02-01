@@ -5,55 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PlayForge | Unleash Your Creations</title>
     <style>
-        :root { --primary: #4ecca3; --accent: #6c63ff; --bg: #0d0d16; }
-        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; overflow: hidden; }
+        :root { --primary: #4ecca3; --bg: #0d0d16; --text-dim: #94a3b8; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); color: white; margin: 0; line-height: 1.6; }
         
-        .hero-wrapper {
-            height: 100vh;
-            background: radial-gradient(circle at center, #1a1a2e 0%, #0d0d16 100%);
-            display: flex; flex-direction: column;
-        }
-
-        header {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 5%; background: rgba(22, 22, 37, 0.8); backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255,255,255,0.1); z-index: 100;
-        }
-
+        /* Navigation */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 25px 8%; background: rgba(13, 13, 22, 0.95); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .logo { font-size: 26px; font-weight: 900; color: var(--primary); text-decoration: none; letter-spacing: 2px; }
+        nav { display: flex; align-items: center; }
+        nav a { color: var(--text-dim); text-decoration: none; margin-left: 35px; font-size: 14px; font-weight: 700; transition: 0.3s; letter-spacing: 1px; }
+        nav a:hover { color: white; }
+        .btn-account { border: 2px solid var(--primary); padding: 10px 25px; border-radius: 8px; color: var(--primary); transition: 0.3s; }
+        .btn-account:hover { background: var(--primary); color: #0d0d16; }
 
-        /* Navigation Restored */
-        nav { display: flex; align-items: center; gap: 25px; }
-        nav a { color: #94a3b8; text-decoration: none; font-weight: 600; font-size: 13px; text-transform: uppercase; transition: 0.3s; }
-        nav a:hover { color: var(--primary); }
-        .btn-acc { border: 1px solid var(--primary); padding: 8px 15px; border-radius: 5px; color: var(--primary); }
-
-        .hero-content { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-        .hero-content h1 { font-size: 4.5rem; margin: 0; font-weight: 900; letter-spacing: -2px; line-height: 1.1; }
-        
-        .btn-studio { 
-            background: var(--accent); color: white; padding: 18px 45px; border-radius: 8px; 
-            text-decoration: none; font-weight: 800; font-size: 20px; margin: 30px 0;
-            box-shadow: 0 0 30px rgba(108, 99, 255, 0.4);
-        }
+        /* Hero Section */
+        .hero { text-align: center; padding: 160px 20px; max-width: 1000px; margin: 0 auto; }
+        .hero h1 { font-size: 72px; font-weight: 900; margin-bottom: 25px; line-height: 1.1; letter-spacing: -2px; }
+        .hero-btn { background: #6c63ff; color: white; padding: 20px 45px; border-radius: 14px; text-decoration: none; font-weight: 800; font-size: 18px; display: inline-block; transition: 0.4s; box-shadow: 0 15px 30px rgba(108, 99, 255, 0.3); }
+        .hero-btn:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(108, 99, 255, 0.4); }
+        .sub-text { color: var(--text-dim); font-size: 19px; margin-top: 40px; max-width: 700px; margin-left: auto; margin-right: auto; }
     </style>
 </head>
 <body>
-    <div class="hero-wrapper">
-        <header>
-            <a href="index.html" class="logo">PLAYFORGE</a>
-            <nav>
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="dashboard.html">Console</a>
-                <a href="#" class="btn-acc">Account</a>
-            </nav>
-        </header>
-        <div class="hero-content">
-            <h1>UNLEASH YOUR<br>CREATIONS.</h1>
-            <a href="studio.html" class="btn-studio">OPEN CREATIVE STUDIO</a>
-            <p style="color:#94a3b8; max-width:650px;">The world's most powerful professional workspace for GDevelop creators.</p>
-        </div>
-    </div>
+    <header>
+        <a href="index.html" class="logo">PLAYFORGE</a>
+        <nav>
+            <a href="index.html">HOME</a>
+            <a href="#">ABOUT</a>
+            <a href="dashboard.html">CONSOLE</a>
+            <a href="account.html" class="btn-account">ACCOUNT</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>UNLEASH YOUR<br>CREATIONS.</h1>
+        <a href="dashboard.html" class="hero-btn">OPEN CREATIVE STUDIO</a>
+        <p class="sub-text">The world's most powerful professional workspace for GDevelop creators. Forge, publish, and dominate the charts with PlayForge.</p>
+    </section>
 </body>
 </html>
