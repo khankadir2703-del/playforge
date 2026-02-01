@@ -2,23 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Revenue | PlayForge</title>
     <style>
         :root { --primary: #4ecca3; --bg: #0d0d16; --card: #161625; --text-dim: #94a3b8; }
         body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; margin: 0; display: flex; }
         aside { width: 260px; background: var(--card); height: 100vh; padding: 30px; border-right: 1px solid #2d2d44; position: fixed; }
         .logo { font-size: 24px; font-weight: 900; color: var(--primary); text-decoration: none; display: block; margin-bottom: 50px; }
-        nav a { color: var(--text-dim); text-decoration: none; padding: 14px; display: block; border-radius: 8px; margin-bottom: 10px; font-size: 14px; }
+        nav a { color: var(--text-dim); text-decoration: none; padding: 14px; display: block; border-radius: 8px; margin-bottom: 10px; }
         nav a.active { background: #2d2d44; color: white; }
         main { flex: 1; margin-left: 320px; padding: 50px; }
-        .rev-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 30px; }
-        .rev-card { background: var(--card); padding: 40px; border-radius: 18px; border: 1px solid #2d2d44; text-align: center; }
-        .rev-card h2 { font-size: 48px; color: var(--primary); margin: 15px 0; }
-        .table-box { margin-top: 40px; background: var(--card); padding: 30px; border-radius: 18px; border: 1px solid #2d2d44; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th { text-align: left; color: var(--text-dim); padding-bottom: 15px; border-bottom: 1px solid #2d2d44; font-size: 12px; }
-        td { padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .rev-box { background: var(--card); padding: 40px; border-radius: 18px; border: 1px solid #2d2d44; text-align: center; margin-top: 30px; }
+        .rev-box h2 { font-size: 48px; color: var(--primary); }
     </style>
 </head>
 <body>
@@ -32,17 +26,11 @@
         </nav>
     </aside>
     <main>
-        <h1>Revenue <span style="color: var(--primary);">Analytics</span></h1>
-        <div class="rev-grid">
-            <div class="rev-card"><h3>Available Balance</h3><h2>$0.00</h2><p>Minimum payout $50.00</p></div>
-            <div class="rev-card"><h3>All Time Earnings</h3><h2>$0.00</h2><p>Verified through ad-network</p></div>
-        </div>
-        <div class="table-box">
-            <h2>Recent Payouts</h2>
-            <table>
-                <thead><tr><th>DATE</th><th>METHOD</th><th>AMOUNT</th><th>STATUS</th></tr></thead>
-                <tbody><tr><td colspan="4" style="text-align: center; color: var(--text-dim); padding: 30px;">No payout records found.</td></tr></tbody>
-            </table>
+        <h1>Revenue <span style="color:var(--primary)">Analytics</span></h1>
+        <div class="rev-box">
+            <h3>Estimated Earnings</h3>
+            <h2>$0.00</h2>
+            <p style="color:var(--text-dim)">Keep creating to see your revenue grow!</p>
         </div>
     </main>
 </body>
